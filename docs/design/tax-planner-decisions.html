@@ -1,0 +1,200 @@
+<title>Tax-Planner ก่อนลงมือ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: single reading column; each decision is a block with options side by side, recommended option marked. */
+:root{
+  --bg:#F6F7F5; --surface:#FFFFFF; --fg:#1E2421; --mut:#5E6A64; --line:#DCE2DE;
+  --accent:#1F6E54; --accent-soft:#E3F1EA; --warn:#9A5B00; --warn-soft:#FFF3DC; --bad:#A33A2C; --bad-soft:#FBE7E3;
+  --body:"IBM Plex Sans Thai",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1C2320; --fg:#E6ECE8; --mut:#9AA8A1; --line:#2E3833;
+  --accent:#6BC9A3; --accent-soft:#1D3A2E; --warn:#E8B45A; --warn-soft:#3A2E17; --bad:#F08A7A; --bad-soft:#3D2420; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1C2320; --fg:#E6ECE8; --mut:#9AA8A1; --line:#2E3833;
+  --accent:#6BC9A3; --accent-soft:#1D3A2E; --warn:#E8B45A; --warn-soft:#3A2E17; --bad:#F08A7A; --bad-soft:#3D2420; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:36px}
+h1{font-size:1.9rem;line-height:1.25;margin:0;text-wrap:balance}
+h2{font-size:1.25rem;margin:0 0 4px;text-wrap:balance}
+h3{font-size:1rem;margin:0}
+p{margin:0}
+.lede{color:var(--mut);max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+section{display:flex;flex-direction:column;gap:14px}
+.note{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:6px}
+.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.opt.rec{border:2px solid var(--accent)}
+.pill{align-self:flex-start;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.pill.plain{background:var(--line);color:var(--mut)}
+ul{margin:0;padding-left:18px}
+li{margin:2px 0}
+.pro{color:var(--accent)} .con{color:var(--bad)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:500;font-size:.8rem}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.st{font-size:.75rem;font-weight:700;padding:1px 7px;border-radius:99px;white-space:nowrap}
+.st.ok{background:var(--accent-soft);color:var(--accent)}
+.st.chk{background:var(--warn-soft);color:var(--warn)}
+.st.bad{background:var(--bad-soft);color:var(--bad)}
+.wf{background:var(--bg);border:1px dashed var(--line);border-radius:6px;padding:10px;font-size:.82rem;display:flex;flex-direction:column;gap:6px}
+.wf .b{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 8px}
+.wf .hero{border-color:var(--accent);color:var(--accent);font-weight:700}
+.wf .row{display:flex;gap:6px} .wf .row>.b{flex:1}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
+.q ol{margin:0;padding-left:20px}
+</style>
+
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:8px">
+  <span class="eyebrow">Tax-Planner · ปีภาษี 2569</span>
+  <h1>ตกลงกันก่อนลงมือ: stack, logic, UI</h1>
+  <p class="lede">หน้านี้รวบรวมสิ่งที่ยังต้องตัดสินใจ ยังไม่มีการเขียนโค้ดเพิ่ม แต่ละข้อมีตัวเลือกและข้อแนะนำ เลือกครบแล้วค่อยเริ่มทำ</p>
+</header>
+
+<section>
+  <span class="eyebrow">สถานะตอนนี้</span>
+  <h2>ของที่ agy ทำไปแล้วโดยยังไม่ได้ตกลง</h2>
+  <div class="note">
+    repo มีโค้ดอยู่แล้ว 2 commit (<code>b29a720</code>, <code>2feb35e</code>): React 19 + Vite 6 + Vitest มี logic แยกใน <code>src/logic/</code>, UI 7 component และ test 2 ไฟล์ ให้ถือว่าเป็น<b>ร่าง</b> ไม่ใช่ข้อตกลง จะเก็บต่อ แก้ หรือทิ้งก็ได้ ขึ้นกับคำตอบด้านล่าง
+  </div>
+  <div class="note bad">
+    ร่างของ agy ใช้ประกันสังคม <b>750/เดือน</b> ซึ่งผิด ประกาศใหม่คือ <b>875/เดือน (10,500/ปี)</b> ตรงกับ Vit MyInvestment และ tax-pvd-rmf แล้ว ร่างของ agy ต้องแก้
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">ข้อ 1 · Tech stack</span>
+  <h2>Flutter เทียบ Next.js สำหรับ Tax-Planner</h2>
+  <p class="lede">ตกลงแล้ว: public repo + GitHub Pages · แบบหน้าจอตาม <code>docs/design/tax-planner-mockup.html</code> · ต้องย้อนกลับไปใช้กับ Vit MyInvestment (React + Vite) ได้</p>
+  <div class="tw"><table>
+    <thead><tr><th>เรื่อง</th><th>Flutter (web)</th><th>Next.js (static export)</th></tr></thead>
+    <tbody>
+      <tr><td>เปิดครั้งแรกบนมือถือ</td><td>ต้องโหลดตัว engine + แอปรวมหลาย MB ก่อนเห็นหน้า <span class="st bad">ช้า</span></td><td>HTML ขึ้นทันที JS ราวร้อย KB <span class="st ok">เร็ว</span></td></tr>
+      <tr><td>พิมพ์ภาษาไทย คัดลอก ซูม ค้นหาในหน้า</td><td>วาดลง canvas ช่องกรอกจำลองด้วย overlay ทำงานได้แต่ไม่เนียนเท่าเว็บ ค้นหาในหน้า (Ctrl+F) ใช้ไม่ได้ <span class="st chk">พอใช้</span></td><td>เป็นช่องกรอกของเบราว์เซอร์จริง <span class="st ok">ปกติ</span></td></tr>
+      <tr><td>ใช้ logic และ component ร่วมกับ Vit MyInvestment</td><td>ต้องเขียน logic ใหม่เป็น Dart ดูแลสองชุด <span class="st bad">ไม่ได้</span></td><td>TypeScript ชุดเดียว ใช้ได้ทั้งสองโปรเจกต์ <span class="st ok">ได้</span></td></tr>
+      <tr><td>ใช้โค้ดร่างที่มีอยู่ (React + Vitest)</td><td>ทิ้งทั้งหมด</td><td>ย้าย logic และ test มาได้เกือบทั้งหมด</td></tr>
+      <tr><td>GitHub Pages</td><td><code>flutter build web --base-href /Tax-Planner/</code> ได้</td><td><code>output: 'export'</code> + <code>basePath</code> ได้</td></tr>
+      <tr><td>แอปมือถือ iOS / Android ในอนาคต</td><td>โค้ดเดียวกันได้เลย <span class="st ok">เด่น</span></td><td>ต้องห่อเป็น PWA หรือใช้ Capacitor / React Native</td></tr>
+      <tr><td>หน้าตาเหมือนกันทุกเครื่อง</td><td>เหมือนกันทุกพิกเซล</td><td>ขึ้นกับเบราว์เซอร์เล็กน้อย</td></tr>
+      <tr><td>ค้นเจอใน Google / แชร์ลิงก์มีรูปตัวอย่าง</td><td>แทบไม่ได้</td><td>ได้</td></tr>
+      <tr><td>Test</td><td>flutter test (เขียนใหม่)</td><td>Vitest เดิม + Playwright</td></tr>
+    </tbody>
+  </table></div>
+  <div class="opts">
+    <div class="opt rec">
+      <span class="pill">แนะนำ</span>
+      <h3>Next.js (หรือ React + Vite ที่มีอยู่)</h3>
+      <p>เป้าคือลิงก์ GitHub Pages ที่มือใหม่เปิดบนมือถือ และต้องแชร์แบบหน้าจอกับ logic กลับไปที่ Vit MyInvestment สองข้อนี้ชี้ไปทางเว็บ</p>
+      <p class="mut">หน้าเดียวแบบนี้ไม่ได้ใช้ความสามารถพิเศษของ Next.js มากนัก ถ้าอยากให้ stack ตรงกับ Vit MyInvestment ใช้ React + Vite ต่อจากร่างเดิมก็ได้ ผลบน GitHub Pages เหมือนกัน</p>
+    </div>
+    <div class="opt">
+      <span class="pill plain">เลือกเมื่อ</span>
+      <h3>Flutter</h3>
+      <p>เป้าหลักเปลี่ยนเป็นแอปใน App Store / Play Store และยอมดูแล logic สองชุด (Dart กับ TypeScript ของ Vit MyInvestment)</p>
+    </div>
+  </div>
+  <div class="opts">
+    <div class="opt">
+      <span class="pill plain">ต้องทำก่อนเปิด public</span>
+      <h3>เช็คความปลอดภัยของ repo</h3>
+      <ul>
+        <li>ไล่ประวัติ git หาข้อมูลส่วนตัว เช่น เงินเดือนจริงหรือ path ในเครื่อง</li>
+        <li>ตัดสินใจว่า <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>dist/</code> จะอยู่ใน repo public หรือไม่</li>
+        <li>ใส่ LICENSE และข้อความแจ้งว่าเป็นการประมาณการ</li>
+        <li>การเปิด public และเปิดใช้ Pages ให้เจ้าของ repo เป็นคนกดเอง</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">ข้อ 2 · Logic</span>
+  <h2>กฎที่ต้องคำนวณ และตัวเลขที่ต้องยืนยัน</h2>
+  <div class="tw"><table>
+    <thead><tr><th>เรื่อง</th><th>ค่าที่ใช้</th><th>ที่มา</th><th>สถานะ</th></tr></thead>
+    <tbody>
+      <tr><td>ขั้นภาษี 0–35%</td><td class="num">8 ขั้น</td><td>ทั้งสองตรงกัน</td><td><span class="st ok">ตรงกัน</span></td></tr>
+      <tr><td>ค่าใช้จ่าย 40(1)</td><td class="num">50% ≤ 100,000</td><td>ทั้งสองตรงกัน</td><td><span class="st ok">ตรงกัน</span></td></tr>
+      <tr><td>ประกันสังคม</td><td class="num">875 /เดือน · 10,500 /ปี</td><td>ประกาศใหม่ · ร่าง agy ยังเป็น 750</td><td><span class="st bad">แก้ร่าง agy</span></td></tr>
+      <tr><td>Easy E-Receipt</td><td class="num">≤ 50,000</td><td>ต้นแบบเขียนว่า "ปี 2569 รอประกาศ"</td><td><span class="st chk">รอประกาศ</span></td></tr>
+      <tr><td>RMF / PVD / กอช.</td><td class="num">30% / 15% / 30,000</td><td>รวมกลุ่มเกษียณ ≤ 500,000</td><td><span class="st ok">ตรงกัน</span></td></tr>
+      <tr><td>ประกันบำนาญ</td><td class="num">15% ≤ 200,000</td><td>นับในกลุ่ม 500,000</td><td><span class="st ok">ตรงกัน</span></td></tr>
+      <tr><td>Thai ESG / ESGX</td><td class="num">30% ≤ 300,000</td><td>วงเงินแยก</td><td><span class="st ok">ตรงกัน</span></td></tr>
+      <tr><td>บริจาค</td><td class="num">1 เท่า / 2 เท่า ≤ 10%</td><td>ต้นแบบระบุว่าต้องผ่าน e-Donation</td><td><span class="st chk">ตรวจเงื่อนไข</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3 style="margin-top:6px">ความสามารถที่จะมี (เลือกได้ว่าเอาข้อไหน)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>ความสามารถ</th><th>มีในร่าง agy</th><th>มีในต้นแบบ</th><th>แนะนำ</th></tr></thead>
+    <tbody>
+      <tr><td>หลายบริษัท ย้ายงาน ปรับเงินเดือนกลางปี</td><td>มี</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>OT / รายได้อื่นแยกรายเดือน พิมพ์สูตร 2500+1500 ได้</td><td>บางส่วน</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>ได้คืน / จ่ายเพิ่ม เทียบกับภาษีที่ถูกหักไว้</td><td>มี</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>"ควรซื้อ RMF เท่าไร" ลงขั้นภาษี + แบ่งรายเดือน + ต้นทุนจริง</td><td>ไม่มี</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>Slider ลองซื้อเพิ่ม + ปุ่มกลับเป็นค่าจริง</td><td>มี (ไม่มีปุ่มย้อน)</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>แถบวงเงินเกษียณ 500,000 ใช้ไป/เหลือ</td><td>ไม่มี</td><td>มี</td><td><span class="st ok">รอบแรก</span></td></tr>
+      <tr><td>ถาม AI เลือกกองทุน (สร้าง prompt)</td><td>ไม่มี</td><td>มี</td><td><span class="st chk">รอบหลัง</span></td></tr>
+      <tr><td>เครดิตภาษีเงินปันผล</td><td>ไม่มี</td><td>คู่มือเท่านั้น</td><td><span class="st chk">รอบหลัง</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">ข้อ 3 · UI</span>
+  <h2>รวมจุดที่ใช้ง่ายจากทั้งสองต้นแบบ</h2>
+  <p class="lede">โครงหลักเป็นหน้าเดียวแบบ tax-pvd-rmf (เลื่อนลงอย่างเดียว คำตอบอยู่บน) แล้วเอาการ์ดสรุปที่เห็นภาพชัดของ Vit MyInvestment มาใส่ แต่ละส่วนออกแบบเป็น component แยก เพื่อนำกลับไปแทนที่ใน Vit MyInvestment ได้ทีละชิ้น</p>
+  <div class="opts">
+    <div class="opt rec" style="grid-column:1/-1">
+      <span class="pill">แบบที่เสนอ (มือถือ เรียงจากบนลงล่าง)</span>
+      <div class="wf">
+        <div class="b" style="border-color:var(--warn);color:var(--warn)">กำลังดูตัวอย่าง · [เริ่มกรอกของฉัน] <i>— tax-pvd-rmf</i></div>
+        <div class="b hero">ได้คืน +฿4,820 · ถูกหักไว้ ฿38,200 · ภาษีจริง ฿33,380 <i>— ทั้งสอง (ป้าย "ประมาณ / จาก 50 ทวิ" จาก MyInvestment)</i></div>
+        <div class="row"><div class="b">รายได้ทั้งปี</div><div class="b">หักทั้งหมด</div><div class="b">เงินได้สุทธิ</div><div class="b">ขั้นภาษี 10%</div></div>
+        <div class="b"><i>↑ 4 ตัวเลขสรุปเป็นการ์ดเล็กเรียงกัน — MyInvestment (TaxMetrics) · มือถือเป็น 2×2</i></div>
+        <div class="b">ควรซื้อ RMF เท่าไร: ซื้อ ฿38,000 → ลงขั้น 10%→5% · เดือนละ ฿19,000 · ต้นทุนจริง ฿34,200 <i>— tax-pvd-rmf + ชิปรายเดือนจาก MyInvestment</i></div>
+        <div class="b">กองทุนเกษียณ ▓▓▓▓░░░ 182,000 / 500,000 · RMF · PVD · บริษัทสมทบ PVD ฿45,000 <i>— MyInvestment</i></div>
+        <div class="b">ลองเล่น: slider + [กลับเป็นค่าจริง] · ภาษีก่อน/หลัง · ขั้น 10%→5% <i>— ทั้งสอง</i></div>
+        <div class="b">① รายได้ · บริษัท A / B · OT รายเดือน (พิมพ์ 2500+1500 ได้) <i>— tax-pvd-rmf</i></div>
+        <div class="b">② ครอบครัว ③ ประกัน ④ กองทุน ⑤ อื่น ๆ (พับไว้) <i>— tax-pvd-rmf</i></div>
+        <div class="b">ตารางรายได้แยกบริษัท · ภาษีแยกตามขั้น <i>— tax-pvd-rmf</i></div>
+        <div class="b">คู่มือ · RMF เทียบ PVD · เช็คลิสต์ปลายปี (แตะเปิด) <i>— tax-pvd-rmf</i></div>
+      </div>
+      <p>บนจอคอม: ส่วนผลลัพธ์ (การ์ดสรุป ควรซื้อ กองทุน ลองเล่น) อยู่คอลัมน์ขวาแบบติดจอ ฟอร์มอยู่ซ้าย</p>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>เอามาจาก Vit MyInvestment</th><th>เอามาจาก tax-pvd-rmf</th><th>ไม่เอา</th></tr></thead>
+    <tbody><tr>
+      <td><ul><li>4 การ์ดตัวเลขสรุป</li><li>แถบกองทุนเกษียณ 500,000</li><li>เงินที่บริษัทสมทบ PVD</li><li>ป้ายประมาณ / จาก 50 ทวิ</li><li>ชิปยอดซื้อรายเดือน</li><li>ภาษีก่อน/หลัง และขั้นที่เปลี่ยน</li></ul></td>
+      <td><ul><li>แถบตัวอย่าง + ปุ่มเริ่มกรอก</li><li>หน้าเดียว ผลลัพธ์อยู่บน</li><li>ฟอร์ม 5 หมวด มีวงเงินในชื่อช่อง</li><li>OT รายเดือน พิมพ์สูตรได้</li><li>การ์ดควรซื้อ RMF เท่าไร + ต้นทุนจริง</li><li>คู่มือแบบแตะเปิด · กล่องข้อจำกัด</li></ul></td>
+      <td><ul><li>ตัวพิมพ์ใหญ่ภาษาอังกฤษ (OPTIMIZE NOW, Sentiment)</li><li>ตารางที่ต้อง hover ถึงเห็น</li><li>เอฟเฟกต์ glow / scale</li><li>ตัวหนังสือเล็กกว่า 14px</li></ul></td>
+    </tr></tbody>
+  </table></div>
+  <div class="q">
+    <h3>ทางย้อนกลับไป Vit MyInvestment</h3>
+    <ul>
+      <li>logic ภาษีเป็นแพ็กเกจ TypeScript ชุดเดียว ใช้ทั้งสองโปรเจกต์ ไม่ต้องคำนวณแยกสองที่</li>
+      <li>component ส่วนผลลัพธ์ (การ์ดสรุป · ควรซื้อ · กองทุน · ลองเล่น) รับ props เหมือนกัน แล้วค่อยใส่ธีมของแต่ละแอป</li>
+      <li>ข้อนี้ต้องใช้ Next.js/React จึงจะทำได้ ถ้าเลือก Flutter ต้องออกแบบซ้ำสองชุด</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">ต้องการคำตอบ</span>
+  <h2>เหลือสามข้อที่ต้องเลือก</h2>
+  <div class="q"><ol>
+    <li><s>Stack</s> ตกลงแล้ว: public repo + GitHub Pages</li>
+    <li><b>ความสามารถรอบแรก:</b> ตามคอลัมน์ "แนะนำ" หรือปรับเพิ่ม/ลด</li>
+    <li><b>Framework:</b> Next.js (แนะนำ) หรือ Flutter</li><li><b>UI:</b> แบบรวมที่เสนอ ใช้ได้ไหม หรือจะปรับส่วนไหน</li>
+  </ol>
+  <p style="margin-top:8px;color:var(--mut)">ร่างของ agy: เก็บไว้เป็นฐานแล้วแก้ตามคำตอบ หรือเริ่มใหม่</p></div>
+</section>
+</div>

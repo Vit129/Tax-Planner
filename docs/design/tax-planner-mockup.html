@@ -1,0 +1,411 @@
+<title>Tax-Planner ต้นแบบหน้าจอ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: results-first. Phone = sticky answer bar + stacked steps. Desktop = form left, sticky results right. */
+:root{
+  --bg:#FBF8F1; --surface:#FFFFFF; --sunk:#F6F1E8; --fg:#2B2520; --mut:#635B52; --line:#E5DDD0;
+  --accent:#146C36; --accent-soft:#E6F3EB; --gold:#8C5300; --gold-soft:#FBF0DC; --bad:#A8221B; --bad-soft:#FCEBE9; --blue:#1A568C; --blue-soft:#E9F1F7;
+  --body:-apple-system,BlinkMacSystemFont,"Noto Sans Thai","Sarabun","Segoe UI",system-ui,sans-serif; --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1A1714; --surface:#24201C; --sunk:#2D2823; --fg:#EFE8DE; --mut:#AFA597; --line:#3D3630;
+  --accent:#6CC58E; --accent-soft:#1F3A29; --gold:#E3B260; --gold-soft:#3A2F1C; --bad:#F08A80; --bad-soft:#3F2320; --blue:#86B6E6; --blue-soft:#1E2E40; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1A1714; --surface:#24201C; --sunk:#2D2823; --fg:#EFE8DE; --mut:#AFA597; --line:#3D3630;
+  --accent:#6CC58E; --accent-soft:#1F3A29; --gold:#E3B260; --gold-soft:#3A2F1C; --bad:#F08A80; --bad-soft:#3F2320; --blue:#86B6E6; --blue-soft:#1E2E40; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+h1{font-size:1.5rem;margin:0;line-height:1.3}
+h2{font-size:1.1rem;margin:0}
+p{margin:0}
+.mut{color:var(--mut);font-size:.9rem}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.banner{background:var(--gold-soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{font:inherit;font-weight:700;border-radius:8px;padding:10px 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;min-height:44px}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.btn:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+@media (min-width:900px){.grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}.results{position:sticky;top:12px}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.step{display:flex;gap:10px;align-items:center}
+.step b.n{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:.9rem;flex:none}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--mut)}
+.money{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--surface);min-height:44px}
+.money span{padding-left:10px;color:var(--mut)}
+.money input{border:0;background:transparent;font:500 1rem var(--mono);color:var(--fg);text-align:right;padding:8px 10px;width:100%;min-width:0}
+.money input:focus{outline:none}.money:focus-within{outline:3px solid var(--blue);outline-offset:1px}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.months{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+@media (max-width:420px){.months{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.m{font:inherit;text-align:center;border:1px solid var(--line);border-radius:8px;background:var(--sunk);color:var(--fg);padding:6px 2px;cursor:pointer;display:flex;flex-direction:column;gap:0;min-height:44px}
+.m .t{font-size:.8rem;color:var(--mut)} .m .v{font:600 .85rem var(--mono)} .m .x{font:.72rem var(--mono);color:var(--accent)}
+.m.off{opacity:.45} .m.sel{border:2px solid var(--blue);background:var(--blue-soft)}
+.detail{background:var(--sunk);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.slip{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.85rem}
+.slip .num{font-weight:600}
+.formula{font-size:.9rem;color:var(--mut)} .formula b{color:var(--fg)}
+.toggle{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:.9rem;border:1px solid var(--line);border-radius:99px;padding:6px 12px;background:var(--surface);color:var(--fg);cursor:pointer;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.line:last-child{border-bottom:0}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-size:1.2rem;cursor:pointer}
+.auto{font-size:.85rem;color:var(--accent)}
+.hero{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.hero.ok{background:var(--accent-soft);color:var(--accent)} .hero.pay{background:var(--bad-soft);color:var(--bad)}
+.hero .big{font:700 2.1rem var(--mono);line-height:1.1}
+.hero .mut{color:inherit;opacity:.85}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tile{background:var(--sunk);border-radius:8px;padding:8px 10px}
+.tile .mut{font-size:.8rem} .tile .num{font-weight:600}
+.advice{background:var(--blue-soft);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.advice b{color:var(--blue)}
+.mchips{display:flex;flex-wrap:wrap;gap:6px}
+.mchips span{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font:.8rem var(--mono)}
+.bar{height:12px;border-radius:99px;background:var(--sunk);overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.85rem}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+input[type=range]{width:100%;accent-color:var(--accent);height:32px}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center}
+.cmp div{background:var(--sunk);border-radius:8px;padding:8px 4px}
+.cmp .mut{font-size:.78rem}
+.ladder{display:flex;gap:3px}
+.ladder span{flex:1;text-align:center;font:.75rem var(--mono);padding:4px 0;border-radius:4px;background:var(--sunk);color:var(--mut)}
+.ladder span.on{background:var(--accent-soft);color:var(--accent)} .ladder span.me{background:var(--accent);color:var(--surface);font-weight:700}
+details{border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:center}
+details p,details li{font-size:.9rem;color:var(--mut)}
+.badge{font-size:.75rem;border-radius:99px;padding:1px 8px;background:var(--gold-soft);color:var(--gold);font-weight:700;white-space:nowrap}
+.badge.real{background:var(--accent-soft);color:var(--accent)}
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+@media (min-width:900px){.sticky{display:none}}
+.warn{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:10px 14px;font-size:.88rem}
+.note{font-size:.8rem;color:var(--mut);border-left:3px solid var(--line);padding-left:8px}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:4px">
+    <h1>วางแผนภาษีปี <span class="ty-be"></span> <span class="mut" style="font-size:1rem">(<span class="ty-ce"></span>)</span></h1>
+    <p class="mut">คำนวณภาษีเงินได้บุคคลธรรมดา (ภ.ง.ด.90/91) และกองทุนเกษียณ RMF / PVD / Thai ESG · คำนวณในเครื่องเท่านั้น ไม่ส่งข้อมูลไปที่ไหน</p>
+  </header>
+  <div class="warn"><b>ข้อจำกัดของเครื่องมือนี้:</b> เป็นเครื่องมือประมาณการเพื่อการศึกษา ไม่ใช่คำแนะนำด้านภาษีหรือการลงทุน ค่าภาษีหัก ณ ที่จ่ายแบบประมาณคิดแบบที่นายจ้างหัก ไม่นับค่าลดหย่อนอื่นที่ไม่ได้แจ้งนายจ้าง และโบนัสต้องใส่ยอดที่ได้จริง ตรวจกฎล่าสุดกับกรมสรรพากรก่อนยื่นจริง</div>
+
+  <div class="banner" id="sampleBar">
+    <p><b>นี่คือตัวอย่าง</b> · ย้ายงานกลางปี: บริษัท A ม.ค.–มี.ค. แล้วไปบริษัท B ตั้งแต่ เม.ย. และได้ขึ้นเงินเดือนเดือน ก.ย. แก้ตัวเลขได้เลย</p>
+    <button class="btn pri" id="startOwn" type="button">เริ่มกรอกของฉัน</button>
+  </div>
+
+  <div class="sticky" id="stickyBar"><span class="mut">ผลตอนนี้</span><b class="num" id="stickyVal"></b></div>
+
+  <div class="grid">
+    <!-- FORM -->
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <section class="card">
+        <div class="step"><b class="n">1</b><h2>เงินเดือนและโบนัส</h2></div>
+        <div class="toggle" id="coTabs" role="tablist"></div>
+        <div class="row2">
+          <label class="f">ชื่อบริษัท<div class="money"><input id="coName" style="text-align:left;font-family:var(--body)"></div></label>
+          <label class="f">เงินเดือนตอนเริ่ม<div class="money"><span>฿</span><input id="salary" inputmode="decimal"></div></label>
+        </div>
+        <div class="row2">
+          <label class="f">เริ่มทำงานที่นี่เดือน<div class="money"><select id="start" style="border:0;background:transparent;color:var(--fg);font:inherit;width:100%;padding:8px 10px"><option value="0">ม.ค.</option><option value="1">ก.พ.</option><option value="2">มี.ค.</option><option value="3">เม.ย.</option><option value="4">พ.ค.</option><option value="5">มิ.ย.</option><option value="6">ก.ค.</option><option value="7">ส.ค.</option><option value="8">ก.ย.</option><option value="9">ต.ค.</option><option value="10">พ.ย.</option><option value="11">ธ.ค.</option></select></div></label>
+          <label class="f">ทำถึงเดือน<div class="money"><select id="end" style="border:0;background:transparent;color:var(--fg);font:inherit;width:100%;padding:8px 10px"><option value="0">ม.ค.</option><option value="1">ก.พ.</option><option value="2">มี.ค.</option><option value="3">เม.ย.</option><option value="4">พ.ค.</option><option value="5">มิ.ย.</option><option value="6">ก.ค.</option><option value="7">ส.ค.</option><option value="8">ก.ย.</option><option value="9">ต.ค.</option><option value="10">พ.ย.</option><option value="11">ธ.ค.</option></select></div></label>
+        </div>
+        <p class="mut">แตะเดือนเพื่อแก้เงินเดือน หรือใส่ OT / โบนัสพิเศษของเดือนนั้น</p>
+        <div class="months" id="months"></div>
+        <div class="toggle" id="raises" style="align-items:center"></div>
+        <div class="detail" id="detail"></div>
+        <div class="row2">
+          <label class="f">โบนัส (จำนวนเดือน)<div class="money"><input id="bonusM" inputmode="decimal"></div></label>
+          <label class="f">โบนัสอื่น / incentive ทั้งปี<div class="money"><span>฿</span><input id="bonusX" inputmode="decimal"></div></label>
+        </div>
+        <p class="formula" id="bonusF"></p>
+        <div class="row2">
+          <label class="f">PVD เราสะสม (%)<div class="money"><input id="pvdE" inputmode="decimal"><span style="padding:0 10px 0 0">%</span></div></label>
+          <label class="f">บริษัทสมทบ (%)<div class="money"><input id="pvdC" inputmode="decimal"><span style="padding:0 10px 0 0">%</span></div></label>
+        </div>
+        <label class="f"><span>ภาษีที่บริษัทนี้หักไว้ทั้งปี <span class="badge" id="whBadge"></span></span><div class="money"><span>฿</span><input id="wh" inputmode="decimal"></div></label>
+        <p class="note">ไม่รู้ปล่อยว่างได้ ระบบประมาณให้ ถ้ามีใบ 50 ทวิ ใส่ยอดจริงจะแม่นกว่า</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" id="addCo">+ เพิ่มบริษัท (ย้ายงานกลางปี)</button><button class="btn" type="button" id="delCo">ลบบริษัทนี้</button></div>
+      </section>
+
+      <section class="card">
+        <div class="step"><b class="n">2</b><h2>ครอบครัว</h2></div>
+        <div class="line"><span>ตัวเอง</span><span class="num">฿60,000</span></div>
+        <div class="line"><span>คู่สมรสไม่มีรายได้</span><button class="chip" aria-pressed="false" id="spouse" type="button">ไม่มี</button></div>
+        <div class="line"><span>ลูก <span class="mut">(คนละ 30,000)</span></span><div class="stepper" data-k="kids"><button type="button" aria-label="ลด">−</button><b class="num">0</b><button type="button" aria-label="เพิ่ม">+</button></div></div>
+        <div class="line"><span>พ่อแม่อายุ 60+ <span class="mut">(คนละ 30,000)</span></span><div class="stepper" data-k="parents"><button type="button" aria-label="ลด">−</button><b class="num">1</b><button type="button" aria-label="เพิ่ม">+</button></div></div>
+      </section>
+
+      <section class="card">
+        <div class="step"><b class="n">3</b><h2>ประกันและกองทุน</h2></div>
+        <div class="line"><span>ประกันสังคม</span><span class="auto">คิดให้อัตโนมัติ <b class="num" id="ssVal"></b></span></div>
+        <div class="line"><span>PVD ส่วนของเรา</span><span class="auto">คิดจาก % ในข้อ 1 <b class="num" id="pvdVal"></b></span></div>
+        <div class="row2">
+          <label class="f">ประกันชีวิต<div class="money"><span>฿</span><input id="life" inputmode="decimal" value="20000"></div></label>
+          <label class="f">ประกันสุขภาพ (≤25,000)<div class="money"><span>฿</span><input id="health" inputmode="decimal" value="12000"></div></label>
+          <label class="f">RMF ที่ซื้อแล้วปีนี้<div class="money"><span>฿</span><input id="rmf" inputmode="decimal" value="0"></div></label>
+          <label class="f">Thai ESG ที่ซื้อแล้ว<div class="money"><span>฿</span><input id="esg" inputmode="decimal" value="0"></div></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="step"><b class="n">4</b><h2>มีรายการเหล่านี้ไหม</h2></div>
+        <p class="mut">แตะเฉพาะที่มี ช่องกรอกจะขึ้นมาให้</p>
+        <div class="toggle" id="extras"></div>
+        <div class="row2" id="extraFields"></div>
+      </section>
+    </div>
+
+    <!-- RESULTS -->
+    <aside class="results" style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <section class="card">
+        <div class="hero" id="hero"></div>
+        <div class="tiles" id="tiles"></div>
+        <div>
+          <p class="mut" style="margin-bottom:4px">ขั้นภาษีของคุณ</p>
+          <div class="ladder" id="ladder"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>ควรซื้อ RMF เท่าไร</h2>
+        <div id="advice" style="display:flex;flex-direction:column;gap:8px"></div>
+      </section>
+
+      <section class="card" id="ai">
+        <h2>ถาม AI ให้แนะนำกองทุน RMF</h2>
+        <div class="row2">
+          <label class="f">บลจ. / ธนาคาร (ไม่ระบุก็ได้)<div class="money"><input id="aiHouse" list="aiHouses" placeholder="เช่น SCB, KAsset, Finnomena" style="text-align:left;font-family:var(--body)"></div></label>
+          <label class="f">อยากเน้น (ไม่ระบุก็ได้)<div class="money"><input id="aiFocus" list="aiFocuses" placeholder="เช่น หุ้นโลก ความเสี่ยงไม่สูงมาก" style="text-align:left;font-family:var(--body)"></div></label>
+          <label class="f">กองทุนที่ถืออยู่แล้ว (ไม่ระบุก็ได้)<div class="money"><input id="aiHeld" placeholder="เช่น SCBRMS&amp;P500" style="text-align:left;font-family:var(--body)"></div></label>
+          <label class="f">งบซื้อ RMF <span class="mut">(ตั้งให้ตามยอดแนะนำ แก้ได้)</span><div class="money"><span>฿</span><input id="aiBudget" inputmode="decimal"></div></label>
+        </div>
+        <datalist id="aiHouses"><option value="SCBAM"><option value="KAsset (กสิกร)"><option value="BBLAM (กรุงเทพ)"><option value="KTAM (กรุงไทย)"><option value="Krungsri"><option value="MFC"><option value="TISCO"><option value="UOBAM"><option value="Principal"><option value="ONEAM"><option value="KKP"><option value="Eastspring"><option value="Finnomena (หลาย บลจ.)"><option value="K PLUS (หลาย บลจ.)"></datalist>
+        <datalist id="aiFocuses"><option value="S&amp;P 500"><option value="หุ้นโลก"><option value="tech"><option value="semiconductor"><option value="health"><option value="ทองคำ"><option value="ตราสารหนี้ ความเสี่ยงต่ำ"><option value="หุ้นไทย"><option value="จีน"><option value="อินเดีย"></datalist>
+        <details><summary>ดูข้อความที่จะส่งให้ AI</summary><textarea id="aiPrompt" readonly rows="10" style="width:100%;font:inherit;font-size:.85rem;border:1px solid var(--line);border-radius:8px;background:var(--sunk);color:var(--fg);padding:10px"></textarea></details>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button class="btn pri" type="button" id="aiCopy">คัดลอกข้อความ</button>
+          <a class="btn" id="aiGpt" target="_blank" rel="noopener" style="text-decoration:none">เปิด ChatGPT</a>
+          <a class="btn" id="aiClaude" target="_blank" rel="noopener" style="text-decoration:none">เปิด Claude</a>
+          <a class="btn" id="aiGemini" href="https://gemini.google.com/app" target="_blank" rel="noopener" style="text-decoration:none">เปิด Gemini (คัดลอกก่อน แล้ววาง)</a>
+        </div>
+        <p class="note" id="aiMsg">ChatGPT กับ Claude ใส่ข้อความให้อัตโนมัติ · Gemini ต้องกดคัดลอกก่อนแล้ววางเอง · AI อาจให้ข้อมูลเก่าหรือผิด ตรวจกับเว็บ บลจ. หรือ Morningstar ก่อนซื้อ</p>
+      </section>
+
+      <section class="card">
+        <h2>กองทุนเกษียณ <span class="mut">(เพดานรวม 500,000)</span></h2>
+        <div class="bar" id="poolBar"></div>
+        <div class="legend" id="poolLegend"></div>
+        <p class="mut" id="coPvd"></p>
+      </section>
+
+      <section class="card" id="sim">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2>ลองเล่น: ซื้อเพิ่มแล้วภาษีลดลงเท่าไร</h2><button class="btn" id="simReset" type="button">กลับไปค่าจริง</button></div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>ซื้อ RMF เพิ่ม</b><span class="mut" id="simRmfInfo"></span></div>
+          <b class="num" id="simRmfV" style="color:var(--blue);font-size:1.7rem"></b>
+          <input type="range" id="simRmf" step="1000" min="0" value="0" aria-label="ซื้อ RMF เพิ่ม">
+          <div class="mut num" style="display:flex;justify-content:space-between;font-size:.8rem"><span>฿0</span><span id="simRmfMax"></span></div>
+          <label class="f">หรือพิมพ์จำนวน<div class="money"><input id="simRmfT" inputmode="decimal" style="text-align:left"></div></label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>ซื้อ Thai ESG เพิ่ม</b><span class="mut" id="simEsgInfo"></span></div>
+          <b class="num" id="simEsgV" style="color:var(--blue);font-size:1.7rem"></b>
+          <input type="range" id="simEsg" step="1000" min="0" value="0" aria-label="ซื้อ Thai ESG เพิ่ม">
+          <div class="mut num" style="display:flex;justify-content:space-between;font-size:.8rem"><span>฿0</span><span id="simEsgMax"></span></div>
+          <label class="f">หรือพิมพ์จำนวน<div class="money"><input id="simEsgT" inputmode="decimal" style="text-align:left"></div></label>
+        </div>
+        <div class="cmp" id="cmp"></div>
+        <div id="simLines"></div>
+        <div id="simAfter"></div>
+        <div id="simFull"></div>
+        <p class="note" id="simNote">ปลายแถบคือวงเงินที่ยังซื้อเพิ่มได้ · กด "กลับไปค่าจริง" เพื่อล้างยอดที่ลองซื้อ (ข้อมูลข้อ 1–4 ไม่หาย) · ซื้อให้ทันก่อน 31 ธันวาคม <span class="ty-be"></span></p>
+      </section>
+
+      <section class="card" id="coCard"><h2>รายได้แยกตามบริษัท</h2><div id="coTable" style="overflow-x:auto"></div><p class="mut" id="coNote"></p></section>
+
+      <section class="card">
+        <details><summary>ภาษีคิดยังไง (ทีละบรรทัด)</summary><div id="waterfall"></div></details>
+        <details><summary>RMF กับ PVD ต่างกันยังไง</summary><ul><li>PVD หักจากเงินเดือนผ่านบริษัท บริษัทสมทบเพิ่มให้ ส่วนของเราลดหย่อนได้</li><li>RMF ซื้อเองกับ บลจ. ต้องถือถึงอายุ 55 และครบ 5 ปี</li><li>RMF + PVD + ประกันบำนาญ รวมกันไม่เกิน 500,000 · Thai ESG แยกอีก 300,000</li></ul></details>
+        <details><summary>เช็คลิสต์ปลายปี</summary><ul><li>ซื้อกองทุนให้ทันก่อน 31 ธ.ค. <span class="ty-be"></span></li><li>เก็บใบ 50 ทวิ และใบรับรองการซื้อกองทุน/ประกัน</li><li>ยื่น ภ.ง.ด.91 ภายใน มี.ค. <span class="ty-file"></span></li></ul></details>
+        <p class="note">ตัวเลขทั้งหมดเป็นการประมาณการ ดูข้อจำกัดด้านบนสุดของหน้า</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script>
+var $=function(id){return document.getElementById(id)};
+var MON=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+var BR=[[150000,0],[300000,.05],[500000,.10],[750000,.15],[1000000,.20],[2000000,.25],[5000000,.30],[Infinity,.35]];
+var EXTRAS=[['mortgage','ดอกเบี้ยบ้าน',100000],['ereceipt','Easy E-Receipt',50000],['pension','ประกันบำนาญ',200000],['parentHealth','ประกันสุขภาพพ่อแม่',15000],['donate','เงินบริจาค',null],['nsf','กอช.',30000]];
+var FIELDS=['name','salary','start','end','bonusM','bonusX','pvdE','pvdC','wh'];
+var FID={name:'coName'};
+function newCo(o){var c={name:'',salary:'',start:0,end:11,bonusM:'',bonusX:'',pvdE:'',pvdC:'',wh:'',raises:[],months:Array.from({length:12},function(){return {sal:null,other:0}})};for(var x in o)c[x]=o[x];return c}
+function sample(){
+  var a=newCo({name:'บริษัท A',salary:'40000',start:0,end:2,bonusM:'0',bonusX:'0',pvdE:'3',pvdC:'3'});a.months[1].other=3000;
+  var b=newCo({name:'บริษัท B',salary:'48000',start:3,end:11,bonusM:'1.5',bonusX:'0',pvdE:'5',pvdC:'5',raises:[{from:8,sal:52000}]});b.months[5].other=2500;b.months[8].other=5000;
+  return [a,b];
+}
+var C=sample(),A=1;
+var S={kids:0,parents:1,spouse:false,extras:{},sel:8,onlyThis:false};
+var sim={rmf:0,esg:0};
+function CO(){return C[A]}
+function num(v){var n=parseFloat(String(v||'').replace(/,/g,''));return isFinite(n)?n:0}
+function f(n){return '฿'+Math.round(n).toLocaleString('th-TH')}
+function k(n){return n>=1000?'฿'+(n/1000).toFixed(n%1000?1:0)+'k':f(n)}
+function taxOf(net){var t=0,lo=0;for(var i=0;i<BR.length;i++){var hi=BR[i][0];if(net>lo)t+=(Math.min(net,hi)-lo)*BR[i][1];lo=hi}return Math.max(0,t)}
+function rateOf(net){for(var i=0;i<BR.length;i++)if(net<=BR[i][0])return BR[i][1];return .35}
+function floorOf(net){var p=0;for(var i=0;i<BR.length;i++){if(net<=BR[i][0])return p;p=BR[i][0]}return p}
+function on(c,i){return i>=+c.start&&i<=+c.end}
+function baseAt(c,i){var s=num(c.salary);c.raises.slice().sort(function(a,b){return a.from-b.from}).forEach(function(r){if(r.from<=i)s=r.sal});return s}
+function monthSal(c,i){if(!on(c,i))return 0;var m=c.months[i];return m.sal==null?baseAt(c,i):m.sal}
+function lastSal(c){for(var i=11;i>=0;i--)if(on(c,i))return monthSal(c,i);return num(c.salary)}
+// one company's own numbers; the employer withholds as if this were your only job
+function coCalc(c){
+  var sal=0,other=0,ss=0,ssM=[];
+  for(var i=0;i<12;i++){var s=monthSal(c,i);ssM[i]=on(c,i)?s*.05:0;if(!on(c,i))continue;sal+=s;other+=num(c.months[i].other);ss+=Math.min(875,s*.05)}
+  var bonus=lastSal(c)*num(c.bonusM)+num(c.bonusX),income=sal+other+bonus;
+  var pvd=sal*num(c.pvdE)/100,pvdCo=sal*num(c.pvdC)/100;
+  var whEst=taxOf(Math.max(0,income-Math.min(income*.5,100000)-60000-ss-Math.min(pvd,income*.15)));
+  var whReal=String(c.wh).trim()!=='';
+  return {sal:sal,other:other,bonus:bonus,income:income,pvd:pvd,pvdCo:pvdCo,ssM:ssM,whEst:whEst,whReal:whReal,wh:whReal?num(c.wh):whEst};
+}
+function compute(extraRmf,extraEsg){
+  var cs=C.map(coCalc),income=0,pvdRaw=0,pvdCo=0,wh=0,whReal=cs.every(function(x){return x.whReal}),ss=0;
+  cs.forEach(function(x){income+=x.income;pvdRaw+=x.pvd;pvdCo+=x.pvdCo;wh+=x.wh});
+  for(var i=0;i<12;i++){var m=0;cs.forEach(function(x){m+=x.ssM[i]});ss+=Math.min(875,m)}
+  var exp=Math.min(income*.5,100000),pvd=Math.min(pvdRaw,income*.15);
+  var ex=function(key){return S.extras[key]?num(S.extras[key].v):0};
+  var pension=Math.min(ex('pension'),income*.15,200000),nsf=Math.min(ex('nsf'),30000);
+  var rmfCap=Math.min(income*.3,500000),rmf=Math.min(num($('rmf').value)+extraRmf,rmfCap);
+  var pool=Math.min(rmf+pvd+pension+nsf,500000);
+  var rmfRoom=Math.max(0,Math.min(rmfCap-rmf,500000-(rmf+pvd+pension+nsf)));
+  var esgCap=Math.min(income*.3,300000),esg=Math.min(num($('esg').value)+extraEsg,esgCap),esgRoom=Math.max(0,esgCap-esg);
+  var life=Math.min(num($('life').value)+Math.min(num($('health').value),25000),100000);
+  var items=[['ส่วนตัว',60000],['คู่สมรส',S.spouse?60000:0],['ลูก',S.kids*30000],['พ่อแม่',S.parents*30000],['ประกันสังคม',ss],['ประกันชีวิต + สุขภาพ',life],['ประกันสุขภาพพ่อแม่',Math.min(ex('parentHealth'),15000)],['กองทุนเกษียณ (RMF/PVD/บำนาญ/กอช.)',pool],['Thai ESG',esg],['ดอกเบี้ยบ้าน',Math.min(ex('mortgage'),100000)],['Easy E-Receipt',Math.min(ex('ereceipt'),50000)]];
+  var ded=items.reduce(function(a,b){return a+b[1]},0);
+  var don=Math.min(ex('donate'),Math.max(0,income-exp-ded)*.1);items.push(['บริจาค',don]);ded+=don;
+  var net=Math.max(0,income-exp-ded),tax=taxOf(net);
+  return {cs:cs,income:income,exp:exp,ded:ded,net:net,tax:tax,rate:rateOf(net),wh:wh,whReal:whReal,diff:wh-tax,ss:ss,pvd:pvd,pvdCo:pvdCo,rmf:rmf,pension:pension,nsf:nsf,pool:pool,rmfRoom:rmfRoom,esgRoom:esgRoom,items:items};
+}
+// Tax year: Jan–Jun still means last year (people are filing it until March and checking refunds); from July plan for this year.
+var NOW=new Date(),TY=NOW.getMonth()>=6?NOW.getFullYear():NOW.getFullYear()-1,TY_BE=TY+543;
+function monthsLeft(){var n=new Date();return n.getFullYear()===TY?12-n.getMonth():n.getFullYear()<TY?12:0}
+document.querySelectorAll('.ty-be').forEach(function(e){e.textContent=TY_BE});document.querySelectorAll('.ty-ce').forEach(function(e){e.textContent=TY});document.querySelectorAll('.ty-file').forEach(function(e){e.textContent=TY_BE+1});document.title='วางแผนภาษีปี '+TY_BE;
+function loadForm(){var c=CO();FIELDS.forEach(function(x){$(FID[x]||x).value=c[x]})}
+function renderTabs(){
+  $('coTabs').innerHTML=C.map(function(c,i){return '<button type="button" class="chip" role="tab" data-co="'+i+'" aria-pressed="'+(i===A)+'">'+(c.name||'บริษัท '+(i+1))+' · '+MON[c.start]+'–'+MON[c.end]+'</button>'}).join('');
+  $('delCo').hidden=C.length<2;
+}
+function renderMonths(){
+  var c=CO(),h='';
+  for(var i=0;i<12;i++){var m=c.months[i],s=monthSal(c,i),o=num(m.other),here=on(c,i),other=C.some(function(x,j){return j!==A&&on(x,i)});
+    h+='<button type="button" class="m'+(here?'':' off')+(S.sel===i?' sel':'')+'" data-i="'+i+'"><span class="t">'+MON[i]+(c.raises.some(function(r){return r.from===i})?' <b style="color:var(--accent)">▲</b>':'')+(m.sal!=null?' ✎':'')+'</span><span class="v">'+(here?k(s):(other?'ที่อื่น':'—'))+'</span>'+(o&&here?'<span class="x">+'+k(o)+'</span>':'<span class="x">&nbsp;</span>')+'</button>'}
+  $('months').innerHTML=h;
+  var rl=c.raises.slice().sort(function(a,b){return a.from-b.from}).map(function(r){return '<span class="chip" style="display:inline-flex;gap:6px;align-items:center">'+MON[r.from]+' → '+f(r.sal)+' <button type="button" data-rr="'+r.from+'" aria-label="ลบการขึ้นเงินเดือนนี้" style="border:0;background:none;color:var(--bad);font-size:1rem;cursor:pointer">×</button></span>'}).join('');
+  $('raises').innerHTML=rl?'<span class="mut">ขึ้นเงินเดือน:</span> '+rl:'<span class="mut">ได้ขึ้นเงินเดือนกลางปี? แตะเดือนที่เริ่มได้ แล้วใส่เงินเดือนใหม่</span>';
+  var i=S.sel,m=c.months[i],s=monthSal(c,i),pv=s*num(c.pvdE)/100,ss=Math.min(875,s*.05),prev=i>0&&on(c,i-1)?monthSal(c,i-1):s,ch=prev?((s-prev)/prev*100):0;
+  $('detail').innerHTML='<b>เดือน '+MON[i]+'</b>'
+   +(on(c,i)?'<div class="row2"><label class="f">เงินเดือน<div class="money"><span>฿</span><input id="mSal" inputmode="decimal" value="'+s+'"></div></label><label class="f">OT / โบนัสพิเศษ / รายได้อื่น (เฉพาะเดือนนี้)<div class="money"><span>฿</span><input id="mOther" inputmode="decimal" value="'+(m.other||'')+'" placeholder="0"></div></label></div>'
+   +'<fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px"><legend class="mut" style="padding:0;margin-bottom:4px">ถ้าแก้เงินเดือน ให้ใช้กับ</legend>'
+   +'<label style="display:flex;gap:8px;align-items:flex-start"><input type="radio" name="scope" value="fwd"'+(S.onlyThis?'':' checked')+' style="margin-top:6px"><span>เดือนนี้และเดือนต่อไป <span class="mut">เช่น ได้ขึ้นเงินเดือน</span></span></label>'
+   +'<label style="display:flex;gap:8px;align-items:flex-start"><input type="radio" name="scope" value="one"'+(S.onlyThis?' checked':'')+' style="margin-top:6px"><span>เฉพาะเดือนนี้ <span class="mut">เช่น ลาไม่รับเงินเดือน ได้ไม่เต็มเดือน</span></span></label></fieldset>'
+   +'<p class="note">ขึ้นเงินเดือนพร้อมได้โบนัสพิเศษในเดือนเดียวกันก็ได้ ใส่เงินเดือนใหม่ในช่องซ้าย แล้วใส่โบนัสพิเศษในช่องขวา</p>'
+   +'<div class="slip"><span>รวม <b class="num">'+f(s+num(m.other))+'</b></span><span>PVD <b class="num">−'+f(pv)+'</b></span><span>ประกันสังคม <b class="num">−'+f(ss)+'</b></span>'+(ch?'<span>เทียบเดือนก่อน <b class="num">'+(ch>0?'+':'')+ch.toFixed(1)+'%</b></span>':'')+'</div>'
+   :'<p class="mut">ไม่ได้ทำงานที่ '+(c.name||'บริษัทนี้')+' เดือนนี้ เปลี่ยนได้ที่ช่อง "เริ่ม" / "ทำถึง"</p>');
+}
+function renderExtras(){
+  $('extras').innerHTML=EXTRAS.map(function(e){return '<button type="button" class="chip" data-x="'+e[0]+'" aria-pressed="'+(!!S.extras[e[0]])+'">'+e[1]+'</button>'}).join('');
+  $('extraFields').innerHTML=EXTRAS.filter(function(e){return S.extras[e[0]]}).map(function(e){return '<label class="f">'+e[1]+(e[2]?' (≤'+e[2].toLocaleString()+')':' (≤10% ของเงินได้)')+'<div class="money"><span>฿</span><input data-xv="'+e[0]+'" inputmode="decimal" value="'+(S.extras[e[0]].v||'')+'" placeholder="0"></div></label>'}).join('');
+}
+function render(){
+  var a=compute(0,0),b=compute(sim.rmf,sim.esg),ml=monthsLeft(),ok=a.diff>=0,me=Math.round(a.rate*100),cur=a.cs[A];
+  $('hero').className='hero '+(ok?'ok':'pay');
+  $('hero').innerHTML='<span>'+(ok?'คาดว่าจะได้เงินคืน':'คาดว่าต้องจ่ายเพิ่ม')+'</span><span class="big">'+(ok?'+':'−')+f(Math.abs(a.diff))+'</span><span class="mut">ถูกหักไว้รวม '+f(a.wh)+' <span class="badge'+(a.whReal?' real':'')+'">'+(a.whReal?'จาก 50 ทวิ':'ประมาณ')+'</span> · ภาษีจริง '+f(a.tax)+'</span>';
+  $('stickyVal').textContent=(ok?'ได้คืน +':'จ่ายเพิ่ม −')+f(Math.abs(a.diff));$('stickyVal').style.color=ok?'var(--accent)':'var(--bad)';
+  $('tiles').innerHTML=[['รายได้ทั้งปี',a.income],['หักทั้งหมด',a.exp+a.ded],['เงินได้สุทธิ',a.net],['ภาษีทั้งปี',a.tax]].map(function(t){return '<div class="tile"><div class="mut">'+t[0]+'</div><div class="num">'+f(t[1])+'</div></div>'}).join('');
+  $('ladder').innerHTML=[0,5,10,15,20,25,30,35].map(function(s){return '<span class="'+(s===me?'me':s<me?'on':'')+'">'+s+'%</span>'}).join('');
+  $('whBadge').textContent=cur.whReal?'ยอดจริง':'ประมาณให้ '+f(cur.whEst);$('whBadge').className='badge'+(cur.whReal?' real':'');
+  $('wh').placeholder=Math.round(cur.whEst).toLocaleString('th-TH');
+  $('ssVal').textContent=f(a.ss);$('pvdVal').textContent=f(a.pvd);
+  $('bonusF').innerHTML='โบนัส = เงินเดือนล่าสุด <b class="num">'+f(lastSal(CO()))+'</b> × '+num(CO().bonusM)+' เดือน + '+f(num(CO().bonusX))+' = <b class="num">'+f(cur.bonus)+'</b>';
+  // per company table
+  $('coTable').innerHTML='<table style="width:100%;border-collapse:collapse;font-size:.9rem"><tr class="mut"><th style="text-align:left">บริษัท</th><th style="text-align:right">รายได้</th><th style="text-align:right">หักภาษีไว้</th></tr>'
+   +a.cs.map(function(x,i){return '<tr><td>'+(C[i].name||'บริษัท '+(i+1))+' <span class="mut">'+MON[C[i].start]+'–'+MON[C[i].end]+'</span></td><td class="num" style="text-align:right">'+f(x.income)+'</td><td class="num" style="text-align:right">'+f(x.wh)+(x.whReal?'':' <span class="badge">ประมาณ</span>')+'</td></tr>'}).join('')
+   +'<tr style="border-top:1px solid var(--line)"><td><b>รวมทั้งปี</b></td><td class="num" style="text-align:right"><b>'+f(a.income)+'</b></td><td class="num" style="text-align:right"><b>'+f(a.wh)+'</b></td></tr></table>';
+  $('coNote').textContent=C.length>1?'แต่ละบริษัทหักภาษีเหมือนเป็นงานเดียวของคุณ พอรวมรายได้ทั้งปีแล้วขั้นภาษีสูงขึ้น คนย้ายงานกลางปีจึงมักต้องจ่ายเพิ่มตอนยื่น':'';
+  $('coCard').hidden=false;
+  // advice
+  var per=function(v){return ml>0?'<div class="mchips">'+Array.from({length:Math.min(ml,4)},function(_,i){return '<span>'+MON[(12-ml)+i]+' '+k(Math.ceil(v/ml))+'</span>'}).join('')+(ml>4?'<span>+'+(ml-4)+' เดือน</span>':'')+'</div>':''};
+  var ad='';
+  if(a.rate===0)ad='<p class="mut">ตอนนี้ไม่ต้องเสียภาษี ซื้อเพิ่มไม่ช่วยลดภาษี</p>';
+  else{
+    var need=Math.max(0,a.net-floorOf(a.net))+1;
+    if(need<=a.rmfRoom){var g=compute(need,0);ad+='<div class="advice"><b>ลงขั้นภาษี '+me+'% → '+Math.round(rateOf(a.net-need)*100)+'%</b><span>ซื้อ RMF เพิ่ม <b class="num">'+f(need)+'</b> · เดือนละ '+f(Math.ceil(need/ml))+'</span><span>ภาษีลด '+f(a.tax-g.tax)+' · ต้นทุนจริง '+f(need-(a.tax-g.tax))+'</span>'+per(need)+'</div>'}
+    if(a.rmfRoom>0){var full=compute(a.rmfRoom,0);ad+='<div class="advice" style="background:var(--sunk)"><b style="color:var(--fg)">ซื้อ RMF เต็มสิทธิ์</b><span>ซื้อเพิ่ม <b class="num">'+f(a.rmfRoom)+'</b> · ภาษีลด '+f(a.tax-full.tax)+' · ต้นทุนจริง '+f(a.rmfRoom-(a.tax-full.tax))+'</span></div>'}
+    ad+='<p class="mut">ทุก 1,000 บาทที่ซื้อ ลดภาษีได้ราว '+f(1000*a.rate)+' · <a href="#sim">ลองตัวเลขอื่น ↓</a></p>';
+  }
+  $('advice').innerHTML=ad;
+  // Ask-AI prompt: budget follows the suggested amount until the user types their own
+  var needAi=Math.max(0,a.net-floorOf(a.net))+1,sug=a.rate>0&&needAi<=a.rmfRoom?needAi:a.rmfRoom,ab=$('aiBudget');
+  if(ab.dataset.own!=='1'&&document.activeElement!==ab)ab.value=sug?Math.round(sug):'';
+  var budget=num(ab.value),house=$('aiHouse').value.trim(),focus=$('aiFocus').value.trim(),held=$('aiHeld').value.trim();
+  $('aiPrompt').value='ช่วยแนะนำกองทุน RMF '+(house?'ของ บลจ. '+house:'จาก บลจ. ไหนก็ได้ในไทย')+' สำหรับลดหย่อนภาษีปี '+TY_BE+' ('+TY+') (ซื้อภายใน 31 ธ.ค. '+TY_BE+')\n'
+   +'- งบที่จะซื้อ: '+(budget?f(budget)+(ml>0?' (ทยอยซื้อเดือนละประมาณ '+f(Math.ceil(budget/ml))+' อีก '+ml+' เดือน)':''):'ยังไม่แน่ใจ')+'\n'
+   +'- ขั้นภาษีตอนนี้: '+me+'%\n'
+   +(held?'- กองทุน RMF ที่ถืออยู่แล้ว: '+held+'\n':'- ยังไม่มีกองทุน RMF ที่ถืออยู่\n')
+   +'- '+(focus?'อยากเน้น: '+focus:'ไม่ได้ระบุว่าเน้นอะไร ให้เลือกกองที่ผลตอบแทนย้อนหลังดี เป็นที่นิยม และช่วยกระจายความเสี่ยง')+'\n\n'
+   +'ขอคำแนะนำ 3–5 กอง โดยแต่ละกองระบุ:\n1. ชื่อย่อกองทุน และนโยบายการลงทุน\n2. Active หรือ Passive และระดับความเสี่ยง\n3. ค่าธรรมเนียมรวม (TER % ต่อปี)\n4. ขนาดกองทุน และผลตอบแทนย้อนหลัง 1 ปี / 3 ปี\n5. ควรเติมกองเดิมหรือเปิดกองใหม่\n6. สัดส่วนการแบ่งงบ\n\nพร้อมระบุแหล่งอ้างอิงและวันที่อัปเดต ถ้าไม่แน่ใจตัวเลขไหนให้บอกตรงๆ';
+  var q=encodeURIComponent($('aiPrompt').value);$('aiGpt').href='https://chatgpt.com/?q='+q;$('aiClaude').href='https://claude.ai/new?q='+q;
+  var parts=[['RMF',a.rmf,'var(--accent)'],['PVD',a.pvd,'var(--gold)'],['บำนาญ',a.pension,'var(--blue)'],['กอช.',a.nsf,'var(--mut)']];
+  $('poolBar').innerHTML=parts.map(function(p){return '<i style="width:'+(p[1]/5000)+'%;background:'+p[2]+'"></i>'}).join('');
+  $('poolLegend').innerHTML=parts.filter(function(p){return p[1]>0||p[0]==='RMF'}).map(function(p){return '<span><i class="dot" style="background:'+p[2]+'"></i>'+p[0]+' <b class="num">'+f(p[1])+'</b></span>'}).join('')+'<span>ซื้อ RMF ได้อีก <b class="num">'+f(a.rmfRoom)+'</b></span>';
+  $('coPvd').textContent='บริษัทสมทบ PVD ให้ปีนี้ '+f(a.pvdCo)+' (เงินเพิ่มฟรี ไม่ใช้ลดหย่อน)';
+  ['Rmf','Esg'].forEach(function(K){var room=K==='Rmf'?a.rmfRoom:a.esgRoom,mx=Math.max(1000,Math.ceil(room/1000)*1000),v=K==='Rmf'?sim.rmf:sim.esg,bought=num($(K==='Rmf'?'rmf':'esg').value);
+    $('sim'+K).max=mx;$('sim'+K).value=v;$('sim'+K+'V').textContent=f(v);$('sim'+K+'Max').textContent=f(room);$('sim'+K+'Info').textContent='ซื้อแล้ว '+f(bought)+' · เหลือ '+f(room);
+    if(document.activeElement!==$('sim'+K+'T'))$('sim'+K+'T').value=v?v:''});
+  var saved=a.tax-b.tax,paid=sim.rmf+sim.esg;
+  $('cmp').innerHTML='<div><div class="mut">จ่ายเงินซื้อกองทุน</div><div class="num"><b>'+f(paid)+'</b></div></div><div><div class="mut">ภาษีลดลง</div><div class="num" style="color:var(--accent)"><b>'+f(saved)+'</b></div></div><div><div class="mut">ขั้นภาษี</div><div class="num"><b>'+me+'% → '+Math.round(b.rate*100)+'%</b></div></div>';
+  $('simLines').innerHTML='<div class="line"><span>ภาษีทั้งปี</span><b class="num">'+f(a.tax)+' → '+f(b.tax)+'</b></div><div class="line"><span>เงินได้สุทธิ</span><b class="num">'+f(a.net)+' → '+f(b.net)+'</b></div><div class="line"><span>ต้นทุนจริงหลังหักภาษีที่ลด</span><b class="num">'+f(paid-saved)+'</b></div>';
+  $('simAfter').innerHTML=paid?'<span class="badge '+(b.diff>=0?'real':'')+'" style="font-size:.85rem;padding:3px 10px">หลังซื้อ: '+(b.diff>=0?'ได้คืนประมาณ ':'จ่ายเพิ่มประมาณ ')+f(Math.abs(b.diff))+'</span>':'';
+  var fr=compute(a.rmfRoom,0),fe=compute(0,a.esgRoom),sr=a.tax-fr.tax,se=a.tax-fe.tax,need=Math.max(0,a.net-floorOf(a.net))+1;
+  $('simFull').innerHTML='<div class="line"><span>ซื้อ RMF เต็มเพดาน '+f(a.rmfRoom)+' ประหยัด</span><b class="num">'+f(sr)+(a.rmfRoom?' (ROI '+(sr/a.rmfRoom*100).toFixed(1)+'%)':'')+'</b></div><div class="line"><span>ซื้อ Thai ESG เต็มเพดาน '+f(a.esgRoom)+' ประหยัด</span><b class="num">'+f(se)+'</b></div>'
+    +(a.rate>0&&need<=a.rmfRoom?'<div class="advice" style="margin-top:8px"><span>ซื้อ RMF เพิ่ม <b class="num">'+f(need)+'</b> จะลงไปอยู่ขั้น '+Math.round(rateOf(a.net-need)*100)+'% และประหยัด <b class="num">'+f(a.tax-compute(need,0).tax)+'</b></span></div>':'');
+  $('waterfall').innerHTML='<div class="line"><span>รายได้ทั้งปี (ทุกบริษัท)</span><span class="num">'+f(a.income)+'</span></div><div class="line"><span>หักค่าใช้จ่าย 50% (≤100,000)</span><span class="num">−'+f(a.exp)+'</span></div>'+a.items.filter(function(i){return i[1]>0}).map(function(i){return '<div class="line"><span class="mut">หัก '+i[0]+'</span><span class="num">−'+f(i[1])+'</span></div>'}).join('')+'<div class="line"><b>เงินได้สุทธิ</b><b class="num">'+f(a.net)+'</b></div><div class="line"><b>ภาษีทั้งปี</b><b class="num">'+f(a.tax)+'</b></div>';
+}
+function all(){renderTabs();renderMonths();render()}
+function switchCo(i){A=i;var c=CO();if(!on(c,S.sel))S.sel=+c.start;loadForm();all()}
+function keepFocus(fn){var el=document.activeElement,id=el&&el.id,pos=id&&el.selectionStart;fn();if(id&&$(id)){$(id).focus();try{$(id).setSelectionRange(pos,pos)}catch(e){}}}
+document.addEventListener('input',function(e){var t=e.target,c=CO();
+  var key=FIELDS.filter(function(x){return (FID[x]||x)===t.id})[0];
+  if(key){c[key]=(key==='start'||key==='end')?+t.value:t.value;if(key==='start'&&c.end<c.start){c.end=c.start;$('end').value=c.end}if(key==='end'&&c.start>c.end){c.start=c.end;$('start').value=c.start}keepFocus(all);return}
+  if(t.id==='mSal'){var v=num(t.value);if(S.onlyThis){c.months[S.sel].sal=v}else{c.months[S.sel].sal=null;c.raises=c.raises.filter(function(r){return r.from!==S.sel});if(v!==baseAt(c,S.sel))c.raises.push({from:S.sel,sal:v});for(var j=S.sel+1;j<12;j++)c.months[j].sal=null}keepFocus(function(){renderMonths();render()})}
+  else if(t.name==='scope'){S.onlyThis=t.value==='one'}
+  else if(t.id==='mOther'){c.months[S.sel].other=num(t.value);keepFocus(function(){renderMonths();render()})}
+  else if(t.id==='aiBudget'){t.dataset.own=t.value===''?'0':'1';render()}
+  else if(t.dataset.xv){S.extras[t.dataset.xv].v=t.value;render()}
+  else if(t.id==='simRmf'||t.id==='simRmfT'){sim.rmf=Math.max(0,num(t.value));render()}
+  else if(t.id==='simEsg'||t.id==='simEsgT'){sim.esg=Math.max(0,num(t.value));render()}
+  else render();
+});
+document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var c=CO();
+  if(t.dataset.co!=null){switchCo(+t.dataset.co)}
+  else if(t.dataset.i!=null){S.sel=+t.dataset.i;renderMonths()}
+  else if(t.dataset.rr!=null){var fr=+t.dataset.rr;c.raises=c.raises.filter(function(r){return r.from!==fr});all()}
+  else if(t.id==='addCo'){var last=C[C.length-1],st=Math.min(11,+last.end+1);C.push(newCo({name:'บริษัท '+(C.length+1),start:st,end:11,pvdE:last.pvdE,pvdC:last.pvdC}));switchCo(C.length-1);$('coName').focus()}
+  else if(t.id==='delCo'){if(C.length>1){C.splice(A,1);switchCo(Math.max(0,A-1))}}
+  else if(t.id==='spouse'){S.spouse=!S.spouse;t.setAttribute('aria-pressed',S.spouse);t.textContent=S.spouse?'มี':'ไม่มี';render()}
+  else if(t.parentNode.classList.contains('stepper')){var key=t.parentNode.dataset.k,d=t.textContent==='+'?1:-1;S[key]=Math.max(0,Math.min(key==='parents'?4:10,S[key]+d));t.parentNode.querySelector('b').textContent=S[key];render()}
+  else if(t.dataset.x){var x=t.dataset.x;if(S.extras[x])delete S.extras[x];else S.extras[x]={v:''};renderExtras();render()}
+  else if(t.id==='aiCopy'){var ta=$('aiPrompt');navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(ta.value).then(function(){$('aiMsg').textContent='คัดลอกแล้ว ไปวางในช่องแชทของ AI ได้เลย'},function(){ta.parentNode.open=true;ta.select();$('aiMsg').textContent='คัดลอกอัตโนมัติไม่ได้ เปิดกล่องข้อความให้แล้ว กดคัดลอกเอง'}):(ta.parentNode.open=true,ta.select())}
+  else if(t.id==='simReset'){sim={rmf:0,esg:0};$('simRmf').value=0;$('simEsg').value=0;render()}
+  else if(t.id==='startOwn'){C=[newCo({name:'',pvdE:'',pvdC:''})];['life','health','rmf','esg'].forEach(function(id){$(id).value=''});S.kids=0;S.parents=0;S.spouse=false;S.extras={};S.sel=0;document.querySelectorAll('.stepper b').forEach(function(b){b.textContent='0'});$('spouse').setAttribute('aria-pressed','false');$('spouse').textContent='ไม่มี';$('sampleBar').hidden=true;renderExtras();switchCo(0);$('coName').focus()}
+});
+renderExtras();loadForm();all();
+
+</script>
