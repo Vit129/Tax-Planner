@@ -689,3 +689,161 @@ body {
   align-items: center;
   margin-top: 10px;
 }
+
+/* Income Calendar Styles */
+.income-calendar-wrapper {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.calendar-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.calendar-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.cal-cell {
+  background: var(--card-sub);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cal-cell:hover.cal-active {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.cal-active {
+  opacity: 1;
+}
+
+.cal-inactive {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.cal-selected {
+  border-color: var(--accent) !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.cal-current {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.cal-cell-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.cal-month-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.cal-current .cal-month-name {
+  color: var(--success);
+}
+
+.cal-adj-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--warning);
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.cal-salary {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.cal-wh {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* Month Detail Popup/Box */
+.month-detail-card {
+  background: var(--card-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.month-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.btn-close-detail {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.month-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.total-item {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+  padding-top: 6px;
+  margin-top: 2px;
+  font-weight: 700;
+  font-size: 13px;
+}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { MONTH_NAMES_TH, MONTH_SHORT_TH } from '../../config/taxRules';
+import React, { useState } from 'react';
+import { MONTH_NAMES_TH } from '../../config/taxRules';
 import {
   getCompanyMonthlySalaries,
   getCompanyAnnualSalary,
@@ -10,6 +10,7 @@ import {
 } from '../../logic/companyLogic';
 import { calculateProgressiveTax } from '../../logic/taxLogic';
 import { formatCurrency, evalNumber } from '../../logic/evalExpression';
+import IncomeCalendar from './IncomeCalendar';
 
 export default function CompanyCard({
   company,
@@ -18,6 +19,7 @@ export default function CompanyCard({
   onUpdate,
   onRemove,
 }) {
+  const [selectedMonth, setSelectedMonth] = useState(null);
   const up = (key, val) => onUpdate({ ...company, [key]: val });
 
   const startMonth = Math.max(1, Math.min(12, Math.round(evalNumber(company.startMonth)) || 1));
@@ -33,21 +35,7 @@ export default function CompanyCard({
   const pvdEmpAmt = getCompanyPvdEmployee(company);
   const estimatedWh = estimateCompanyWithholding(company, calculateProgressiveTax);
 
-  // Build segments for timeline visualization
   const monthlySalaries = getCompanyMonthlySalaries(company);
-  const segments = [];
-  let currentSeg = null;
-
-  for (let m = startMonth; m <= endMonth; m++) {
-    const sal = monthlySalaries[m - 1];
-    if (!currentSeg || currentSeg.salary !== sal) {
-      if (currentSeg) segments.push(currentSeg);
-      currentSeg = { start: m, end: m, salary: sal };
-    } else {
-      currentSeg.end = m;
-    }
-  }
-  if (currentSeg) segments.push(currentSeg);
 
   const handleAddAdjustment = () => {
     const nextMonth = Math.min(12, startMonth + 1);
@@ -65,6 +53,16 @@ export default function CompanyCard({
     const next = adjustments.filter((_, i) => i !== idx);
     up('salaryAdjustments', next);
   };
+
+  // Selected month calculations for breakdown
+  const selSalary = selectedMonth ? monthlySalaries[selectedMonth - 1] : 0;
+  const selPvd = selectedMonth ? Math.round(selSalary * (evalNumber(company.pvdRateEmp) / 100)) : 0;
+  const selSs = selectedMonth ? Math.min(selSalary * 0.05, 750) : 0;
+  const annualized = selSalary * 12;
+  const exp = Math.min(annualized * 0.5, 100000);
+  const net = Math.max(0, annualized - exp - 60000 - selSs * 12 - selPvd * 12);
+  const selWh = selSalary > 0 ? Math.ceil(calculateProgressiveTax(net) / 12) : 0;
+  const selTakeHome = selSalary - selPvd - selSs - selWh;
 
   return (
     <div className="card company-card">
@@ -203,33 +201,44 @@ export default function CompanyCard({
           </div>
         )}
 
-        {/* Visual Timeline Bar */}
-        <div className="timeline-container">
-          <div className="timeline-header">
-            <span>ไทม์ไลน์เงินเดือน:</span>
-            <span className="font-semibold text-accent">รวมทั้งปี ฿{formatCurrency(annualSalary)}</span>
+        {/* 🗓️ 12-Month Calendar Grid View */}
+        <IncomeCalendar
+          company={company}
+          onSelectMonth={setSelectedMonth}
+          selectedMonth={selectedMonth}
+        />
+
+        {/* Month Detail Popup/Box */}
+        {selectedMonth && (
+          <div className="month-detail-card">
+            <div className="month-detail-header">
+              <span>📌 รายละเอียดรายเดือน: <b>{MONTH_NAMES_TH[selectedMonth - 1]}</b></span>
+              <button type="button" className="btn-close-detail" onClick={() => setSelectedMonth(null)}>✕</button>
+            </div>
+            <div className="month-detail-grid">
+              <div className="detail-item">
+                <span className="text-muted">เงินเดือน:</span>
+                <b className="text-accent">฿{formatCurrency(selSalary)}</b>
+              </div>
+              <div className="detail-item">
+                <span className="text-muted">หัก PVD ({company.pvdRateEmp || 0}%):</span>
+                <b className="text-danger">-฿{formatCurrency(selPvd)}</b>
+              </div>
+              <div className="detail-item">
+                <span className="text-muted">หัก ประกันสังคม:</span>
+                <b className="text-danger">-฿{formatCurrency(selSs)}</b>
+              </div>
+              <div className="detail-item">
+                <span className="text-muted">หัก ภาษี ณ ที่จ่าย (ประมาณการ):</span>
+                <b className="text-danger">-฿{formatCurrency(selWh)}</b>
+              </div>
+              <div className="detail-item total-item">
+                <span>รับสุทธิเข้าบัญชี (Take-home):</span>
+                <b className="text-success">฿{formatCurrency(selTakeHome)}</b>
+              </div>
+            </div>
           </div>
-          <div className="timeline-bar">
-            {segments.map((seg, idx) => {
-              const segMonths = seg.end - seg.start + 1;
-              const segPct = (segMonths / monthsWorked) * 100;
-              const segName =
-                seg.start === seg.end
-                  ? MONTH_SHORT_TH[seg.start - 1]
-                  : `${MONTH_SHORT_TH[seg.start - 1]} - ${MONTH_SHORT_TH[seg.end - 1]}`;
-              return (
-                <div
-                  key={idx}
-                  className={`timeline-segment seg-color-${idx % 3}`}
-                  style={{ width: `${segPct}%` }}
-                  title={`${segName}: ฿${formatCurrency(seg.salary)}/เดือน (${segMonths} เดือน)`}
-                >
-                  {segName} ({formatCurrency(seg.salary)})
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        )}
       </div>
 
       {/* 4. Bonus & OT */}
