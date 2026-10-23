@@ -80,6 +80,14 @@ summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:
 details p,details li{font-size:.9rem;color:var(--mut)}
 .badge{font-size:.75rem;border-radius:99px;padding:1px 8px;background:var(--gold-soft);color:var(--gold);font-weight:700;white-space:nowrap}
 .badge.real{background:var(--accent-soft);color:var(--accent)}
+.preset-btn{font:inherit;font-size:.8rem;border-radius:99px;padding:2px 10px;border:1px solid var(--line);background:transparent;color:var(--mut);cursor:pointer;font-weight:500;transition:all .15s ease}
+.preset-btn.active-blue{background:var(--blue-soft);border-color:var(--blue);color:var(--blue);font-weight:700}
+.preset-btn.active-green{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
+.preset-btn.active-gold{background:var(--gold-soft);border-color:var(--gold);color:var(--gold);font-weight:700}
+.sim-money{display:flex;align-items:center;gap:6px;background:var(--blue-soft);border:1.5px solid rgba(26,86,140,0.3);border-radius:10px;padding:4px 12px}
+.sim-money span.currency{font-family:var(--mono);font-size:1.5rem;font-weight:800;color:var(--blue);user-select:none}
+.sim-money input{border:0;background:transparent;font:800 1.6rem var(--mono);color:var(--blue);width:100%;outline:none;padding:0}
+.sim-money span.diff-tag{font-size:.8rem;font-weight:700;color:var(--accent);white-space:nowrap}
 .sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 @media (min-width:900px){.sticky{display:none}}
 .warn{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:10px 14px;font-size:.88rem}
@@ -176,6 +184,53 @@ details p,details li{font-size:.9rem;color:var(--mut)}
         <div id="advice" style="display:flex;flex-direction:column;gap:8px"></div>
       </section>
 
+      <section class="card">
+        <h2>กองทุนเกษียณ <span class="mut">(เพดานรวม 500,000)</span></h2>
+        <div class="bar" id="poolBar"></div>
+        <div class="legend" id="poolLegend"></div>
+        <p class="mut" id="coPvd"></p>
+      </section>
+
+      <section class="card" id="coCard"><h2>รายได้แยกตามบริษัท</h2><div id="coTable" style="overflow-x:auto"></div><p class="mut" id="coNote"></p></section>
+
+      <section class="card" id="sim">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2>ลองเล่น: ซื้อเพิ่มแล้วภาษีลดลงเท่าไร</h2><button class="btn" id="simReset" type="button">กลับไปค่าจริง</button></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>RMF (ยอดซื้อรวมทั้งปี)</b><span class="mut" id="simRmfInfo"></span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            <button type="button" class="preset-btn" id="presetRmfActual">ยอดซื้อจริง (<span id="txtRmfActual"></span>)</button>
+            <button type="button" class="preset-btn" id="presetRmfRec">ยอดแนะนำ (<span id="txtRmfRec"></span>)</button>
+            <button type="button" class="preset-btn" id="presetRmfFull">เต็มเพดาน (<span id="txtRmfFull"></span>)</button>
+          </div>
+          <div class="sim-money">
+            <span class="currency">฿</span>
+            <input id="simRmfTotal" inputmode="decimal" placeholder="0">
+            <span class="diff-tag" id="simRmfDiff"></span>
+          </div>
+          <input type="range" id="simRmf" step="1000" min="0" value="0" aria-label="ซื้อ RMF เพิ่ม">
+          <div class="mut num" style="display:flex;justify-content:flex-end;font-size:.8rem"><span>เพดาน <span id="simRmfMax"></span></span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>Thai ESG (ยอดซื้อรวมทั้งปี)</b><span class="mut" id="simEsgInfo"></span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            <button type="button" class="preset-btn" id="presetEsgActual">ยอดซื้อจริง (<span id="txtEsgActual"></span>)</button>
+            <button type="button" class="preset-btn" id="presetEsgFull">เต็มเพดาน (<span id="txtEsgFull"></span>)</button>
+          </div>
+          <div class="sim-money">
+            <span class="currency">฿</span>
+            <input id="simEsgTotal" inputmode="decimal" placeholder="0">
+            <span class="diff-tag" id="simEsgDiff"></span>
+          </div>
+          <input type="range" id="simEsg" step="1000" min="0" value="0" aria-label="ซื้อ Thai ESG เพิ่ม">
+          <div class="mut num" style="display:flex;justify-content:flex-end;font-size:.8rem"><span>เพดาน <span id="simEsgMax"></span></span></div>
+        </div>
+        <div class="cmp" id="cmp"></div>
+        <div id="simLines"></div>
+        <div id="simAfter"></div>
+        <div id="simFull"></div>
+        <p class="note" id="simNote">ปลายแถบคือวงเงินที่ยังซื้อเพิ่มได้ · กด "กลับไปค่าจริง" เพื่อล้างยอดที่ลองซื้อ (ข้อมูลข้อ 1–4 ไม่หาย) · ซื้อให้ทันก่อน 31 ธันวาคม <span class="ty-be"></span></p>
+      </section>
+
       <section class="card" id="ai">
         <h2>ถาม AI ให้แนะนำกองทุน RMF</h2>
         <div class="row2">
@@ -195,38 +250,6 @@ details p,details li{font-size:.9rem;color:var(--mut)}
         </div>
         <p class="note" id="aiMsg">ChatGPT กับ Claude ใส่ข้อความให้อัตโนมัติ · Gemini ต้องกดคัดลอกก่อนแล้ววางเอง · AI อาจให้ข้อมูลเก่าหรือผิด ตรวจกับเว็บ บลจ. หรือ Morningstar ก่อนซื้อ</p>
       </section>
-
-      <section class="card">
-        <h2>กองทุนเกษียณ <span class="mut">(เพดานรวม 500,000)</span></h2>
-        <div class="bar" id="poolBar"></div>
-        <div class="legend" id="poolLegend"></div>
-        <p class="mut" id="coPvd"></p>
-      </section>
-
-      <section class="card" id="sim">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2>ลองเล่น: ซื้อเพิ่มแล้วภาษีลดลงเท่าไร</h2><button class="btn" id="simReset" type="button">กลับไปค่าจริง</button></div>
-        <div style="display:flex;flex-direction:column;gap:2px">
-          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>ซื้อ RMF เพิ่ม</b><span class="mut" id="simRmfInfo"></span></div>
-          <b class="num" id="simRmfV" style="color:var(--blue);font-size:1.7rem"></b>
-          <input type="range" id="simRmf" step="1000" min="0" value="0" aria-label="ซื้อ RMF เพิ่ม">
-          <div class="mut num" style="display:flex;justify-content:space-between;font-size:.8rem"><span>฿0</span><span id="simRmfMax"></span></div>
-          <label class="f">หรือพิมพ์จำนวน<div class="money"><input id="simRmfT" inputmode="decimal" style="text-align:left"></div></label>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:2px">
-          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>ซื้อ Thai ESG เพิ่ม</b><span class="mut" id="simEsgInfo"></span></div>
-          <b class="num" id="simEsgV" style="color:var(--blue);font-size:1.7rem"></b>
-          <input type="range" id="simEsg" step="1000" min="0" value="0" aria-label="ซื้อ Thai ESG เพิ่ม">
-          <div class="mut num" style="display:flex;justify-content:space-between;font-size:.8rem"><span>฿0</span><span id="simEsgMax"></span></div>
-          <label class="f">หรือพิมพ์จำนวน<div class="money"><input id="simEsgT" inputmode="decimal" style="text-align:left"></div></label>
-        </div>
-        <div class="cmp" id="cmp"></div>
-        <div id="simLines"></div>
-        <div id="simAfter"></div>
-        <div id="simFull"></div>
-        <p class="note" id="simNote">ปลายแถบคือวงเงินที่ยังซื้อเพิ่มได้ · กด "กลับไปค่าจริง" เพื่อล้างยอดที่ลองซื้อ (ข้อมูลข้อ 1–4 ไม่หาย) · ซื้อให้ทันก่อน 31 ธันวาคม <span class="ty-be"></span></p>
-      </section>
-
-      <section class="card" id="coCard"><h2>รายได้แยกตามบริษัท</h2><div id="coTable" style="overflow-x:auto"></div><p class="mut" id="coNote"></p></section>
 
       <section class="card">
         <details><summary>ภาษีคิดยังไง (ทีละบรรทัด)</summary><div id="waterfall"></div></details>
@@ -366,9 +389,38 @@ function render(){
   $('poolBar').innerHTML=parts.map(function(p){return '<i style="width:'+(p[1]/5000)+'%;background:'+p[2]+'"></i>'}).join('');
   $('poolLegend').innerHTML=parts.filter(function(p){return p[1]>0||p[0]==='RMF'}).map(function(p){return '<span><i class="dot" style="background:'+p[2]+'"></i>'+p[0]+' <b class="num">'+f(p[1])+'</b></span>'}).join('')+'<span>ซื้อ RMF ได้อีก <b class="num">'+f(a.rmfRoom)+'</b></span>';
   $('coPvd').textContent='บริษัทสมทบ PVD ให้ปีนี้ '+f(a.pvdCo)+' (เงินเพิ่มฟรี ไม่ใช้ลดหย่อน)';
-  ['Rmf','Esg'].forEach(function(K){var room=K==='Rmf'?a.rmfRoom:a.esgRoom,mx=Math.max(1000,Math.ceil(room/1000)*1000),v=K==='Rmf'?sim.rmf:sim.esg,bought=num($(K==='Rmf'?'rmf':'esg').value);
-    $('sim'+K).max=mx;$('sim'+K).value=v;$('sim'+K+'V').textContent=f(v);$('sim'+K+'Max').textContent=f(room);$('sim'+K+'Info').textContent='ซื้อแล้ว '+f(bought)+' · เหลือ '+f(room);
-    if(document.activeElement!==$('sim'+K+'T'))$('sim'+K+'T').value=v?v:''});
+  ['Rmf','Esg'].forEach(function(K){
+    var isRmf=K==='Rmf';
+    var room=isRmf?a.rmfRoom:a.esgRoom;
+    var bought=num($(isRmf?'rmf':'esg').value);
+    var totalCap=bought+room;
+    var mx=Math.max(1000,Math.ceil(totalCap/1000)*1000);
+    var extra=isRmf?sim.rmf:sim.esg;
+    var currentTotal=bought+extra;
+    var need=Math.max(0,a.net-floorOf(a.net))+1;
+    var recommended=isRmf?(a.rate>0&&need<=a.rmfRoom?need:0):0;
+
+    var sl=$('sim'+K);
+    sl.min=0;sl.max=mx;sl.value=currentTotal;
+    $('sim'+K+'Max').textContent=f(totalCap);
+    $('sim'+K+'Info').textContent='ซื้อแล้ว '+f(bought)+' · เหลือ '+f(room);
+
+    var inp=$('sim'+K+'Total');
+    if(document.activeElement!==inp)inp.value=currentTotal>0?Math.round(currentTotal).toLocaleString('th-TH'):'0';
+    var diffTag=$('sim'+K+'Diff');
+    if(diffTag)diffTag.textContent=extra>0?'(+'+f(extra)+')':'';
+
+    var isAct=extra===0;
+    var isRec=recommended>0&&Math.abs(extra-recommended)<50;
+    var isFull=room>0&&Math.abs(extra-room)<50;
+
+    var bAct=$('preset'+K+'Actual');
+    if(bAct){bAct.className='preset-btn'+(isAct?' active-blue':'');$('txt'+K+'Actual').textContent=f(bought)}
+    var bRec=$('preset'+K+'Rec');
+    if(bRec){bRec.style.display=recommended>0?'':'none';bRec.className='preset-btn'+(isRec?' active-green':'');$('txt'+K+'Rec').textContent=f(bought+recommended)}
+    var bFull=$('preset'+K+'Full');
+    if(bFull){bFull.style.display=room>0?'':'none';bFull.className='preset-btn'+(isFull?' active-gold':'');$('txt'+K+'Full').textContent=f(totalCap)}
+  });
   var saved=a.tax-b.tax,paid=sim.rmf+sim.esg;
   $('cmp').innerHTML='<div><div class="mut">จ่ายเงินซื้อกองทุน</div><div class="num"><b>'+f(paid)+'</b></div></div><div><div class="mut">ภาษีลดลง</div><div class="num" style="color:var(--accent)"><b>'+f(saved)+'</b></div></div><div><div class="mut">ขั้นภาษี</div><div class="num"><b>'+me+'% → '+Math.round(b.rate*100)+'%</b></div></div>';
   $('simLines').innerHTML='<div class="line"><span>ภาษีทั้งปี</span><b class="num">'+f(a.tax)+' → '+f(b.tax)+'</b></div><div class="line"><span>เงินได้สุทธิ</span><b class="num">'+f(a.net)+' → '+f(b.net)+'</b></div><div class="line"><span>ต้นทุนจริงหลังหักภาษีที่ลด</span><b class="num">'+f(paid-saved)+'</b></div>';
@@ -389,8 +441,10 @@ document.addEventListener('input',function(e){var t=e.target,c=CO();
   else if(t.id==='mOther'){c.months[S.sel].other=num(t.value);keepFocus(function(){renderMonths();render()})}
   else if(t.id==='aiBudget'){t.dataset.own=t.value===''?'0':'1';render()}
   else if(t.dataset.xv){S.extras[t.dataset.xv].v=t.value;render()}
-  else if(t.id==='simRmf'||t.id==='simRmfT'){sim.rmf=Math.max(0,num(t.value));render()}
-  else if(t.id==='simEsg'||t.id==='simEsgT'){sim.esg=Math.max(0,num(t.value));render()}
+  else if(t.id==='simRmf'){var b=num($('rmf').value);sim.rmf=Math.max(0,Math.min(a.rmfRoom,num(t.value)-b));render()}
+  else if(t.id==='simEsg'){var b=num($('esg').value);sim.esg=Math.max(0,Math.min(a.esgRoom,num(t.value)-b));render()}
+  else if(t.id==='simRmfTotal'){var b=num($('rmf').value),cl=t.value.replace(/[^0-9]/g,'');sim.rmf=Math.max(0,Math.min(a.rmfRoom,(cl===''?0:num(cl))-b));render()}
+  else if(t.id==='simEsgTotal'){var b=num($('esg').value),cl=t.value.replace(/[^0-9]/g,'');sim.esg=Math.max(0,Math.min(a.esgRoom,(cl===''?0:num(cl))-b));render()}
   else render();
 });
 document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var c=CO();
@@ -403,7 +457,12 @@ document.addEventListener('click',function(e){var t=e.target.closest('button');i
   else if(t.parentNode.classList.contains('stepper')){var key=t.parentNode.dataset.k,d=t.textContent==='+'?1:-1;S[key]=Math.max(0,Math.min(key==='parents'?4:10,S[key]+d));t.parentNode.querySelector('b').textContent=S[key];render()}
   else if(t.dataset.x){var x=t.dataset.x;if(S.extras[x])delete S.extras[x];else S.extras[x]={v:''};renderExtras();render()}
   else if(t.id==='aiCopy'){var ta=$('aiPrompt');navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(ta.value).then(function(){$('aiMsg').textContent='คัดลอกแล้ว ไปวางในช่องแชทของ AI ได้เลย'},function(){ta.parentNode.open=true;ta.select();$('aiMsg').textContent='คัดลอกอัตโนมัติไม่ได้ เปิดกล่องข้อความให้แล้ว กดคัดลอกเอง'}):(ta.parentNode.open=true,ta.select())}
-  else if(t.id==='simReset'){sim={rmf:0,esg:0};$('simRmf').value=0;$('simEsg').value=0;render()}
+  else if(t.id==='presetRmfActual'){sim.rmf=0;render()}
+  else if(t.id==='presetRmfRec'){var a=compute(0,0),need=Math.max(0,a.net-floorOf(a.net))+1;sim.rmf=Math.min(a.rmfRoom,need);render()}
+  else if(t.id==='presetRmfFull'){var a=compute(0,0);sim.rmf=a.rmfRoom;render()}
+  else if(t.id==='presetEsgActual'){sim.esg=0;render()}
+  else if(t.id==='presetEsgFull'){var a=compute(0,0);sim.esg=a.esgRoom;render()}
+  else if(t.id==='simReset'){sim={rmf:0,esg:0};render()}
   else if(t.id==='startOwn'){C=[newCo({name:'',pvdE:'',pvdC:''})];['life','health','rmf','esg'].forEach(function(id){$(id).value=''});S.kids=0;S.parents=0;S.spouse=false;S.extras={};S.sel=0;document.querySelectorAll('.stepper b').forEach(function(b){b.textContent='0'});$('spouse').setAttribute('aria-pressed','false');$('spouse').textContent='ไม่มี';$('sampleBar').hidden=true;renderExtras();switchCo(0);$('coName').focus()}
 });
 renderExtras();loadForm();all();
