@@ -102,13 +102,13 @@ describe('companyLogic', () => {
     expect(getCompanyPvdEmployee(co)).toBe(66000);
   });
 
-  it('calculates social security properly capped per month', () => {
+  it('calculates social security properly capped per month (875/mo, 10,500/yr in 2569)', () => {
     const co = {
       startMonth: 1,
       endMonth: 12,
       baseSalary: 50000,
     };
-    expect(getCompanySocialSecurity(co)).toBe(9000);
+    expect(getCompanySocialSecurity(co)).toBe(10500);
   });
 
   it('estimates employer withholding tax and breakdown accurately', () => {

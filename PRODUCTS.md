@@ -28,7 +28,7 @@
 - **Company Management:** Add up to 5 companies with individual start/end employment months.
 - **Salary Adjustments Timeline:** Add mid-year raises with effective start months (e.g. Apr ฿65k → Oct ฿75k); visual chips with quick deletion.
 - **Granular Month Grid:** Click any month (Jan–Dec) to override specific salary, add commissions, bonuses, or overtime.
-- **Automatic Deductions:** Auto-calculates Social Security (SS max ฿750/mo, ฿9,000/yr cap) and employee/employer Provident Fund (PVD).
+- **Automatic Deductions:** Auto-calculates Social Security (SS max ฿875/mo, ฿10,500/yr cap for 2569) and employee/employer Provident Fund (PVD).
 
 ### Feature 2: Comprehensive Deductions Matrix (2569 Rules)
 - **Personal & Family:** Personal (฿60k), Spouse (฿60k), First child (฿30k), Second child born 2018+ (฿60k), Parents (฿30k/person), Disabled person care (฿60k/person), Antenatal care (cap ฿60k).

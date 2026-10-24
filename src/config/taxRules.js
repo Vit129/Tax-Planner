@@ -30,9 +30,9 @@ export const DEDUCTION_RULES = {
   DISABLED_CARE: 60000,
   ANTENATAL_CAP: 60000,
 
-  // Social Security
-  SS_MONTHLY_MAX: 750,
-  SS_ANNUAL_CAP: 9000,
+  // Social Security (ม.33 ปรับเพดานใหม่ปี 2569: 17,500 บาท -> 875 บาท/เดือน = 10,500 บาท/ปี)
+  SS_MONTHLY_MAX: 875,
+  SS_ANNUAL_CAP: 10500,
 
   // Insurance
   LIFE_HEALTH_CAP: 100000,

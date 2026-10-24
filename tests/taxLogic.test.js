@@ -49,11 +49,11 @@ describe('taxLogic', () => {
 
     expect(plan.totalIncome).toBe(780000);
     expect(plan.expenses).toBe(100000);
-    expect(plan.deductions).toBe(155000);
-    expect(plan.netIncome).toBe(525000);
-    expect(plan.taxPayable).toBe(31250);
+    expect(plan.deductions).toBe(156500); // Personal 60k + SS 10.5k (2569 ceiling) + PVD 36k + Life 30k + RMF 20k
+    expect(plan.netIncome).toBe(523500);
+    expect(plan.taxPayable).toBe(31025);
     expect(plan.isRefund).toBe(true);
-    expect(plan.settlement).toBe(3750);
+    expect(plan.settlement).toBe(3975);
 
     // Retirement pool and sub-caps
     expect(plan.rmfCap).toBe(234000); // 30% of 780,000
@@ -61,7 +61,7 @@ describe('taxLogic', () => {
     expect(plan.pvdUsed).toBe(36000);
     expect(plan.retirementPoolUsed).toBe(56000);
     expect(plan.retirementPoolRemain).toBe(444000);
-    expect(plan.recommendedRmf).toBe(25001); // 525,000 - 500,000 + 1
+    expect(plan.recommendedRmf).toBe(23501); // 523,500 - 500,000 + 1
   });
 
   it('generates Thai AI RMF prompt with portfolio holdings and budget', () => {
