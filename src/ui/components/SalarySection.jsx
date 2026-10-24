@@ -286,7 +286,7 @@ export default function SalarySection({
                     border: 0,
                     background: 'none',
                     color: COLORS.BAD,
-                    fontSize: '1rem',
+                    fontSize: TYPOGRAPHY.SIZE_BASE,
                     cursor: 'pointer',
                   }}
                 >

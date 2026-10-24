@@ -119,7 +119,7 @@ export default function AskAiCard({ basePlan, taxYear }) {
     <span
       id="aiFundsBadge"
       style={{
-        fontSize: '0.78rem',
+        fontSize: TYPOGRAPHY.SIZE_MICRO,
         color: COLORS.BLUE,
         background: COLORS.BLUE_SOFT,
         border: `1px solid ${COLORS.BLUE_BORDER}`,
@@ -210,7 +210,7 @@ export default function AskAiCard({ basePlan, taxYear }) {
           background: COLORS.SUNK,
           color: COLORS.FG,
           padding: '10px 12px',
-          fontFamily: 'inherit',
+          fontFamily: TYPOGRAPHY.FONT_BODY,
           resize: 'vertical',
         }}
         data-testid="textarea-ai-prompt"

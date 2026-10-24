@@ -1,3 +1,5 @@
+import STRINGS from './strings.js';
+
 export const TAX_YEAR = 2569;
 
 export const TAX_BRACKETS = [
@@ -14,7 +16,7 @@ export const TAX_BRACKETS = [
 export const BRACKET_RATES_PCT = [0, 5, 10, 15, 20, 25, 30, 35];
 
 export const DEDUCTION_RULES = {
-  // Expenses (ค่าใช้จ่ายเงินได้ 40(1))
+  // Expenses (40(1))
   EXPENSE_RATE: 0.50,
   EXPENSE_CAP: 100000,
 
@@ -28,7 +30,7 @@ export const DEDUCTION_RULES = {
   DISABLED_CARE: 60000,
   ANTENATAL_CAP: 60000,
 
-  // Social Security (ประกันสังคม)
+  // Social Security
   SS_MONTHLY_MAX: 750,
   SS_ANNUAL_CAP: 9000,
 
@@ -58,56 +60,20 @@ export const DEDUCTION_RULES = {
   POLITICAL_PARTY_CAP: 10000,
 };
 
-export const MONTH_NAMES_TH = [
-  'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
-  'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
-  'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม',
-];
-
-export const MONTH_SHORT_TH = [
-  'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.',
-  'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.',
-  'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.',
-];
+export const MONTH_NAMES_TH = STRINGS.MONTH_NAMES_TH;
+export const MONTH_SHORT_TH = STRINGS.MONTH_SHORT_TH;
 
 export const EXTRA_DEDUCTION_OPTIONS = [
-  { key: 'mortgageInterest', label: 'ดอกเบี้ยบ้าน', cap: 100000 },
-  { key: 'easyEReceipt', label: 'Easy E-Receipt', cap: 50000 },
-  { key: 'pensionInsurance', label: 'ประกันบำนาญ', cap: 200000 },
-  { key: 'parentsHealthInsurance', label: 'ประกันสุขภาพพ่อแม่', cap: 15000 },
-  { key: 'donationGeneral', label: 'เงินบริจาค', cap: null },
-  { key: 'gpf', label: 'กอช.', cap: 30000 },
+  { key: 'mortgageInterest', label: STRINGS.EXTRA_DEDUCTION_LABELS.mortgageInterest, cap: 100000 },
+  { key: 'easyEReceipt', label: STRINGS.EXTRA_DEDUCTION_LABELS.easyEReceipt, cap: 50000 },
+  { key: 'pensionInsurance', label: STRINGS.EXTRA_DEDUCTION_LABELS.pensionInsurance, cap: 200000 },
+  { key: 'parentsHealthInsurance', label: STRINGS.EXTRA_DEDUCTION_LABELS.parentsHealthInsurance, cap: 15000 },
+  { key: 'donationGeneral', label: STRINGS.EXTRA_DEDUCTION_LABELS.donationGeneral, cap: null },
+  { key: 'gpf', label: STRINGS.EXTRA_DEDUCTION_LABELS.gpf, cap: 30000 },
 ];
 
-export const DEFAULT_AI_HOUSES = [
-  'SCB (SCBAM)',
-  'KAsset (กสิกร)',
-  'BBLAM (กรุงเทพ)',
-  'KTAM (กรุงไทย)',
-  'Krungsri (กรุงศรี)',
-  'MFC',
-  'TISCO',
-  'UOBAM',
-  'Principal',
-  'ONEAM',
-  'KKP',
-  'Eastspring',
-  'Finnomena (หลาย บลจ.)',
-  'K PLUS (หลาย บลจ.)',
-];
-
-export const DEFAULT_AI_FOCUSES = [
-  'semiconductor',
-  'tech',
-  'health',
-  'S&P 500',
-  'หุ้นโลก',
-  'ทองคำ',
-  'ตราสารหนี้ ความเสี่ยงต่ำ',
-  'หุ้นไทย',
-  'จีน',
-  'อินเดีย',
-];
+export const DEFAULT_AI_HOUSES = STRINGS.DEFAULT_AI_HOUSES;
+export const DEFAULT_AI_FOCUSES = STRINGS.DEFAULT_AI_FOCUSES;
 
 export const SAMPLE_RMF_FUNDS = [
   { name: 'SCBRMS&P500', type: 'Core', style: 'Passive' },

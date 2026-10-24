@@ -115,7 +115,7 @@ export default function RetirementPoolCard({ basePlan }) {
         style={{
           borderTop: `1px solid ${COLORS.LINE}`,
           paddingTop: 6,
-          fontSize: '0.82rem',
+          fontSize: TYPOGRAPHY.SIZE_SMALL,
         }}
       >
         {STRINGS.MSG_CO_PVD(formatBaht(pvdCompany))}

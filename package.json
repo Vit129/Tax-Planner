@@ -1,7 +1,7 @@
 {
   "name": "tax-planner",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@vit129/tax-ui": "file:../My-Investment-Port/packages/tax-ui",
+    "@vit129/thai-tax-core": "file:../My-Investment-Port/packages/tax-core",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
