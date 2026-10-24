@@ -94,4 +94,23 @@ describe('Tax-Planner Architecture Guard (Logic / UI / Translator / Color / Typo
     }
     expect(violations).toEqual([]);
   });
+
+  it('has zero missing imports for TYPOGRAPHY, COLORS, and STRINGS when referenced', () => {
+    const missing = [];
+    for (const file of allSrcFiles) {
+      const rel = path.relative(SRC_DIR, file).replace(/\\/g, '/');
+      if (rel.startsWith('config/')) continue;
+      const content = stripComments(fs.readFileSync(file, 'utf8'));
+      if (/\bTYPOGRAPHY\./.test(content) && !/import.*TYPOGRAPHY/.test(content)) {
+        missing.push(`${rel}: missing import TYPOGRAPHY`);
+      }
+      if (/\bCOLORS\./.test(content) && !/import.*COLORS/.test(content)) {
+        missing.push(`${rel}: missing import COLORS`);
+      }
+      if (/\bSTRINGS\./.test(content) && !/import.*STRINGS/.test(content)) {
+        missing.push(`${rel}: missing import STRINGS`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
 });

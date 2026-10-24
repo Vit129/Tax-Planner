@@ -4,6 +4,7 @@ import MoneyInput from '../shared/MoneyInput';
 import ChipButton from '../shared/ChipButton';
 import STRINGS from '../../config/strings';
 import COLORS from '../../config/colors';
+import TYPOGRAPHY from '../../config/typography';
 import { MONTH_SHORT_TH, DEDUCTION_RULES } from '../../config/taxRules';
 import {
   isCompanyActiveMonth,
