@@ -25,6 +25,12 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
-    exclude: ['**/node_modules/**', '**/dist/**', 'tests/taxLogicScenario/**'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      'tests/tests-api/**',
+      'tests/tests-web/**',
+      'tests/taxLogicScenario/**',
+    ],
   },
 });

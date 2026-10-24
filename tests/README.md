@@ -1,8 +1,19 @@
 # 🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix
 
-ชุดทดสอบมาตรฐานความแม่นยำทางภาษีและการลงทุนปี 2569 (2026) โดยแบ่งการทดสอบออกเป็น 2 เลเยอร์ตาม **Decoupled Architecture**:
-1. **API / Pure Logic Layer** (`taxLogicScenario.api.spec.js`): ทดสอบ Mathematical Core Engine, ขั้นบันไดภาษี 0%–35%, กฎเพดานลดหย่อน, และ RMF Advice
-2. **UI / Browser Layer** (`taxLogicScenario.ui.spec.js`): ทดสอบ End-to-End บนเบราว์เซอร์จริงผ่าน Playwright จำลองการกรอกข้อมูลของผู้ใช้จริง
+ชุดทดสอบมาตรฐานความแม่นยำทางภาษีและการลงทุนปี 2569 (2026) ตามมาตรฐาน **AODD-AISDLC Decoupled Architecture & Playwright QA Standards** (`rules/coding/decoupled-architecture-pattern.md` และ `rules/playwright/pw-coding-standards.md`):
+
+```
+tests/
+├── fixtures/taxLogic/
+│   └── scenarios.data.js          # Shared Scenario Matrix (Single Source of Truth)
+├── pages/taxLogic/
+│   └── TaxPlannerPage.js          # Page Object Model (Encapsulates DOM Locators & Actions)
+├── tests-api/
+│   └── taxLogicScenario.api.spec.js # Headless Core Engine Matrix Tests (14 scenarios in ms)
+├── tests-web/
+│   └── taxLogicScenario.ui.spec.js  # Chrome Browser E2E Tests via Page Object Model
+└── architectureGuard.test.js      # Continuous Static Architecture Guard
+```
 
 ---
 
@@ -76,12 +87,15 @@
 ## 🚀 วิธีการรันชุดทดสอบ (Execution)
 
 ```bash
-# 1. รันเฉพาะ Logic / API Scenarios
-npx playwright test tests/taxLogicScenario/taxLogicScenario.api.spec.js
+# 1. รันเฉพาะ Logic Engine API Scenarios (14 tests ~ 15ms)
+npx playwright test tests/tests-api
 
-# 2. รันเฉพาะ UI End-to-End Scenarios บนเบราว์เซอร์ Chrome
-npx playwright test tests/taxLogicScenario/taxLogicScenario.ui.spec.js
+# 2. รันเฉพาะ UI End-to-End Scenarios บน Chrome ผ่าน Page Object Model (4 tests ~ 3s)
+npx playwright test tests/tests-web
 
-# 3. รันครบทั้งหมดทั้ง API & UI
+# 3. รันครบทั้งหมดทั้ง API & Web Scenarios
 npm run test:scenarios
+
+# 4. รัน Vitest Unit Tests & Architecture Guard
+npm test
 ```

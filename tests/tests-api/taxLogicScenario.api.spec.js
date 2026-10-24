@@ -1,23 +1,23 @@
 import { test, expect } from '@playwright/test';
 import { calculateTaxPlan, calculateProgressiveTax, getMarginalTaxRate } from '../../src/logic/taxLogic.js';
-import { SCENARIOS } from './scenarios.data.js';
+import { SCENARIOS } from '../fixtures/taxLogic/scenarios.data.js';
 
-test.describe('TaxLogicScenario — API & Pure Mathematical Engine Tests', () => {
+test.describe('@Critical [TS-TAX-API] Tax Mathematical Engine & RMF Logic Scenarios', () => {
   for (const sc of SCENARIOS) {
-    test(`${sc.id}: ${sc.title}`, async () => {
+    test(`[TC-TAX-API-${String(sc.id).replace('case-', '')}] ${sc.title} @Feature @Critical @Scenario`, async () => {
       const plan = calculateTaxPlan(sc.companies, sc.deductions);
 
-      // 1. Verify Income & Expense Capping
+      // 1. Verify Income & Expense Capping (50% max 100k)
       expect(plan.totalIncome).toBeGreaterThan(0);
       expect(plan.expenses).toBe(Math.min(plan.totalIncome * 0.5, 100000));
 
-      // 2. Verify Deductions & New 2569 Social Security Ceiling (max 10,500)
-      expect(plan.deductions).toBeGreaterThanOrEqual(70500); // At least Personal 60k + SS (up to 10.5k)
+      // 2. Verify Deductions & 2569 Social Security Ceiling (max 10,500)
+      expect(plan.deductions).toBeGreaterThanOrEqual(70500); // Personal 60k + SS (up to 10.5k)
 
       // 3. Verify Net Income
       expect(plan.netIncome).toBe(Math.max(0, plan.totalIncome - plan.expenses - plan.deductions));
 
-      // 4. Verify Marginal Tax Bracket Matches Target
+      // 4. Verify Marginal Tax Bracket Matches Scenario Target
       expect(plan.marginalRate).toBe(sc.expected.marginalRate);
 
       // 5. Verify Progressive Tax Calculation Matches Formula
@@ -53,8 +53,6 @@ test.describe('TaxLogicScenario — API & Pure Mathematical Engine Tests', () =>
 
       // 8. Verify Pension Overflow rule when applicable
       if (sc.expected.hasOverflow) {
-        // Pension life (150,000) with 0 general life overflows 100,000 into general life
-        // and remaining 50,000 stays in retirement group
         expect(plan.retirementPoolUsed).toBeGreaterThan(0);
         expect(plan.deductions).toBeGreaterThanOrEqual(60000 + 10500 + 150000);
       }

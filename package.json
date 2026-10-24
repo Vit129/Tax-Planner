@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:scenarios": "playwright test tests/taxLogicScenario",
+    "test:scenarios": "playwright test",
     "test:all": "npm test && npm run test:scenarios",
     "deploy": "bash scripts/deploy-gh-pages.sh",
     "start": "node scripts/start.js"
