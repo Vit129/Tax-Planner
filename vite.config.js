@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const sharedPackagesRoot = path.resolve(__dirname, '../My-Investment-Port/packages');
 
 export default defineConfig({
+  base: './',
   plugins: [react()],
   resolve: {
     alias: {
