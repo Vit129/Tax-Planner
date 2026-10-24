@@ -1,6 +1,6 @@
 # 🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix
 
-ชุดทดสอบมาตรฐานความแม่นยำทางภาษีและการลงทุนปี 2569 (2026) ตามมาตรฐาน **AODD-AISDLC Decoupled Architecture & Playwright QA Standards** (`rules/coding/decoupled-architecture-pattern.md` และ `rules/playwright/pw-coding-standards.md`):
+ชุดทดสอบมาตรฐานความแม่นยำทางภาษีและการลงทุนปี 2569 (2026) ตามมาตรฐาน **AODD-AISDLC Dev + QA Pattern & Playwright Standards** (`skills/ai-sdlc/references/dev-qa-pattern.md` และ `rules/playwright/pw-coding-standards.md`):
 
 ```
 tests/

@@ -97,7 +97,7 @@ Every test run executes [`tests/architectureGuard.test.js`](file:///Users/supavi
 
 ## 📚 Documentation Links
 
-- [PRODUCTS.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/PRODUCTS.md) — Product vision, personas, and feature specifications.
+- [PRODUCT.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/PRODUCT.md) — Product vision, personas, and feature specifications.
 - [ARCHITECTURE.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/ARCHITECTURE.md) — Layered architectural design and dependency rules.
 - [DESIGN.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/DESIGN.md) — Warm Cream design system, color tokens, and typography scale.
 - [CONTEXT.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/CONTEXT.md) — Domain vocabulary and Thai tax rules reference.

@@ -78,7 +78,7 @@ resolve: {
 ```
 Tax-Planner/
 ├── README.md                  # Developer & user guide
-├── PRODUCTS.md                # Product requirements & persona specifications
+├── PRODUCT.md                 # Product requirements & persona specifications
 ├── ARCHITECTURE.md            # System architecture & layer boundaries
 ├── DESIGN.md                  # Design system, tokens & layout grid
 ├── CONTEXT.md                 # Domain vocabulary & tax glossary
