@@ -5,18 +5,16 @@
 export function evalNumber(raw) {
   if (raw == null) return 0;
   if (typeof raw === 'number') return isFinite(raw) && raw > 0 ? raw : 0;
-  
+
   const clean = String(raw).replace(/,/g, '').trim();
   if (!clean) return 0;
 
-  // Only allow digits, basic math operators, parentheses, and decimals
   if (!/^[\d+\-*/.() ]+$/.test(clean)) {
     const num = parseFloat(clean);
     return isFinite(num) && num > 0 ? num : 0;
   }
 
   try {
-    // Evaluates simple arithmetic expression safely
     const fn = new Function(`"use strict"; return (${clean});`);
     const val = fn();
     return typeof val === 'number' && isFinite(val) && val > 0 ? val : 0;
@@ -29,4 +27,17 @@ export function evalNumber(raw) {
 export function formatCurrency(amount) {
   if (amount == null || isNaN(amount)) return '0';
   return Math.round(amount).toLocaleString('th-TH');
+}
+
+export function formatBaht(amount) {
+  return `฿${formatCurrency(amount)}`;
+}
+
+export function formatShortBaht(amount) {
+  const n = Math.round(amount || 0);
+  if (n >= 1000) {
+    const kVal = (n / 1000).toFixed(n % 1000 ? 1 : 0);
+    return `฿${kVal}k`;
+  }
+  return formatBaht(n);
 }

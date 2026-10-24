@@ -10,6 +10,7 @@ import {
   getCompanyPvdEmployee,
   getCompanySocialSecurity,
   estimateCompanyWithholding,
+  getCompanyBreakdown,
 } from '../src/logic/companyLogic.js';
 import { calculateProgressiveTax } from '../src/logic/taxLogic.js';
 
@@ -33,11 +34,9 @@ describe('companyLogic', () => {
       baseSalary: 75000,
     };
     const salaries = getCompanyMonthlySalaries(co);
-    // Jan-Mar should be 0
     expect(salaries[0]).toBe(0);
     expect(salaries[1]).toBe(0);
     expect(salaries[2]).toBe(0);
-    // Apr-Dec should be 75000
     expect(salaries[3]).toBe(75000);
     expect(salaries[11]).toBe(75000);
     expect(getCompanyAnnualSalary(co)).toBe(75000 * 9);
@@ -49,26 +48,35 @@ describe('companyLogic', () => {
       endMonth: 12,
       baseSalary: 65000,
       salaryAdjustments: [
-        { month: 4, salary: 70000 }, // Raise in April
-        { month: 10, salary: 75000 }, // Raise in October
+        { month: 4, salary: 70000 },
+        { month: 10, salary: 75000 },
       ],
     };
     const salaries = getCompanyMonthlySalaries(co);
-    // Jan-Mar: 65,000 (3 months) = 195,000
     expect(salaries[0]).toBe(65000);
     expect(salaries[2]).toBe(65000);
-
-    // Apr-Sep: 70,000 (6 months) = 420,000
     expect(salaries[3]).toBe(70000);
     expect(salaries[8]).toBe(70000);
-
-    // Oct-Dec: 75,000 (3 months) = 225,000
     expect(salaries[9]).toBe(75000);
     expect(salaries[11]).toBe(75000);
 
     const expectedTotal = 65000 * 3 + 70000 * 6 + 75000 * 3;
     expect(getCompanyAnnualSalary(co)).toBe(expectedTotal);
     expect(getCompanyLastSalary(co)).toBe(75000);
+  });
+
+  it('supports single-month salary overrides without affecting subsequent months', () => {
+    const co = {
+      startMonth: 1,
+      endMonth: 12,
+      baseSalary: 50000,
+      monthlyOverrides: { 5: 25000 },
+      otMonthly: { 5: 4000 },
+    };
+    const salaries = getCompanyMonthlySalaries(co);
+    expect(salaries[4]).toBe(25000); // May overridden
+    expect(salaries[5]).toBe(50000); // June back to base
+    expect(getCompanyExtraIncome(co)).toBe(4000);
   });
 
   it('calculates fixed bonus using the last active salary', () => {
@@ -79,7 +87,6 @@ describe('companyLogic', () => {
       salaryAdjustments: [{ month: 6, salary: 80000 }],
       bonusFixedMonths: 2,
     };
-    // Last salary is 80,000, so 2 months bonus = 160,000
     expect(getCompanyFixedBonus(co)).toBe(160000);
     expect(getCompanyTotalBonus(co)).toBe(160000);
   });
@@ -89,12 +96,9 @@ describe('companyLogic', () => {
       startMonth: 1,
       endMonth: 12,
       baseSalary: 100000,
-      salaryAdjustments: [{ month: 7, salary: 120000 }], // 6 months @ 100k, 6 months @ 120k
+      salaryAdjustments: [{ month: 7, salary: 120000 }],
       pvdRateEmp: 5,
     };
-    // 5% of 100k = 5,000/mo * 6 = 30,000
-    // 5% of 120k = 6,000/mo * 6 = 36,000
-    // Total PVD = 66,000
     expect(getCompanyPvdEmployee(co)).toBe(66000);
   });
 
@@ -102,13 +106,12 @@ describe('companyLogic', () => {
     const co = {
       startMonth: 1,
       endMonth: 12,
-      baseSalary: 50000, // Above 15,000 cap
+      baseSalary: 50000,
     };
-    // 750/mo * 12 = 9,000
     expect(getCompanySocialSecurity(co)).toBe(9000);
   });
 
-  it('estimates employer withholding tax reasonably', () => {
+  it('estimates employer withholding tax and breakdown accurately', () => {
     const co = {
       startMonth: 1,
       endMonth: 12,
@@ -119,5 +122,9 @@ describe('companyLogic', () => {
     const wh = estimateCompanyWithholding(co, calculateProgressiveTax);
     expect(wh).toBeGreaterThan(0);
     expect(wh).toBeLessThan(getCompanyTotalIncome(co));
+
+    const bd = getCompanyBreakdown(co, calculateProgressiveTax);
+    expect(bd.whReal).toBe(false);
+    expect(bd.wh).toBe(wh);
   });
 });
