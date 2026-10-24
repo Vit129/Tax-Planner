@@ -13,6 +13,7 @@
 - [🚀 Quick Start & NPM Scripts](#-quick-start--npm-scripts)
 - [🛡️ Automated Architecture Guard](#️-automated-architecture-guard)
 - [📚 Documentation Links](#-documentation-links)
+- [📄 License](#-license)
 
 ---
 
@@ -101,3 +102,9 @@ Every test run executes [`tests/architectureGuard.test.js`](file:///Users/supavi
 - [ARCHITECTURE.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/ARCHITECTURE.md) — Layered architectural design and dependency rules.
 - [DESIGN.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/DESIGN.md) — Warm Cream design system, color tokens, and typography scale.
 - [CONTEXT.md](file:///Users/supavit.cho/Git/Personal/Tax-Planner/CONTEXT.md) — Domain vocabulary and Thai tax rules reference.
+
+---
+
+## 📄 License
+
+This project and its shared packages are licensed under the [Apache License 2.0](file:///Users/supavit.cho/Git/Personal/Tax-Planner/LICENSE).
