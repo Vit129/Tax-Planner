@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "deploy": "bash scripts/deploy-gh-pages.sh"
+    "deploy": "bash scripts/deploy-gh-pages.sh",
+    "start": "node scripts/start.js"
   },
   "dependencies": {
     "@vit129/tax-ui": "file:../My-Investment-Port/packages/tax-ui",

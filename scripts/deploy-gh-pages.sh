@@ -4,15 +4,17 @@ set -e
 echo "Building Tax-Planner for production..."
 npm run build
 
-CURRENT_BRANCH=$(git branch --show-current)
-echo "Deploying dist/ to gh-pages branch from ${CURRENT_BRANCH}..."
+echo "Packaging dist/ directly to gh-pages branch..."
+INDEX_FILE=$(mktemp -u)
+export GIT_INDEX_FILE="$INDEX_FILE"
 
-git checkout --orphan gh-pages-deploy
-git reset
-git --work-tree dist add --all
-git --work-tree dist commit -m "deploy: update GitHub Pages $(date +'%Y-%m-%d %H:%M:%S')"
-git push origin gh-pages-deploy:gh-pages --force
-git checkout -f "${CURRENT_BRANCH}"
-git branch -D gh-pages-deploy
+git --work-tree=dist add --all
+TREE_ID=$(git write-tree)
+rm -f "$INDEX_FILE"
+
+COMMIT_ID=$(git commit-tree "$TREE_ID" -m "deploy: update GitHub Pages $(date +'%Y-%m-%d %H:%M:%S')")
+
+echo "Pushing commit ${COMMIT_ID} to origin/gh-pages..."
+git push origin "$COMMIT_ID":refs/heads/gh-pages --force
 
 echo "Successfully deployed to https://vit129.github.io/Tax-Planner/"
