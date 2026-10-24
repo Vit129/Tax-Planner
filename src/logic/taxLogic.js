@@ -105,8 +105,14 @@ export function calculateAllDeductions(
   // 3. Life & Health Insurance
   const generalLife = evalNumber(d.lifeInsurance);
   const healthIns = Math.min(evalNumber(d.healthInsurance), DEDUCTION_RULES.HEALTH_SUB_CAP);
-  const lifeAndHealth = Math.min(generalLife + healthIns, DEDUCTION_RULES.LIFE_HEALTH_CAP);
-  add(labels.lifeHealthInsurance, lifeAndHealth);
+  const lifeAndHealthBase = Math.min(generalLife + healthIns, DEDUCTION_RULES.LIFE_HEALTH_CAP);
+  const unusedGeneralLife = Math.max(0, DEDUCTION_RULES.LIFE_HEALTH_CAP - lifeAndHealthBase);
+
+  // Pension life insurance can overflow into unused general life insurance room (up to 100k)
+  const pensionLife = evalNumber(d.pensionInsurance);
+  const pensionOverflowToLife = Math.min(pensionLife, unusedGeneralLife);
+  const lifeAndHealthTotal = lifeAndHealthBase + pensionOverflowToLife;
+  add(labels.lifeHealthInsurance, lifeAndHealthTotal);
 
   const spouseLife = Math.min(evalNumber(d.spouseLifeInsurance), DEDUCTION_RULES.SPOUSE_LIFE_CAP);
   add(labels.spouseLifeInsurance, spouseLife);
@@ -114,7 +120,7 @@ export function calculateAllDeductions(
   const parentsHealth = Math.min(evalNumber(d.parentsHealthInsurance), DEDUCTION_RULES.PARENT_HEALTH_CAP);
   add(labels.parentHealthInsurance, parentsHealth);
 
-  // 4. Retirement Pool (RMF + PVD + Pension Life + GPF/NSF)
+  // 4. Retirement Pool (RMF + PVD + Pension Life Remainder + GPF/NSF)
   const autoPvd = (companies || []).reduce((acc, c) => acc + getCompanyPvdEmployee(c), 0);
   const pvdAmount = d.pvdManual != null && d.pvdManual !== '' ? evalNumber(d.pvdManual) : autoPvd;
   const pvdCap = Math.min(totalIncome * DEDUCTION_RULES.PVD_RATE, DEDUCTION_RULES.RETIREMENT_POOL_CAP);
@@ -125,9 +131,9 @@ export function calculateAllDeductions(
   const rmfInput = evalNumber(d.rmf) + extraRmf;
   const rmfAllowed = Math.min(rmfInput, rmfCap);
 
-  const pensionLife = evalNumber(d.pensionInsurance);
+  const pensionRemainder = Math.max(0, pensionLife - pensionOverflowToLife);
   const pensionAllowed = Math.min(
-    pensionLife,
+    pensionRemainder,
     totalIncome * DEDUCTION_RULES.PENSION_INSURANCE_RATE,
     DEDUCTION_RULES.PENSION_INSURANCE_CAP
   );

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@vit129/thai-tax-core": ["../My-Investment-Port/packages/tax-core/src/index.ts"],
+      "@vit129/tax-ui": ["../My-Investment-Port/packages/tax-ui/src/index.js"]
+    }
+  }
+}
