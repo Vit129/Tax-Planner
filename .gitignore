@@ -31,3 +31,12 @@ yarn-error.log*
 coverage
 .vitest
 .tmp/
+
+# Graphify
+graphify-out/cache/
+graphify-out/.graphify_*
+graphify-out/manifest.json
+graphify-out/cost.json
+graphify-out/graph.html
+graphify-out/20*/
+
