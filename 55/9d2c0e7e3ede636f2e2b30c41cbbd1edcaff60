@@ -1,0 +1,22 @@
+package.json
+  h_d82339d8725694 4
+src/config/strings.js
+  h_d82339d8725694 217-218,240-241
+src/config/taxRules.js
+  h_d82339d8725694 58-59,72-73
+src/logic/easyTaxAdapter.js
+  h_d82339d8725694 221-222,250-251,305-306
+src/logic/taxLogic.js
+  h_d82339d8725694 161-166
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "559d2c0e7e3ede636f2e2b30c41cbbd1edcaff60",
+  "prompts": {},
+  "humans": {
+    "h_d82339d8725694": {
+      "author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
