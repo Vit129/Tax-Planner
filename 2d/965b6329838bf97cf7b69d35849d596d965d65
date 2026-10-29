@@ -1,0 +1,25 @@
+package.json
+  s_8a3c29f50160bf::t_a4a94a34f09e89 4
+ARCHITECTURE.md
+  s_8a3c29f50160bf::t_a4a94a34f09e89 1
+README.md
+  s_8a3c29f50160bf::t_a4a94a34f09e89 1
+package-lock.json
+  s_8a3c29f50160bf::t_a08d655d281a71 3,9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "2d965b6329838bf97cf7b69d35849d596d965d65",
+  "prompts": {},
+  "sessions": {
+    "s_8a3c29f50160bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57dbb3e9-bcea-4b8c-8c8c-0dd743721568",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
