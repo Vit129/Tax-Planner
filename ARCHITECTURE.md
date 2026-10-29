@@ -1,4 +1,4 @@
-# 🏛️ Architecture: Tax-Planner (v1.1.0)
+# 🏛️ Architecture: Tax-Planner (v1.2.0)
 
 ## 1. Architectural Principles
 
