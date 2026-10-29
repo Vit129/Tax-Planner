@@ -64,6 +64,21 @@ describe('taxLogic', () => {
     expect(plan.recommendedRmf).toBe(23501); // 523,500 - 500,000 + 1
   });
 
+  it('caps solar rooftop deduction at 200,000 baht', () => {
+    const companies = [
+      {
+        name: 'Alpha Tech',
+        startMonth: 1,
+        endMonth: 12,
+        baseSalary: 100000,
+      },
+    ];
+    const plan = calculateTaxPlan(companies, { solarRooftop: 250000 });
+    const solarItem = plan.deductionItems.find((i) => i.label === 'โซลาร์เซลล์ (Solar Rooftop)');
+    expect(solarItem).toBeDefined();
+    expect(solarItem.amount).toBe(200000);
+  });
+
   it('generates Thai AI RMF prompt with portfolio holdings and budget', () => {
     const prompt = generateAiRmfPrompt({
       house: 'SCB',

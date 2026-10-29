@@ -213,6 +213,7 @@ export const STRINGS = {
   ],
   EXTRA_DEDUCTION_LABELS: {
     mortgageInterest: 'ดอกเบี้ยบ้าน',
+    solarRooftop: 'โซลาร์เซลล์ (Solar Rooftop)',
     easyEReceipt: 'Easy E-Receipt',
     pensionInsurance: 'ประกันบำนาญ',
     parentsHealthInsurance: 'ประกันสุขภาพพ่อแม่',
@@ -233,6 +234,7 @@ export const STRINGS = {
     retirementGroup: 'กองทุนเกษียณ (RMF/PVD/บำนาญ/กอช.)',
     thaiEsg: 'Thai ESG',
     mortgageInterest: 'ดอกเบี้ยบ้าน',
+    solarRooftop: 'โซลาร์เซลล์ (Solar Rooftop)',
     easyEReceipt: 'Easy E-Receipt',
     donation: 'บริจาค',
     donationParty: 'บริจาคพรรคการเมือง',

@@ -54,6 +54,7 @@ export const DEDUCTION_RULES = {
   // Stimulus & Living
   EASY_E_RECEIPT_CAP: 50000,
   MORTGAGE_INTEREST_CAP: 100000,
+  SOLAR_ROOFTOP_CAP: 200000,
 
   // Donations
   DONATION_MAX_RATE: 0.10,
@@ -65,6 +66,7 @@ export const MONTH_SHORT_TH = STRINGS.MONTH_SHORT_TH;
 
 export const EXTRA_DEDUCTION_OPTIONS = [
   { key: 'mortgageInterest', label: STRINGS.EXTRA_DEDUCTION_LABELS.mortgageInterest, cap: 100000 },
+  { key: 'solarRooftop', label: STRINGS.EXTRA_DEDUCTION_LABELS.solarRooftop, cap: 200000 },
   { key: 'easyEReceipt', label: STRINGS.EXTRA_DEDUCTION_LABELS.easyEReceipt, cap: 50000 },
   { key: 'pensionInsurance', label: STRINGS.EXTRA_DEDUCTION_LABELS.pensionInsurance, cap: 200000 },
   { key: 'parentsHealthInsurance', label: STRINGS.EXTRA_DEDUCTION_LABELS.parentsHealthInsurance, cap: 15000 },
