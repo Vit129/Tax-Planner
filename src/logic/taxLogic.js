@@ -155,6 +155,9 @@ export function calculateAllDeductions(
   const mortgage = Math.min(evalNumber(d.mortgageInterest), DEDUCTION_RULES.MORTGAGE_INTEREST_CAP);
   add(labels.mortgageInterest, mortgage);
 
+  const solar = Math.min(evalNumber(d.solarRooftop), DEDUCTION_RULES.SOLAR_ROOFTOP_CAP);
+  add(labels.solarRooftop, solar);
+
   const easyReceipt = Math.min(evalNumber(d.easyEReceipt), DEDUCTION_RULES.EASY_E_RECEIPT_CAP);
   add(labels.easyEReceipt, easyReceipt);
 
