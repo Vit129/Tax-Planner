@@ -5,8 +5,6 @@ import {
   buildSimulatorModel,
   isSampleBannerVisible,
 } from '@vit129/tax-ui';
-import RetirementPoolCard from './components/RetirementPoolCard';
-import TaxDetailsCard from './components/TaxDetailsCard';
 import STRINGS from '../config/strings';
 import COLORS from '../config/colors';
 import TYPOGRAPHY from '../config/typography';
@@ -78,14 +76,9 @@ export default function EasyTaxApp({
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const currentStep = flowState?.currentStep || 1;
-  const isSummaryMode = Boolean(flowState?.isSummaryMode);
   const hasSavedOwnData = Boolean(flowState?.hasSavedOwnData);
   const sampleBannerShown = isSampleBannerVisible({ isSampleData, hasSavedOwnData });
 
-  const showRetirementPoolCard =
-    isSummaryMode || currentStep === 4 || currentStep === 6;
-  const showTaxDetailsCard = isSummaryMode || currentStep === 5;
 
   return (
     <div className="easy-tax-shell" data-theme={theme}>
@@ -168,9 +161,6 @@ export default function EasyTaxApp({
           gap: '16px',
         }}
       >
-        {showRetirementPoolCard && <RetirementPoolCard basePlan={easyPlan} />}
-        {showTaxDetailsCard && <TaxDetailsCard basePlan={easyPlan} taxYear={taxYear} />}
-
         <div
           className="warn"
           role="note"

@@ -14,6 +14,16 @@ import {
   getCompanyTotalIncome,
 } from './companyLogic.js';
 import { calculateTaxPlan, generateAiRmfPrompt } from './taxLogic.js';
+import { buildRetirementPoolView, buildTaxWaterfall } from '@vit129/tax-ui';
+
+// The shared package owns the monthly-income helpers; re-exported so the app and its tests import one place.
+export {
+  getStartSalary,
+  getFirstRaise,
+  setStartSalary,
+  setFirstRaise,
+  setYearlyOtherIncome,
+} from '@vit129/tax-ui';
 
 const AI_CHAT_URL_PREFIX = Object.freeze({
   gpt: 'https://chatgpt.com/?q=',
@@ -212,6 +222,9 @@ export function toEasyDeductions(tpDeductions = {}) {
     donation: evalNumber(d.donationGeneral ?? d.donation),
     rmf: evalNumber(d.rmf),
     thaiEsg: evalNumber(d.thaiEsg),
+    pensionInsurance: evalNumber(d.pensionInsurance),
+    // Tax-Planner calls the National Savings Fund (กอช.) `gpf`; the shared model and tax-core call it `nsf`.
+    nsf: evalNumber(d.gpf ?? d.nsf),
   };
 }
 
@@ -235,6 +248,8 @@ export function fromEasyDeductions(easyDed = {}, prevTpDeductions = {}) {
     donationGeneral: evalNumber(e.donation ?? e.donationGeneral ?? prev.donationGeneral),
     rmf: evalNumber(e.rmf ?? prev.rmf),
     thaiEsg: evalNumber(e.thaiEsg ?? prev.thaiEsg),
+    pensionInsurance: evalNumber(e.pensionInsurance ?? prev.pensionInsurance),
+    gpf: evalNumber(e.nsf ?? e.gpf ?? prev.gpf),
   };
 }
 
@@ -256,6 +271,9 @@ export function applyEasyDeductionUpdate(prevTpDeductions = {}, field, value) {
     case 'donation':
     case 'donationGeneral':
       return { ...prev, donationGeneral: evalNumber(value) };
+    case 'nsf':
+    case 'gpf':
+      return { ...prev, gpf: evalNumber(value) };
     default:
       return { ...prev, [field]: evalNumber(value) };
   }
@@ -391,6 +409,20 @@ export function toEasyPlan(
     autoSS: tpPlan.ssDeduction,
     pvdEmp: tpPlan.pvdUsed,
     pvdCoYear: tpPlan.pvdCompany,
+    pool: buildRetirementPoolView({
+      cap: 500000,
+      parts: { rmf: tpPlan.rmfUsed, pvd: tpPlan.pvdUsed, pension: tpPlan.pensionUsed, nsf: tpPlan.gpfUsed },
+      rmfCap: tpPlan.rmfCap,
+      pvdCap: tpPlan.pvdCap,
+      pvdCompany: tpPlan.pvdCompany,
+    }),
+    waterfall: buildTaxWaterfall({
+      totalIncome: tpPlan.totalIncome,
+      expenses: tpPlan.expenses,
+      items: tpPlan.deductionItems,
+      net: tpPlan.netIncome,
+      tax: tpPlan.taxPayable,
+    }),
   };
 }
 
@@ -444,50 +476,3 @@ export function buildAiChatUrl(provider, prompt) {
   }
   return prefix + encodeURIComponent(prompt || '');
 }
-
-/**
- * Pure CoreCompany monthly-income helpers (mirrors @vit129/tax-ui/src/flow/monthlyIncome.js,
- * which is not re-exported by @vit129/tax-ui/src/index.js).
- */
-export function getStartSalary(company) {
-  const range = getEmploymentRange(company);
-  return range ? expandMonths(company)[range.start - 1].salary : 0;
-}
-
-export function getFirstRaise(company) {
-  return getRaises(company)[0] ?? null;
-}
-
-export function setStartSalary(company, salary) {
-  const amount = evalNumber(salary);
-  if (!(amount > 0)) return company;
-  const range = getEmploymentRange(company);
-  return setMonthSalary(company, range ? range.start : 1, amount, 'forward');
-}
-
-export function setFirstRaise(company, month, salary) {
-  const range = getEmploymentRange(company);
-  const [raise, later] = getRaises(company);
-  const base = raise ? setMonthSalary(company, raise.month, raise.from, 'forward') : company;
-  if (!month) return base;
-  const inside =
-    range && month > range.start && month <= range.end && (!later || month < later.month);
-  if (!inside || !(evalNumber(salary) > getStartSalary(company))) return company;
-  return setMonthSalary(base, month, evalNumber(salary), 'forward');
-}
-
-export function setYearlyOtherIncome(company, total) {
-  const amount = Math.max(0, Math.round(evalNumber(total)));
-  const working = expandMonths(company)
-    .map((m, i) => (m.salary > 0 ? i + 1 : 0))
-    .filter(Boolean);
-  if (working.length === 0) return company;
-  const each = Math.floor(amount / working.length);
-  const remainder = amount - each * working.length;
-  return working.reduce(
-    (acc, month, idx) =>
-      setMonthOther(acc, month, idx === working.length - 1 ? each + remainder : each),
-    company
-  );
-}
-

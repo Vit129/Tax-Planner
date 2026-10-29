@@ -16,6 +16,7 @@ import {
   toEasyDeductions,
   fromEasyDeductions,
   applyEasyDeductionUpdate,
+  fromEasyDeductions,
   toEasyInputs,
   toEasyPlan,
   createEasySimulatorRecalculate,
@@ -247,5 +248,48 @@ describe('easyTaxAdapter — Display, Round-Trip, Edit, and Legacy V2 Compatibil
 
     expect(buildAiChatUrl('gpt', 'hello')).toBe('https://chatgpt.com/?q=hello');
     expect(buildAiChatUrl('claude', 'hello')).toBe('https://claude.ai/new?q=hello');
+  });
+});
+
+describe('easyTaxAdapter — pension insurance, NSF (gpf), retirement pool and tax waterfall', () => {
+  const tax = (ded) => calculateTaxPlan(SHAPE_FIXTURE.companies, ded, 0, 0, 0).taxPayable;
+
+  it('maps Tax-Planner gpf to the shared nsf field and back', () => {
+    const ded = { ...SHAPE_FIXTURE.deductions, pensionInsurance: 50000, gpf: 20000 };
+    expect(toEasyDeductions(ded)).toMatchObject({ pensionInsurance: 50000, nsf: 20000 });
+    const back = fromEasyDeductions({ ...toEasyDeductions(ded), nsf: 25000 }, ded);
+    expect(back).toMatchObject({ pensionInsurance: 50000, gpf: 25000 });
+    expect(applyEasyDeductionUpdate(ded, 'nsf', 10000).gpf).toBe(10000);
+  });
+
+  it('each field changes the tax and reverting restores it exactly', () => {
+    const base = SHAPE_FIXTURE.deductions;
+    const t0 = tax(base);
+    const pen = applyEasyDeductionUpdate(base, 'pensionInsurance', 100000);
+    expect(tax(pen)).toBeLessThan(t0);
+    expect(tax(applyEasyDeductionUpdate(pen, 'pensionInsurance', base.pensionInsurance))).toBe(t0);
+    const nsf = applyEasyDeductionUpdate(base, 'nsf', 30000);
+    expect(tax(nsf)).toBeLessThan(t0);
+    expect(tax(applyEasyDeductionUpdate(nsf, 'nsf', base.gpf))).toBe(t0);
+  });
+
+  it('the pool card model matches the engine and counts pension and NSF', () => {
+    // Pension insurance first fills the unused life-insurance room (100,000 - 12,000 - 18,000 = 70,000);
+    // only the 30,000 above that counts in the retirement pool, plus 20,000 of NSF.
+    const ded = { ...SHAPE_FIXTURE.deductions, pensionInsurance: 100000, gpf: 20000 };
+    const plan = toEasyPlan(SHAPE_FIXTURE.companies, ded);
+    const none = toEasyPlan(SHAPE_FIXTURE.companies, SHAPE_FIXTURE.deductions);
+    expect(plan.pool.cap).toBe(500000);
+    expect(plan.pool.used).toBe(plan.retirementPoolUsed);
+    expect(plan.pool.used - none.pool.used).toBe(50000);
+    expect(plan.pool.remain).toBe(plan.retirementPoolRemain);
+  });
+
+  it('the waterfall lines add up to the net income and end at the plan tax', () => {
+    const plan = toEasyPlan(SHAPE_FIXTURE.companies, { ...SHAPE_FIXTURE.deductions, pensionInsurance: 60000 });
+    const w = plan.waterfall;
+    const allowances = w.items.reduce((sum, i) => sum + i.amount, 0);
+    expect(Math.round(w.totalIncome - w.expenses - allowances)).toBe(Math.round(w.net));
+    expect(w.tax).toBe(plan.taxPayable);
   });
 });

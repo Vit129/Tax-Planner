@@ -226,4 +226,38 @@ test.describe('@Critical [TS-TAX-WEB] Tax Planner Browser E2E User Journeys & Ea
       await expect(taxPage.tourOverlay).toBeHidden();
     }
   });
+
+  test('[TC-TAX-WEB-008] Pension insurance and NSF tiles move the tax, feed the pool card, and the summary shows the tax table @Critical @Scenario', async ({ page }) => {
+    await taxPage.loadV2Fixture(SHAPE_FIXTURE);
+    const taxText = () => taxPage.stickyTaxMeta.innerText();
+    const baseTax = await taxText();
+    const pool = page.getByTestId('retirement-pool-card');
+    const poolUsed = async () => Number((await pool.locator('#poolUsed').innerText()).replace(/[^0-9]/g, ''));
+
+    await taxPage.goToStep(4);
+    await expect(pool).toBeVisible();
+    const before = await poolUsed();
+
+    await taxPage.goToStep(3);
+    await expect(page.locator('#inputPension')).toBeVisible();
+    await page.locator('#inputPension').fill('100,000');
+    await page.locator('#inputNsf').fill('20,000');
+    await expect.poll(taxText).not.toBe(baseTax);
+
+    await taxPage.goToStep(4);
+    // pension fills the 70,000 unused life-insurance room first: +30,000 here, +20,000 NSF
+    await expect.poll(poolUsed).toBe(before + 50000);
+
+    await taxPage.goToStep(3);
+    await page.locator('#inputPension').fill('0');
+    await page.locator('#inputNsf').fill('0');
+    await expect.poll(taxText).toBe(baseTax);
+
+    await taxPage.goToStep(6);
+    await page.getByRole('button', { name: /บันทึกและดูสรุป/ }).first().click();
+    const waterfall = page.getByTestId('tax-waterfall');
+    await expect(waterfall).toBeVisible();
+    await waterfall.locator('summary').click();
+    await expect(waterfall.locator('#waterfall')).toContainText('฿35,410');
+  });
 });
