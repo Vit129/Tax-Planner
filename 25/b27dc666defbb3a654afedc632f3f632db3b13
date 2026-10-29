@@ -1,0 +1,36 @@
+tests/tests-web/taxLogicScenario.ui.spec.js
+  s_8a3c29f50160bf::t_3195d70e6970fa 1,3-7,9,52-63,65-130,132-195,197-227
+tests/tests-api/taxLogicScenario.api.spec.js
+  h_d82339d8725694 2-3,5-18,74-80,83-123,125
+src/config/strings.js
+  s_8a3c29f50160bf::t_640a16b1079859 24
+src/index.css
+  s_8a3c29f50160bf::t_902c21adb9ff10 455,463-466
+src/ui/App.jsx
+  s_8a3c29f50160bf::t_c03ad80651236d 2-3,5,7-11,80-92,101,109-116,123,129,137-139,144,147,149-153,157-166,171-179,183,186,188,192-196,200-207,211-214,216-219,222-225,229-232,235-236,239-252,255-256,259-261,263-265,267-269,272-294
+src/ui/EasyTaxApp.jsx
+  s_8a3c29f50160bf::t_326fc6fb7546f9 1-189
+tests/pages/taxLogic/TaxPlannerPage.js
+  s_8a3c29f50160bf::t_6fb1de21411552 4-5,14,16-19,21-23,25-53,55-61,76-120,124,126,128-132,136-156,158-163,167,169-195,197-201,208,210-212,214,217,222,225,230,234,238,242,245,249,254,257-260,264,268-269,273,277,283,287-288,292,295
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "25b27dc666defbb3a654afedc632f3f632db3b13",
+  "prompts": {},
+  "humans": {
+    "h_d82339d8725694": {
+      "author": "Vit129 <vitosk129@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_8a3c29f50160bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57dbb3e9-bcea-4b8c-8c8c-0dd743721568",
+        "model": "unknown"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
