@@ -1,0 +1,30 @@
+ARCHITECTURE.md
+  h_d82339d8725694 1
+README.md
+  h_d82339d8725694 1
+package-lock.json
+  h_d82339d8725694 3,9-10,26-27,31-32
+package.json
+  h_d82339d8725694 4
+src/config/strings.js
+  h_d82339d8725694 216,237
+src/config/taxRules.js
+  h_d82339d8725694 57,69
+src/logic/easyTaxAdapter.js
+  h_d82339d8725694 220,247,300
+src/logic/taxLogic.js
+  h_d82339d8725694 158-160
+tests/taxLogic.test.js
+  h_d82339d8725694 67-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "939e7985f8ee6cc5d91dbfff5fbd0a4b007526da",
+  "prompts": {},
+  "humans": {
+    "h_d82339d8725694": {
+      "author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
