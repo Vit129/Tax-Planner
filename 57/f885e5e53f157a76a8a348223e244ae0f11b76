@@ -1,0 +1,19 @@
+.gitignore
+  s_8a3c29f50160bf::t_0a3970ee64e7e8 45-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "57f885e5e53f157a76a8a348223e244ae0f11b76",
+  "prompts": {},
+  "sessions": {
+    "s_8a3c29f50160bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57dbb3e9-bcea-4b8c-8c8c-0dd743721568",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
