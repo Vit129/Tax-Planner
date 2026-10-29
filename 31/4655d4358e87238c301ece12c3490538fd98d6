@@ -1,0 +1,19 @@
+vite.config.js
+  s_8a3c29f50160bf::t_c8ee5c9a94e813 3,8-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "314655d4358e87238c301ece12c3490538fd98d6",
+  "prompts": {},
+  "sessions": {
+    "s_8a3c29f50160bf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57dbb3e9-bcea-4b8c-8c8c-0dd743721568",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
