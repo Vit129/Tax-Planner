@@ -452,12 +452,16 @@ label.f {
   height: 100%;
 }
 
-.dot {
+i.dot {
   display: inline-block;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+.easy-tax-shell .easy-tax-wrapper {
+  padding-bottom: 16px !important;
 }
 
 input[type="range"] {

@@ -21,6 +21,7 @@ export const STRINGS = {
 
   // Step 1: Salary & Bonus
   STEP_1_TITLE: 'เงินเดือนและโบนัส',
+  COMPANY_DEFAULT_PREFIX: 'บริษัทที่',
   LBL_COMPANY_NAME: 'ชื่อบริษัท',
   LBL_BASE_SALARY: 'เงินเดือนตอนเริ่ม',
   LBL_START_MONTH: 'เริ่ม',

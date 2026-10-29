@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import Header from './components/Header';
-import SalarySection from './components/SalarySection';
-import WithholdingSection from './components/WithholdingSection';
-import DeductionsSection from './components/DeductionsSection';
-import FundsSection from './components/FundsSection';
-import HeroSummaryCard from './components/HeroSummaryCard';
-import RmfAdviceCard from './components/RmfAdviceCard';
-import RetirementPoolCard from './components/RetirementPoolCard';
-import CompanyBreakdownCard from './components/CompanyBreakdownCard';
-import WhatIfSimulator from './components/WhatIfSimulator';
-import AskAiCard from './components/AskAiCard';
-import TaxDetailsCard from './components/TaxDetailsCard';
+import { INITIAL_FLOW_STATE } from '@vit129/tax-ui';
+import EasyTaxApp from './EasyTaxApp';
 import STRINGS from '../config/strings';
-import { calculateTaxPlan, getTaxYearMetadata } from '../logic/taxLogic';
+import { getTaxYearMetadata } from '../logic/taxLogic';
 import { evalNumber } from '../logic/evalExpression';
+import {
+  fromCoreCompany,
+  createNextTpCompany,
+  applyEasyDeductionUpdate,
+} from '../logic/easyTaxAdapter';
 
 const STORAGE_KEY = 'TAX_PLANNER_DATA_V2';
 const THEME_STORAGE_KEY = 'TAX_PLANNER_THEME';
@@ -82,6 +77,19 @@ const EMPTY_DEDUCTIONS = {
   thaiEsg: '',
 };
 
+function cloneCompanies(list) {
+  return (list || []).map((c) =>
+    createEmptyCompany({
+      ...c,
+      salaryAdjustments: Array.isArray(c.salaryAdjustments)
+        ? c.salaryAdjustments.map((adj) => ({ ...adj }))
+        : [],
+      monthlyOverrides: { ...(c.monthlyOverrides || {}) },
+      otMonthly: { ...(c.otMonthly || {}) },
+    })
+  );
+}
+
 export default function App() {
   const taxYear = useMemo(() => getTaxYearMetadata(), []);
 
@@ -90,12 +98,20 @@ export default function App() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        return !!parsed.isSampleMode;
+        return Boolean(parsed.isSampleMode);
       }
     } catch {
       // ignore
     }
     return true;
+  });
+
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+    } catch {
+      return 'light';
+    }
   });
 
   const [companies, setCompanies] = useState(() => {
@@ -104,44 +120,67 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed.companies) && parsed.companies.length > 0) {
-          return parsed.companies;
+          return cloneCompanies(parsed.companies);
         }
       }
     } catch {
       // ignore
     }
-    return DEFAULT_SAMPLE_COMPANIES;
+    return cloneCompanies(DEFAULT_SAMPLE_COMPANIES);
   });
-
-  const [activeCoIdx, setActiveCoIdx] = useState(() =>
-    companies.length > 1 ? 1 : 0
-  );
 
   const [deductions, setDeductions] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed.deductions) return parsed.deductions;
+        if (parsed.deductions) {
+          return { ...EMPTY_DEDUCTIONS, ...parsed.deductions };
+        }
       }
     } catch {
       // ignore
     }
-    return DEFAULT_SAMPLE_DEDUCTIONS;
+    return { ...DEFAULT_SAMPLE_DEDUCTIONS };
   });
 
-  const [extraRmf, setExtraRmf] = useState(0);
-  const [extraEsg, setExtraEsg] = useState(0);
-
-  const [theme, setTheme] = useState(() => {
+  const [foreignIncome, setForeignIncome] = useState(() => {
     try {
-      const saved = localStorage.getItem(THEME_STORAGE_KEY);
-      if (saved === 'dark' || saved === 'light') return saved;
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return evalNumber(parsed.foreignIncome);
+      }
     } catch {
       // ignore
     }
-    return 'light'; // Default: warm bright cream
+    return 0;
   });
+
+  const [flowState, setFlowState] = useState(() => ({
+    ...INITIAL_FLOW_STATE,
+  }));
+
+  const [simExtra, setSimExtra] = useState({
+    extraRmf: 0,
+    extraEsg: 0,
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          companies,
+          deductions,
+          foreignIncome,
+          isSampleMode,
+        })
+      );
+    } catch {
+      // ignore
+    }
+  }, [companies, deductions, foreignIncome, isSampleMode]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -152,201 +191,106 @@ export default function App() {
     }
   }, [theme]);
 
-  useEffect(() => {
-    document.title = `${STRINGS.APP_TITLE_PREFIX} ${taxYear.be}`;
-  }, [taxYear.be]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ companies, deductions, isSampleMode })
-      );
-    } catch {
-      // ignore
-    }
-  }, [companies, deductions, isSampleMode]);
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const handleStartOwn = () => {
-    setIsSampleMode(false);
     setCompanies([createEmptyCompany()]);
-    setActiveCoIdx(0);
-    setDeductions(EMPTY_DEDUCTIONS);
-    setExtraRmf(0);
-    setExtraEsg(0);
+    setDeductions({ ...EMPTY_DEDUCTIONS });
+    setForeignIncome(0);
+    setSimExtra({ extraRmf: 0, extraEsg: 0 });
+    setIsSampleMode(false);
+    setFlowState({
+      ...INITIAL_FLOW_STATE,
+      hasSavedOwnData: true,
+    });
   };
 
   const handleLoadSample = () => {
+    setCompanies(cloneCompanies(DEFAULT_SAMPLE_COMPANIES));
+    setDeductions({ ...DEFAULT_SAMPLE_DEDUCTIONS });
+    setForeignIncome(0);
+    setSimExtra({ extraRmf: 0, extraEsg: 0 });
     setIsSampleMode(true);
-    setCompanies(DEFAULT_SAMPLE_COMPANIES);
-    setActiveCoIdx(1);
-    setDeductions(DEFAULT_SAMPLE_DEDUCTIONS);
-    setExtraRmf(0);
-    setExtraEsg(0);
+    setFlowState({
+      ...INITIAL_FLOW_STATE,
+      hasSavedOwnData: false,
+    });
   };
 
-  const handleUpdateCompany = (idx, updatedCo) => {
-    const next = [...companies];
-    next[idx] = updatedCo;
-    setCompanies(next);
+  const handleUpdateCompany = (idx, nextCore) => {
+    setCompanies((prev) =>
+      prev.map((c, i) => (i === idx ? fromCoreCompany(nextCore, c) : c))
+    );
   };
 
   const handleAddCompany = () => {
-    const last = companies[companies.length - 1] || createEmptyCompany();
-    const startMonth = Math.min(12, (Math.round(evalNumber(last.endMonth)) || 12) + 1);
-    const newCo = createEmptyCompany({
-      name: `${STRINGS.COMPANY_DEFAULT_PREFIX} ${companies.length + 1}`,
-      startMonth,
-      endMonth: 12,
-      pvdRateEmp: last.pvdRateEmp,
-      pvdRateCo: last.pvdRateCo,
-    });
-    const next = [...companies, newCo];
-    setCompanies(next);
-    setActiveCoIdx(next.length - 1);
+    setCompanies((prev) => [
+      ...prev,
+      createNextTpCompany(prev, STRINGS.COMPANY_DEFAULT_PREFIX),
+    ]);
   };
 
-  const handleDeleteCompany = (idx) => {
-    if (companies.length <= 1) return;
-    const next = companies.filter((_, i) => i !== idx);
-    setCompanies(next);
-    setActiveCoIdx(Math.max(0, idx - 1));
+  const handleRemoveCompany = (idx) => {
+    setCompanies((prev) => (prev.length > 1 ? prev.filter((_, i) => i !== idx) : prev));
   };
 
-  const handleUpdateExtra = (type, val) => {
-    if (type === 'rmf') setExtraRmf(val);
-    if (type === 'esg') setExtraEsg(val);
+  const handleUpdateWithholding = (idx, val) => {
+    setCompanies((prev) =>
+      prev.map((c, i) =>
+        i === idx
+          ? {
+              ...c,
+              withholdingTax:
+                val === null || val === undefined || String(val).trim() === ''
+                  ? ''
+                  : evalNumber(val),
+            }
+          : c
+      )
+    );
   };
 
-  const handleResetSim = () => {
-    setExtraRmf(0);
-    setExtraEsg(0);
+  const handleResetToAutoWithholding = () => {
+    setCompanies((prev) => prev.map((c) => ({ ...c, withholdingTax: '' })));
   };
 
-  // Base Tax Plan
-  const basePlan = useMemo(
-    () => calculateTaxPlan(companies, deductions, 0, 0, 0),
-    [companies, deductions]
-  );
+  const handleUpdateDeduction = (field, val) => {
+    setDeductions((prev) => applyEasyDeductionUpdate(prev, field, val));
+  };
 
-  // Simulated Tax Plan
-  const simPlan = useMemo(
-    () => calculateTaxPlan(companies, deductions, 0, extraRmf, extraEsg),
-    [companies, deductions, extraRmf, extraEsg]
-  );
+  const handleUpdateRmf = (val) => {
+    setDeductions((prev) => applyEasyDeductionUpdate(prev, 'rmf', val));
+  };
 
-  // Full RMF & Full ESG & Drop-1-Bracket Plans for ROI & Advice
-  const fullRmfPlan = useMemo(
-    () => calculateTaxPlan(companies, deductions, 0, basePlan.rmfRoom, 0),
-    [companies, deductions, basePlan.rmfRoom]
-  );
-
-  const fullEsgPlan = useMemo(
-    () => calculateTaxPlan(companies, deductions, 0, 0, basePlan.esgRoom),
-    [companies, deductions, basePlan.esgRoom]
-  );
-
-  const dropBracketPlan = useMemo(
-    () =>
-      basePlan.recommendedRmf > 0
-        ? calculateTaxPlan(companies, deductions, 0, basePlan.recommendedRmf, 0)
-        : null,
-    [companies, deductions, basePlan.recommendedRmf]
-  );
-
-  const activeCompany = companies[activeCoIdx] || companies[0];
-  const activeBreakdown = basePlan.companyBreakdowns[activeCoIdx] || basePlan.companyBreakdowns[0];
+  const handleUpdateEsg = (val) => {
+    setDeductions((prev) => applyEasyDeductionUpdate(prev, 'thaiEsg', val));
+  };
 
   return (
-    <div className="wrap">
-      <Header
-        taxYear={taxYear}
-        isSampleMode={isSampleMode}
-        onStartOwn={handleStartOwn}
-        onLoadSample={handleLoadSample}
-        isRefund={basePlan.isRefund}
-        settlement={basePlan.settlement}
-        theme={theme}
-        onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
-      />
-
-      <div className="grid">
-        {/* LEFT COLUMN: FORM STEPS 1-4 */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
-          <SalarySection
-            companies={companies}
-            activeCoIdx={activeCoIdx}
-            onSelectCompany={setActiveCoIdx}
-            onAddCompany={handleAddCompany}
-            onDeleteCompany={handleDeleteCompany}
-            onUpdateCompany={handleUpdateCompany}
-          />
-
-          <WithholdingSection
-            company={activeCompany}
-            companyBreakdown={activeBreakdown}
-            onUpdateWithholding={(val) =>
-              handleUpdateCompany(activeCoIdx, { ...activeCompany, withholdingTax: val })
-            }
-          />
-
-          <DeductionsSection
-            deductions={deductions}
-            ssDeduction={basePlan.ssDeduction}
-            pvdUsed={basePlan.pvdUsed}
-            onUpdateDeductions={setDeductions}
-          />
-
-          <FundsSection
-            deductions={deductions}
-            onUpdateDeductions={setDeductions}
-          />
-        </div>
-
-        {/* RIGHT COLUMN: STICKY RESULTS (7 CARDS IN ORDER) */}
-        <aside
-          className="results"
-          style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}
-        >
-          {/* 1. Hero Summary */}
-          <HeroSummaryCard basePlan={basePlan} />
-
-          {/* 2. RMF Advice */}
-          <RmfAdviceCard
-            basePlan={basePlan}
-            monthsLeft={taxYear.monthsLeft}
-            fullRmfPlan={fullRmfPlan}
-            dropBracketPlan={dropBracketPlan}
-          />
-
-          {/* 3. Retirement Pool (500,000 Cap + RMF/PVD Tiles) */}
-          <RetirementPoolCard basePlan={basePlan} />
-
-          {/* 4. Per-Company Breakdown */}
-          <CompanyBreakdownCard companies={companies} basePlan={basePlan} />
-
-          {/* 5. What-If Simulator */}
-          <WhatIfSimulator
-            basePlan={basePlan}
-            simPlan={simPlan}
-            fullRmfPlan={fullRmfPlan}
-            fullEsgPlan={fullEsgPlan}
-            dropBracketPlan={dropBracketPlan}
-            deductions={deductions}
-            extraRmf={extraRmf}
-            extraEsg={extraEsg}
-            taxYear={taxYear}
-            onUpdateExtra={handleUpdateExtra}
-            onResetSim={handleResetSim}
-          />
-
-          {/* 6. Ask AI */}
-          <AskAiCard basePlan={basePlan} taxYear={taxYear} />
-
-          {/* 7. Details & Waterfall */}
-          <TaxDetailsCard basePlan={basePlan} taxYear={taxYear} />
-        </aside>
-      </div>
-    </div>
+    <EasyTaxApp
+      companies={companies}
+      deductions={deductions}
+      foreignIncome={foreignIncome}
+      flowState={flowState}
+      onUpdateFlow={setFlowState}
+      simExtra={simExtra}
+      onChangeSimExtra={setSimExtra}
+      onUpdateCompany={handleUpdateCompany}
+      onAddCompany={handleAddCompany}
+      onRemoveCompany={handleRemoveCompany}
+      onUpdateWithholding={handleUpdateWithholding}
+      onResetToAutoWithholding={handleResetToAutoWithholding}
+      onUpdateDeduction={handleUpdateDeduction}
+      onUpdateRmf={handleUpdateRmf}
+      onUpdateEsg={handleUpdateEsg}
+      onResetSample={handleLoadSample}
+      onClearData={handleStartOwn}
+      isSampleData={isSampleMode}
+      theme={theme}
+      onToggleTheme={handleToggleTheme}
+      taxYear={taxYear}
+    />
   );
 }
