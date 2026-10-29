@@ -1261,6 +1261,66 @@
       "norm_label": "#root"
     },
     {
+      "label": "jsconfig.json",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "jsconfig",
+      "community": 24,
+      "norm_label": "jsconfig.json"
+    },
+    {
+      "label": "compilerOptions",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "jsconfig_compileroptions",
+      "community": 24,
+      "norm_label": "compileroptions"
+    },
+    {
+      "label": "baseUrl",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "jsconfig_compileroptions_baseurl",
+      "community": 24,
+      "norm_label": "baseurl"
+    },
+    {
+      "label": "paths",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "jsconfig_compileroptions_paths",
+      "community": 24,
+      "norm_label": "paths"
+    },
+    {
+      "label": "@vit129/thai-tax-core",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "jsconfig_paths_vit129_thai_tax_core",
+      "community": 24,
+      "norm_label": "@vit129/thai-tax-core"
+    },
+    {
+      "label": "@vit129/tax-ui",
+      "file_type": "code",
+      "source_file": "jsconfig.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "jsconfig_paths_vit129_tax_ui",
+      "community": 24,
+      "norm_label": "@vit129/tax-ui"
+    },
+    {
       "label": "package.json",
       "file_type": "code",
       "source_file": "package.json",
@@ -1301,10 +1361,30 @@
       "norm_label": "version"
     },
     {
-      "label": "type",
+      "label": "license",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L5",
+      "_origin": "ast",
+      "id": "package_license",
+      "community": 5,
+      "norm_label": "license"
+    },
+    {
+      "label": "contributors",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "package_contributors",
+      "community": 5,
+      "norm_label": "contributors"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "package_type",
       "community": 5,
@@ -1314,7 +1394,7 @@
       "label": "scripts",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L6",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts",
       "community": 5,
@@ -1324,7 +1404,7 @@
       "label": "dev",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L7",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "package_scripts_dev",
       "community": 5,
@@ -1334,7 +1414,7 @@
       "label": "build",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L8",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "package_scripts_build",
       "community": 5,
@@ -1344,7 +1424,7 @@
       "label": "preview",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L9",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "package_scripts_preview",
       "community": 5,
@@ -1354,7 +1434,7 @@
       "label": "test",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L10",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "package_scripts_test",
       "community": 5,
@@ -1364,17 +1444,37 @@
       "label": "test:watch",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L11",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "package_scripts_test_watch",
       "community": 5,
       "norm_label": "test:watch"
     },
     {
+      "label": "test:scenarios",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "package_scripts_test_scenarios",
+      "community": 5,
+      "norm_label": "test:scenarios"
+    },
+    {
+      "label": "test:all",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "package_scripts_test_all",
+      "community": 5,
+      "norm_label": "test:all"
+    },
+    {
       "label": "deploy",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L12",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "package_scripts_deploy",
       "community": 5,
@@ -1384,7 +1484,7 @@
       "label": "start",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L13",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "package_scripts_start",
       "community": 5,
@@ -1394,7 +1494,7 @@
       "label": "dependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 5,
@@ -1404,7 +1504,7 @@
       "label": "@vit129/tax-ui",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "package_dependencies_vit129_tax_ui",
       "community": 5,
@@ -1414,7 +1514,7 @@
       "label": "@vit129/thai-tax-core",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_vit129_thai_tax_core",
       "community": 5,
@@ -1424,7 +1524,7 @@
       "label": "react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_react",
       "community": 5,
@@ -1434,7 +1534,7 @@
       "label": "react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L19",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_react_dom",
       "community": 5,
@@ -1444,17 +1544,27 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L21",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 5,
       "norm_label": "devdependencies"
     },
     {
+      "label": "@playwright/test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "package_devdependencies_playwright_test",
+      "community": 5,
+      "norm_label": "@playwright/test"
+    },
+    {
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L22",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "package_devdependencies_vitejs_plugin_react",
       "community": 5,
@@ -1464,7 +1574,7 @@
       "label": "vite",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L23",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "package_devdependencies_vite",
       "community": 5,
@@ -1474,11 +1584,22 @@
       "label": "vitest",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L24",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "package_devdependencies_vitest",
       "community": 5,
       "norm_label": "vitest"
+    },
+    {
+      "label": "playwright.config.js",
+      "file_type": "code",
+      "source_file": "playwright.config.js",
+      "source_location": "L1",
+      "end_line": 26,
+      "_origin": "ast",
+      "id": "playwright_config",
+      "community": 26,
+      "norm_label": "playwright.config.js"
     },
     {
       "label": "deploy-gh-pages.sh",
@@ -1668,7 +1789,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_config_taxrules_tax_brackets",
-      "community": 2,
+      "community": 9,
       "norm_label": "tax_brackets"
     },
     {
@@ -2929,10 +3050,10 @@
       "file_type": "code",
       "source_file": "src/logic/taxLogic.js",
       "source_location": "L1",
-      "end_line": 310,
+      "end_line": 316,
       "_origin": "ast",
       "id": "src_logic_taxlogic",
-      "community": 2,
+      "community": 9,
       "norm_label": "taxlogic.js"
     },
     {
@@ -2943,7 +3064,7 @@
       "end_line": 37,
       "_origin": "ast",
       "id": "src_logic_taxlogic_calculateprogressivetax",
-      "community": 2,
+      "community": 9,
       "norm_label": "calculateprogressivetax()"
     },
     {
@@ -2954,7 +3075,7 @@
       "end_line": 49,
       "_origin": "ast",
       "id": "src_logic_taxlogic_getmarginaltaxrate",
-      "community": 2,
+      "community": 9,
       "norm_label": "getmarginaltaxrate()"
     },
     {
@@ -2965,7 +3086,7 @@
       "end_line": 63,
       "_origin": "ast",
       "id": "src_logic_taxlogic_getbracketfloor",
-      "community": 2,
+      "community": 9,
       "norm_label": "getbracketfloor()"
     },
     {
@@ -2973,40 +3094,40 @@
       "file_type": "code",
       "source_file": "src/logic/taxLogic.js",
       "source_location": "L68",
-      "end_line": 203,
+      "end_line": 209,
       "_origin": "ast",
       "id": "src_logic_taxlogic_calculatealldeductions",
-      "community": 2,
+      "community": 9,
       "norm_label": "calculatealldeductions()"
     },
     {
       "label": "calculateTaxPlan()",
       "file_type": "code",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L208",
-      "end_line": 268,
+      "source_location": "L214",
+      "end_line": 274,
       "_origin": "ast",
       "id": "src_logic_taxlogic_calculatetaxplan",
-      "community": 2,
+      "community": 9,
       "norm_label": "calculatetaxplan()"
     },
     {
       "label": "getTaxYearMetadata()",
       "file_type": "code",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L273",
-      "end_line": 280,
+      "source_location": "L279",
+      "end_line": 286,
       "_origin": "ast",
       "id": "src_logic_taxlogic_gettaxyearmetadata",
-      "community": 2,
+      "community": 9,
       "norm_label": "gettaxyearmetadata()"
     },
     {
       "label": "generateAiRmfPrompt()",
       "file_type": "code",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L285",
-      "end_line": 309,
+      "source_location": "L291",
+      "end_line": 315,
       "_origin": "ast",
       "id": "src_logic_taxlogic_generateairmfprompt",
       "community": 2,
@@ -3020,7 +3141,7 @@
       "end_line": 11,
       "_origin": "ast",
       "id": "src_main",
-      "community": 2,
+      "community": 9,
       "norm_label": "main.jsx"
     },
     {
@@ -3042,7 +3163,7 @@
       "end_line": 37,
       "_origin": "ast",
       "id": "src_ui_app_createemptycompany",
-      "community": 2,
+      "community": 9,
       "norm_label": "createemptycompany()"
     },
     {
@@ -3083,7 +3204,7 @@
       "end_line": 352,
       "_origin": "ast",
       "id": "src_ui_app_app",
-      "community": 2,
+      "community": 9,
       "norm_label": "app()"
     },
     {
@@ -3259,7 +3380,7 @@
       "end_line": 102,
       "_origin": "ast",
       "id": "src_ui_components_rmfadvicecard_rmfadvicecard",
-      "community": 2,
+      "community": 9,
       "norm_label": "rmfadvicecard()"
     },
     {
@@ -3267,10 +3388,10 @@
       "file_type": "code",
       "source_file": "src/ui/components/SalarySection.jsx",
       "source_location": "L1",
-      "end_line": 436,
+      "end_line": 434,
       "_origin": "ast",
       "id": "src_ui_components_salarysection",
-      "community": 4,
+      "community": 2,
       "norm_label": "salarysection.jsx"
     },
     {
@@ -3278,7 +3399,7 @@
       "file_type": "code",
       "source_file": "src/ui/components/SalarySection.jsx",
       "source_location": "L18",
-      "end_line": 435,
+      "end_line": 433,
       "_origin": "ast",
       "id": "src_ui_components_salarysection_salarysection",
       "community": 4,
@@ -3622,14 +3743,14 @@
       "norm_label": "calculates pvd contribution based on adjusted monthly salaries"
     },
     {
-      "label": "calculates social security properly capped per month",
+      "label": "calculates social security properly capped per month (875/mo, 10,500/yr in 2569)",
       "file_type": "code",
       "source_file": "tests/companyLogic.test.js",
       "source_location": "L105",
       "_origin": "ast",
-      "id": "tests_companylogic_test_calculates_social_security_properly_capped_per_month_105",
+      "id": "tests_companylogic_test_calculates_social_security_properly_capped_per_month_875_mo_10_500_yr_in_2569_105",
       "community": 4,
-      "norm_label": "calculates social security properly capped per month"
+      "norm_label": "calculates social security properly capped per month (875/mo, 10,500/yr in 2569)"
     },
     {
       "label": "estimates employer withholding tax and breakdown accurately",
@@ -3642,6 +3763,357 @@
       "norm_label": "estimates employer withholding tax and breakdown accurately"
     },
     {
+      "label": "scenarios.data.js",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L1",
+      "end_line": 417,
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data",
+      "community": 22,
+      "norm_label": "scenarios.data.js"
+    },
+    {
+      "label": "SCENARIOS",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "community": 22,
+      "norm_label": "scenarios"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 10% \u00b7 \u0e44\u0e21\u0e48\u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 \u00b7 Fixed \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e14. \u00b7 PVD 3% \u00b7 \u0e44\u0e21\u0e48\u0e21\u0e35\u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L18",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_01",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 10% \u00b7 \u0e44\u0e21\u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 \u00b7 fixed \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e14. \u00b7 pvd 3% \u00b7 \u0e44\u0e21\u0e21\u0e35\u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 15% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 1 \u0e04\u0e23\u0e31\u0e49\u0e07 (\u0e1c\u0e48\u0e32\u0e19\u0e42\u0e1b\u0e23 \u0e14.4) \u00b7 Var \u0e42\u0e1a\u0e19\u0e31\u0e2a 1.5 \u0e14. \u00b7 PVD 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e48\u0e40\u0e15\u0e47\u0e21",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L40",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_02",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 15% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 1 \u0e04\u0e23\u0e31\u0e07 (\u0e1c\u0e32\u0e19\u0e42\u0e1b\u0e23 \u0e14.4) \u00b7 var \u0e42\u0e1a\u0e19\u0e31\u0e2a 1.5 \u0e14. \u00b7 pvd 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e40\u0e15\u0e47\u0e21"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 2 \u0e04\u0e23\u0e31\u0e49\u0e07 (\u0e14.4 + \u0e14.10) \u00b7 Fixed + Var 2 \u0e14. \u00b7 PVD 2% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e48\u0e40\u0e15\u0e47\u0e21",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L66",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_03",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 2 \u0e04\u0e23\u0e31\u0e07 (\u0e14.4 + \u0e14.10) \u00b7 fixed + var 2 \u0e14. \u00b7 pvd 2% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e40\u0e15\u0e47\u0e21"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e49\u0e07 \u00b7 Fixed 2 \u0e14. \u00b7 PVD 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max (100k)",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L94",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_04",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e07 \u00b7 fixed 2 \u0e14. \u00b7 pvd 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max (100k)"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e44\u0e21\u0e48\u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 \u00b7 Perf \u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e1b\u0e25\u0e32\u0e22\u0e1b\u0e35 2.5 \u0e14. \u00b7 PVD 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e48\u0e40\u0e15\u0e47\u0e21",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L120",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_05",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e44\u0e21\u0e1b\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19 \u00b7 perf \u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e1b\u0e25\u0e32\u0e22\u0e1b\u0e35 2.5 \u0e14. \u00b7 pvd 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e40\u0e15\u0e47\u0e21"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e49\u0e07 \u00b7 Fixed 1 \u0e14. + Perf 2 \u0e14. \u00b7 PVD 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max + \u0e1a\u0e33\u0e19\u0e32\u0e0d",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L145",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_06",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e07 \u00b7 fixed 1 \u0e14. + perf 2 \u0e14. \u00b7 pvd 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max + \u0e1a\u0e4d\u0e32\u0e19\u0e32\u0e0d"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 30% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 2 \u0e04\u0e23\u0e31\u0e49\u0e07 \u00b7 Hybrid \u0e42\u0e1a\u0e19\u0e31\u0e2a 3 \u0e14. \u00b7 PVD 15% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max \u0e17\u0e38\u0e01\u0e15\u0e31\u0e27",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L171",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_07",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 30% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 2 \u0e04\u0e23\u0e31\u0e07 \u00b7 hybrid \u0e42\u0e1a\u0e19\u0e31\u0e2a 3 \u0e14. \u00b7 pvd 15% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max \u0e17\u0e01\u0e15\u0e31\u0e27"
+    },
+    {
+      "label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 35% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e49\u0e07 (\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e2a\u0e39\u0e07 500k+) \u00b7 Var \u0e42\u0e1a\u0e19\u0e31\u0e2a 3 \u0e14. \u00b7 PVD 15% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max \u0e17\u0e38\u0e01\u0e15\u0e31\u0e27",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L200",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_08",
+      "community": 22,
+      "norm_label": "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e10\u0e32\u0e19 35% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e07 (\u0e23\u0e32\u0e22\u0e44\u0e14\u0e2a\u0e07 500k+) \u00b7 var \u0e42\u0e1a\u0e19\u0e31\u0e2a 3 \u0e14. \u00b7 pvd 15% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max \u0e17\u0e01\u0e15\u0e31\u0e27"
+    },
+    {
+      "label": "\u0e22\u0e49\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35\u0e48) \u00b7 \u0e10\u0e32\u0e19 15% \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e17\u0e35\u0e48 (\u0e1a.B) \u00b7 PVD 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e48\u0e40\u0e15\u0e47\u0e21",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L226",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_09",
+      "community": 22,
+      "norm_label": "\u0e22\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35) \u00b7 \u0e10\u0e32\u0e19 15% \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e17\u0e35 (\u0e1a.b) \u00b7 pvd 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e40\u0e15\u0e47\u0e21"
+    },
+    {
+      "label": "\u0e22\u0e49\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35\u0e48) \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e2b\u0e25\u0e31\u0e07\u0e42\u0e1b\u0e23\u0e17\u0e35\u0e48 \u0e1a.B \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 2 \u0e17\u0e35\u0e48 (A + B) \u00b7 PVD A 3% -> B 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e48\u0e40\u0e15\u0e47\u0e21",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L260",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_10",
+      "community": 22,
+      "norm_label": "\u0e22\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35) \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e1b\u0e23\u0e31\u0e1a\u0e2b\u0e25\u0e31\u0e07\u0e42\u0e1b\u0e23\u0e17\u0e35 \u0e1a.b \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 2 \u0e17\u0e35 (a + b) \u00b7 pvd a 3% -> b 5% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e44\u0e21\u0e40\u0e15\u0e47\u0e21"
+    },
+    {
+      "label": "\u0e22\u0e49\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35\u0e48) \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e01\u0e49\u0e32\u0e27\u0e01\u0e23\u0e30\u0e42\u0e14\u0e14 \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e17\u0e35\u0e48 (\u0e1a.B) \u00b7 PVD 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max (100k)",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L296",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_11",
+      "community": 22,
+      "norm_label": "\u0e22\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35) \u00b7 \u0e10\u0e32\u0e19 25% \u00b7 \u0e01\u0e32\u0e27\u0e01\u0e23\u0e30\u0e42\u0e14\u0e14 \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 1 \u0e17\u0e35 (\u0e1a.b) \u00b7 pvd 10% \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max (100k)"
+    },
+    {
+      "label": "\u0e22\u0e49\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35\u0e48) \u00b7 \u0e10\u0e32\u0e19 30% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e49\u0e07\u0e17\u0e35\u0e48 \u0e1a.B \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 2 \u0e17\u0e35\u0e48 \u00b7 PVD 10% \u0e17\u0e31\u0e49\u0e07 2 \u0e17\u0e35\u0e48 \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 Max + \u0e1a\u0e33\u0e19\u0e32\u0e0d",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L331",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_12",
+      "community": 22,
+      "norm_label": "\u0e22\u0e32\u0e22\u0e07\u0e32\u0e19\u0e23\u0e30\u0e2b\u0e27\u0e32\u0e07\u0e1b\u0e35 (2 \u0e17\u0e35) \u00b7 \u0e10\u0e32\u0e19 30% \u00b7 \u0e1b\u0e23\u0e31\u0e1a 1 \u0e04\u0e23\u0e31\u0e07\u0e17\u0e35 \u0e1a.b \u00b7 \u0e42\u0e1a\u0e19\u0e31\u0e2a 2 \u0e17\u0e35 \u00b7 pvd 10% \u0e17\u0e31\u0e07 2 \u0e17\u0e35 \u00b7 \u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e40\u0e15\u0e47\u0e21 max + \u0e1a\u0e4d\u0e32\u0e19\u0e32\u0e0d"
+    },
+    {
+      "label": "Edge Case \u0e1b\u0e23\u0e34\u0e48\u0e21\u0e02\u0e2d\u0e1a \u00b7 \u0e10\u0e32\u0e19 20% -> 15% \u00b7 \u0e2a\u0e38\u0e17\u0e18\u0e34\u0e40\u0e01\u0e34\u0e19\u0e02\u0e31\u0e49\u0e19 15% \u0e21\u0e32\u0e19\u0e34\u0e14\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e0b\u0e37\u0e49\u0e2d RMF \u0e02\u0e31\u0e49\u0e19\u0e15\u0e48\u0e33\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e1e\u0e25\u0e34\u0e01\u0e25\u0e07\u0e10\u0e32\u0e19 15%",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L367",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_13",
+      "community": 22,
+      "norm_label": "edge case \u0e1b\u0e23\u0e34\u0e21\u0e02\u0e2d\u0e1a \u00b7 \u0e10\u0e32\u0e19 20% -> 15% \u00b7 \u0e2a\u0e17\u0e18\u0e34\u0e40\u0e01\u0e34\u0e19\u0e02\u0e31\u0e19 15% \u0e21\u0e32\u0e19\u0e34\u0e14\u0e40\u0e14\u0e35\u0e22\u0e27 \u00b7 \u0e0b\u0e37\u0e2d rmf \u0e02\u0e31\u0e19\u0e15\u0e4d\u0e32\u0e40\u0e1e\u0e37\u0e2d\u0e1e\u0e25\u0e34\u0e01\u0e25\u0e07\u0e10\u0e32\u0e19 15%"
+    },
+    {
+      "label": "\u0e17\u0e48\u0e32\u0e1e\u0e34\u0e40\u0e28\u0e29 Pension Overflow \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e44\u0e21\u0e48\u0e21\u0e35\u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b \u0e41\u0e15\u0e48\u0e21\u0e35\u0e1a\u0e33\u0e19\u0e32\u0e0d 150k \u0e44\u0e2b\u0e25\u0e44\u0e1b\u0e40\u0e15\u0e34\u0e21\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b 100k + \u0e40\u0e01\u0e29\u0e35\u0e22\u0e13 50k",
+      "file_type": "code",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L391",
+      "type": "content_item",
+      "_origin": "ast",
+      "id": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_14",
+      "community": 22,
+      "norm_label": "\u0e17\u0e32\u0e1e\u0e34\u0e40\u0e28\u0e29 pension overflow \u00b7 \u0e10\u0e32\u0e19 20% \u00b7 \u0e44\u0e21\u0e21\u0e35\u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e17\u0e31\u0e27\u0e44\u0e1b \u0e41\u0e15\u0e21\u0e35\u0e1a\u0e4d\u0e32\u0e19\u0e32\u0e0d 150k \u0e44\u0e2b\u0e25\u0e44\u0e1b\u0e40\u0e15\u0e34\u0e21\u0e17\u0e31\u0e27\u0e44\u0e1b 100k + \u0e40\u0e01\u0e29\u0e35\u0e22\u0e13 50k"
+    },
+    {
+      "label": "TaxPlannerPage.js",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L1",
+      "end_line": 169,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage",
+      "community": 21,
+      "norm_label": "taxplannerpage.js"
+    },
+    {
+      "label": "TaxPlannerPage",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L8",
+      "end_line": 168,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "community": 21,
+      "norm_label": "taxplannerpage"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L12",
+      "end_line": 43,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_constructor",
+      "community": 21,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".gotoAndReset()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L48",
+      "end_line": 57,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_gotoandreset",
+      "community": 21,
+      "norm_label": ".gotoandreset()"
+    },
+    {
+      "label": ".fillBaseSalary()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L63",
+      "end_line": 65,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillbasesalary",
+      "community": 21,
+      "norm_label": ".fillbasesalary()"
+    },
+    {
+      "label": ".fillPvdRate()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L71",
+      "end_line": 73,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillpvdrate",
+      "community": 21,
+      "norm_label": ".fillpvdrate()"
+    },
+    {
+      "label": ".fillFixedBonusMonths()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L79",
+      "end_line": 81,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillfixedbonusmonths",
+      "community": 21,
+      "norm_label": ".fillfixedbonusmonths()"
+    },
+    {
+      "label": ".setEmploymentPeriod()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L88",
+      "end_line": 95,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setemploymentperiod",
+      "community": 21,
+      "norm_label": ".setemploymentperiod()"
+    },
+    {
+      "label": ".addCompany()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L100",
+      "end_line": 102,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_addcompany",
+      "community": 21,
+      "norm_label": ".addcompany()"
+    },
+    {
+      "label": ".selectCompanyTab()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L108",
+      "end_line": 111,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_selectcompanytab",
+      "community": 21,
+      "norm_label": ".selectcompanytab()"
+    },
+    {
+      "label": ".setInsurance()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L117",
+      "end_line": 124,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setinsurance",
+      "community": 21,
+      "norm_label": ".setinsurance()"
+    },
+    {
+      "label": ".setPensionInsurance()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L130",
+      "end_line": 135,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setpensioninsurance",
+      "community": 21,
+      "norm_label": ".setpensioninsurance()"
+    },
+    {
+      "label": ".expectActiveLadderRate()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L141",
+      "end_line": 143,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectactiveladderrate",
+      "community": 21,
+      "norm_label": ".expectactiveladderrate()"
+    },
+    {
+      "label": ".expectRmfDropRecommendation()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L149",
+      "end_line": 152,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectrmfdroprecommendation",
+      "community": 21,
+      "norm_label": ".expectrmfdroprecommendation()"
+    },
+    {
+      "label": ".expectSocialSecurity()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L158",
+      "end_line": 160,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectsocialsecurity",
+      "community": 21,
+      "norm_label": ".expectsocialsecurity()"
+    },
+    {
+      "label": ".expectRetirementPoolVisible()",
+      "file_type": "code",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L165",
+      "end_line": 167,
+      "_origin": "ast",
+      "id": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectretirementpoolvisible",
+      "community": 21,
+      "norm_label": ".expectretirementpoolvisible()"
+    },
+    {
       "label": "taxLogic.test.js",
       "file_type": "code",
       "source_file": "tests/taxLogic.test.js",
@@ -3649,7 +4121,7 @@
       "end_line": 85,
       "_origin": "ast",
       "id": "tests_taxlogic_test",
-      "community": 2,
+      "community": 9,
       "norm_label": "taxlogic.test.js"
     },
     {
@@ -3659,7 +4131,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tests_taxlogic_test_taxlogic_10",
-      "community": 2,
+      "community": 9,
       "norm_label": "taxlogic"
     },
     {
@@ -3669,7 +4141,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tests_taxlogic_test_calculates_tax_brackets_according_to_thai_revenue_rules_11",
-      "community": 2,
+      "community": 9,
       "norm_label": "calculates tax brackets according to thai revenue rules"
     },
     {
@@ -3679,7 +4151,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_taxlogic_test_determines_marginal_tax_rate_and_bracket_floor_correctly_19",
-      "community": 2,
+      "community": 9,
       "norm_label": "determines marginal tax rate and bracket floor correctly"
     },
     {
@@ -3689,7 +4161,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_taxlogic_test_calculates_full_tax_plan_sub_caps_and_refund_payable_accurately_30",
-      "community": 2,
+      "community": 9,
       "norm_label": "calculates full tax plan, sub-caps, and refund/payable accurately"
     },
     {
@@ -3699,15 +4171,77 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "tests_taxlogic_test_generates_thai_ai_rmf_prompt_with_portfolio_holdings_and_budget_67",
-      "community": 2,
+      "community": 9,
       "norm_label": "generates thai ai rmf prompt with portfolio holdings and budget"
+    },
+    {
+      "label": "taxLogicScenario.api.spec.js",
+      "file_type": "code",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L1",
+      "end_line": 62,
+      "_origin": "ast",
+      "id": "tests_tests_api_taxlogicscenario_api_spec",
+      "community": 9,
+      "norm_label": "taxlogicscenario.api.spec.js"
+    },
+    {
+      "label": "taxLogicScenario.ui.spec.js",
+      "file_type": "code",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L1",
+      "end_line": 79,
+      "_origin": "ast",
+      "id": "tests_tests_web_taxlogicscenario_ui_spec",
+      "community": 21,
+      "norm_label": "taxlogicscenario.ui.spec.js"
+    },
+    {
+      "label": "[TC-TAX-WEB-001] Single Employer, Bracket 10%, Zero Insurance, RMF Drop to 5% @Feature @High @Scenario",
+      "file_type": "code",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_001_single_employer_bracket_10_zero_insurance_rmf_drop_to_5_feature_high_scenario_12",
+      "community": 21,
+      "norm_label": "[tc-tax-web-001] single employer, bracket 10%, zero insurance, rmf drop to 5% @feature @high @scenario"
+    },
+    {
+      "label": "[TC-TAX-WEB-002] Single Employer, Bracket 15%, Partial Insurance (Life 30k + Health 15k) @Feature @High @Scenario",
+      "file_type": "code",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_002_single_employer_bracket_15_partial_insurance_life_30k_health_15k_feature_high_scenario_28",
+      "community": 21,
+      "norm_label": "[tc-tax-web-002] single employer, bracket 15%, partial insurance (life 30k + health 15k) @feature @high @scenario"
+    },
+    {
+      "label": "[TC-TAX-WEB-003] Job Switcher (2 Employers), Combined Income & 2569 Social Security Cap @Feature @High @Scenario",
+      "file_type": "code",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_003_job_switcher_2_employers_combined_income_2569_social_security_cap_feature_high_scenario_43",
+      "community": 21,
+      "norm_label": "[tc-tax-web-003] job switcher (2 employers), combined income & 2569 social security cap @feature @high @scenario"
+    },
+    {
+      "label": "[TC-TAX-WEB-004] Pension Insurance Overflow into Unused General Life Insurance @Feature @Medium @Scenario",
+      "file_type": "code",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_004_pension_insurance_overflow_into_unused_general_life_insurance_feature_medium_scenario_65",
+      "community": 21,
+      "norm_label": "[tc-tax-web-004] pension insurance overflow into unused general life insurance @feature @medium @scenario"
     },
     {
       "label": "vite.config.js",
       "file_type": "code",
       "source_file": "vite.config.js",
       "source_location": "L1",
-      "end_line": 30,
+      "end_line": 37,
       "_origin": "ast",
       "id": "vite_config",
       "community": 13,
@@ -3732,6 +4266,76 @@
       "id": "vite_config_sharedpackagesroot",
       "community": 13,
       "norm_label": "sharedpackagesroot"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_readme",
+      "community": 23,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "\ud83e\uddea TaxLogicScenario \u2014 Comprehensive Tax & RMF Verification Matrix",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_readme_taxlogicscenario_comprehensive_tax_rmf_verification_matrix",
+      "community": 23,
+      "norm_label": "\ud83e\uddea taxlogicscenario \u2014 comprehensive tax & rmf verification matrix"
+    },
+    {
+      "label": "\ud83c\udfaf \u0e27\u0e31\u0e15\u0e16\u0e38\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c\u0e2b\u0e25\u0e31\u0e01 2 \u0e02\u0e49\u0e2d\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "tests_readme_\u0e27_\u0e15\u0e16_\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04_\u0e2b\u0e25_\u0e01_2_\u0e02_\u0e2d\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a",
+      "community": 23,
+      "norm_label": "\ud83c\udfaf \u0e27\u0e31\u0e15\u0e16\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c\u0e2b\u0e25\u0e31\u0e01 2 \u0e02\u0e2d\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a"
+    },
+    {
+      "label": "\ud83d\udccb \u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a (Scope)",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "tests_readme_\u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_scope",
+      "community": 23,
+      "norm_label": "\ud83d\udccb \u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a (scope)"
+    },
+    {
+      "label": "\u2705 \u0e2a\u0e34\u0e48\u0e07\u0e17\u0e35\u0e48\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a (In-Scope / Included)",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_readme_\u0e2a_\u0e07\u0e17_\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_in_scope_included",
+      "community": 23,
+      "norm_label": "\u2705 \u0e2a\u0e34\u0e07\u0e17\u0e35\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a (in-scope / included)"
+    },
+    {
+      "label": "\u274c \u0e2a\u0e34\u0e48\u0e07\u0e17\u0e35\u0e48\u0e44\u0e21\u0e48\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a \u0e41\u0e25\u0e30\u0e40\u0e2b\u0e15\u0e38\u0e1c\u0e25 (Out-of-Scope / Excluded & Rationale)",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "tests_readme_\u0e2a_\u0e07\u0e17_\u0e44\u0e21_\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_\u0e41\u0e25\u0e30\u0e40\u0e2b\u0e15_\u0e1c\u0e25_out_of_scope_excluded_rationale",
+      "community": 23,
+      "norm_label": "\u274c \u0e2a\u0e34\u0e07\u0e17\u0e35\u0e44\u0e21\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a \u0e41\u0e25\u0e30\u0e40\u0e2b\u0e15\u0e1c\u0e25 (out-of-scope / excluded & rationale)"
+    },
+    {
+      "label": "\ud83d\ude80 \u0e27\u0e34\u0e18\u0e35\u0e01\u0e32\u0e23\u0e23\u0e31\u0e19\u0e0a\u0e38\u0e14\u0e17\u0e14\u0e2a\u0e2d\u0e1a (Execution)",
+      "file_type": "document",
+      "source_file": "tests/README.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "tests_readme_\u0e27_\u0e18_\u0e01\u0e32\u0e23\u0e23_\u0e19\u0e0a_\u0e14\u0e17\u0e14\u0e2a\u0e2d\u0e1a_execution",
+      "community": 23,
+      "norm_label": "\ud83d\ude80 \u0e27\u0e34\u0e18\u0e35\u0e01\u0e32\u0e23\u0e23\u0e31\u0e19\u0e0a\u0e14\u0e17\u0e14\u0e2a\u0e2d\u0e1a (execution)"
     },
     {
       "label": "THEME_LIGHT",
@@ -3782,9 +4386,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "agents_tax_planner_agent_instructions",
       "community": 3,
-      "norm_label": "tax-planner agent instructions"
+      "norm_label": "tax-planner agent instructions",
+      "id": "agents_tax_planner_agent_instructions"
     },
     {
       "label": "Tax-Planner Architecture",
@@ -3795,9 +4399,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_tax_planner_architecture",
       "community": 3,
-      "norm_label": "tax-planner architecture"
+      "norm_label": "tax-planner architecture",
+      "id": "architecture_tax_planner_architecture"
     },
     {
       "label": "Automated Architecture Guard (tests/architectureGuard.test.js)",
@@ -3808,9 +4412,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_architecture_guard",
       "community": 3,
-      "norm_label": "automated architecture guard (tests/architectureguard.test.js)"
+      "norm_label": "automated architecture guard (tests/architectureguard.test.js)",
+      "id": "architecture_architecture_guard"
     },
     {
       "label": "@vit129/thai-tax-core package",
@@ -3821,9 +4425,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_thai_tax_core",
       "community": 3,
-      "norm_label": "@vit129/thai-tax-core package"
+      "norm_label": "@vit129/thai-tax-core package",
+      "id": "architecture_thai_tax_core"
     },
     {
       "label": "@vit129/tax-ui package",
@@ -3834,9 +4438,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_tax_ui",
       "community": 3,
-      "norm_label": "@vit129/tax-ui package"
+      "norm_label": "@vit129/tax-ui package",
+      "id": "architecture_tax_ui"
     },
     {
       "label": "Centralized Strings Dictionary (src/config/strings.js)",
@@ -3847,9 +4451,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_strings_dictionary",
       "community": 3,
-      "norm_label": "centralized strings dictionary (src/config/strings.js)"
+      "norm_label": "centralized strings dictionary (src/config/strings.js)",
+      "id": "architecture_strings_dictionary"
     },
     {
       "label": "Dependency Direction ui -> logic -> config",
@@ -3860,9 +4464,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "architecture_dependency_direction",
       "community": 3,
-      "norm_label": "dependency direction ui -> logic -> config"
+      "norm_label": "dependency direction ui -> logic -> config",
+      "id": "architecture_dependency_direction"
     },
     {
       "label": "Tax-Planner Guidelines (CLAUDE.md)",
@@ -3873,9 +4477,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_tax_planner_guidelines",
       "community": 3,
-      "norm_label": "tax-planner guidelines (claude.md)"
+      "norm_label": "tax-planner guidelines (claude.md)",
+      "id": "claude_tax_planner_guidelines"
     },
     {
       "label": "Tax-Planner Domain Context",
@@ -3886,9 +4490,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "context_tax_planner_context",
       "community": 3,
-      "norm_label": "tax-planner domain context"
+      "norm_label": "tax-planner domain context",
+      "id": "context_tax_planner_context"
     },
     {
       "label": "Warm Cream & Dark Design System",
@@ -3899,9 +4503,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_design_system",
       "community": 3,
-      "norm_label": "warm cream & dark design system"
+      "norm_label": "warm cream & dark design system",
+      "id": "design_design_system"
     },
     {
       "label": "Color Tokens (light/dark)",
@@ -3912,9 +4516,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_color_tokens",
       "community": 3,
-      "norm_label": "color tokens (light/dark)"
+      "norm_label": "color tokens (light/dark)",
+      "id": "design_color_tokens"
     },
     {
       "label": "Typography Tokens",
@@ -3925,9 +4529,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_typography_tokens",
       "community": 3,
-      "norm_label": "typography tokens"
+      "norm_label": "typography tokens",
+      "id": "design_typography_tokens"
     },
     {
       "label": "PRODUCT.md pointer",
@@ -3938,87 +4542,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "product_product_pointer",
-      "community": 3,
-      "norm_label": "product.md pointer"
-    },
-    {
-      "label": "Product Specification 2569",
-      "file_type": "document",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_product_specification",
-      "community": 3,
-      "norm_label": "product specification 2569"
-    },
-    {
-      "label": "Retirement Pool 500k Cap",
-      "file_type": "concept",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_retirement_pool_cap",
-      "community": 3,
-      "norm_label": "retirement pool 500k cap"
-    },
-    {
-      "label": "Social Security cap (750/mo, 9,000/yr per PRODUCTS.md)",
-      "file_type": "concept",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_social_security_rule",
-      "community": 3,
-      "norm_label": "social security cap (750/mo, 9,000/yr per products.md)"
-    },
-    {
-      "label": "What-If Simulator",
-      "file_type": "concept",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_what_if_simulator",
-      "community": 3,
-      "norm_label": "what-if simulator"
-    },
-    {
-      "label": "AI RMF Prompt Generator",
-      "file_type": "concept",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_ai_rmf_prompt",
-      "community": 3,
-      "norm_label": "ai rmf prompt generator"
-    },
-    {
-      "label": "Smart RMF Advice & DCA Planner",
-      "file_type": "concept",
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "products_rmf_dca_advice",
-      "community": 3,
-      "norm_label": "smart rmf advice & dca planner"
+      "community": 27,
+      "norm_label": "product.md pointer",
+      "id": "product_product_pointer"
     },
     {
       "label": "Tax-Planner README",
@@ -4029,9 +4555,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_readme",
       "community": 3,
-      "norm_label": "tax-planner readme"
+      "norm_label": "tax-planner readme",
+      "id": "readme_readme"
     },
     {
       "label": "tax-core Implementation Report (PR1+PR2)",
@@ -4042,9 +4568,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_agy_report_report",
       "community": 3,
-      "norm_label": "tax-core implementation report (pr1+pr2)"
+      "norm_label": "tax-core implementation report (pr1+pr2)",
+      "id": "docs_design_mip_tax_core_agy_report_report"
     },
     {
       "label": "Plan: Extract tax-core & Redesign TaxPage",
@@ -4055,9 +4581,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_plan",
       "community": 3,
-      "norm_label": "plan: extract tax-core & redesign taxpage"
+      "norm_label": "plan: extract tax-core & redesign taxpage",
+      "id": "docs_design_mip_tax_core_plan_plan"
     },
     {
       "label": "calculateSocialSecurity (combined 875/mo cap)",
@@ -4068,9 +4594,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_calculate_social_security",
       "community": 3,
-      "norm_label": "calculatesocialsecurity (combined 875/mo cap)"
+      "norm_label": "calculatesocialsecurity (combined 875/mo cap)",
+      "id": "docs_design_mip_tax_core_plan_calculate_social_security"
     },
     {
       "label": "calculateTax",
@@ -4081,9 +4607,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_calculate_tax",
       "community": 3,
-      "norm_label": "calculatetax"
+      "norm_label": "calculatetax",
+      "id": "docs_design_mip_tax_core_plan_calculate_tax"
     },
     {
       "label": "calculateDeductions",
@@ -4094,9 +4620,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_calculate_deductions",
       "community": 3,
-      "norm_label": "calculatedeductions"
+      "norm_label": "calculatedeductions",
+      "id": "docs_design_mip_tax_core_plan_calculate_deductions"
     },
     {
       "label": "calculateRmfDropAdvice",
@@ -4107,9 +4633,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_calculate_rmf_drop_advice",
       "community": 3,
-      "norm_label": "calculatermfdropadvice"
+      "norm_label": "calculatermfdropadvice",
+      "id": "docs_design_mip_tax_core_plan_calculate_rmf_drop_advice"
     },
     {
       "label": "buildAskAiRmfPrompt",
@@ -4120,9 +4646,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt",
       "community": 3,
-      "norm_label": "buildaskairmfprompt"
+      "norm_label": "buildaskairmfprompt",
+      "id": "docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt"
     },
     {
       "label": "getSmartRmf / getSmartPvd host bridge",
@@ -4133,9 +4659,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_get_smart_rmf_pvd",
       "community": 3,
-      "norm_label": "getsmartrmf / getsmartpvd host bridge"
+      "norm_label": "getsmartrmf / getsmartpvd host bridge",
+      "id": "docs_design_mip_tax_core_plan_get_smart_rmf_pvd"
     },
     {
       "label": "Pension insurance overflow to life insurance",
@@ -4146,9 +4672,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_core_plan_pension_overflow",
-      "community": 3,
-      "norm_label": "pension insurance overflow to life insurance"
+      "community": 25,
+      "norm_label": "pension insurance overflow to life insurance",
+      "id": "docs_design_mip_tax_core_plan_pension_overflow"
     },
     {
       "label": "Tax Page GUI Redesign Report",
@@ -4159,9 +4685,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_gui_agy_report_report",
       "community": 3,
-      "norm_label": "tax page gui redesign report"
+      "norm_label": "tax page gui redesign report",
+      "id": "docs_design_mip_tax_gui_agy_report_report"
     },
     {
       "label": "TaxRmfAdviceCard.jsx",
@@ -4172,9 +4698,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_gui_agy_report_tax_rmf_advice_card",
       "community": 3,
-      "norm_label": "taxrmfadvicecard.jsx"
+      "norm_label": "taxrmfadvicecard.jsx",
+      "id": "docs_design_mip_tax_gui_agy_report_tax_rmf_advice_card"
     },
     {
       "label": "TaxSimulator.jsx (dual sliders)",
@@ -4185,9 +4711,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docs_design_mip_tax_gui_agy_report_tax_simulator",
       "community": 3,
-      "norm_label": "taxsimulator.jsx (dual sliders)"
+      "norm_label": "taxsimulator.jsx (dual sliders)",
+      "id": "docs_design_mip_tax_gui_agy_report_tax_simulator"
     }
   ],
   "links": [
@@ -5973,8 +6499,74 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "jsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "jsconfig",
+      "target": "jsconfig_compileroptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "jsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "jsconfig_compileroptions",
+      "target": "jsconfig_compileroptions_baseurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "jsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "jsconfig_compileroptions",
+      "target": "jsconfig_compileroptions_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "jsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "jsconfig_compileroptions_paths",
+      "target": "jsconfig_paths_vit129_tax_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "jsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "jsconfig_compileroptions_paths",
+      "target": "jsconfig_paths_vit129_thai_tax_core",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "package",
+      "target": "package_contributors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package",
@@ -5985,11 +6577,22 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L21",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package",
       "target": "package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "package",
+      "target": "package_license",
       "confidence_score": 1.0
     },
     {
@@ -6018,7 +6621,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L6",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package",
@@ -6029,7 +6632,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L5",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package",
@@ -6051,7 +6654,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L8",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6062,7 +6665,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L12",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6073,7 +6676,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L7",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6084,7 +6687,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L9",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6095,7 +6698,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L13",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6106,7 +6709,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L10",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6117,7 +6720,29 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L11",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "package_scripts",
+      "target": "package_scripts_test_all",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "package_scripts",
+      "target": "package_scripts_test_scenarios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_scripts",
@@ -6128,7 +6753,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_dependencies",
@@ -6139,7 +6764,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L19",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_dependencies",
@@ -6150,7 +6775,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_dependencies",
@@ -6161,7 +6786,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_dependencies",
@@ -6172,7 +6797,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L23",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_playwright_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_devdependencies",
@@ -6183,7 +6819,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L22",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_devdependencies",
@@ -6194,7 +6830,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L24",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "package_devdependencies",
@@ -8992,7 +9628,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L118",
+      "source_location": "L124",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatealldeductions",
@@ -9124,7 +9760,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L210",
+      "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatetaxplan",
@@ -9312,7 +9948,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L208",
+      "source_location": "L214",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic",
@@ -9323,7 +9959,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L285",
+      "source_location": "L291",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic",
@@ -9356,7 +9992,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L273",
+      "source_location": "L279",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic",
@@ -9436,11 +10072,23 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
+      "target": "src_logic_taxlogic",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "indirect_call",
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L210",
+      "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatetaxplan",
@@ -9496,11 +10144,23 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
+      "target": "src_logic_taxlogic_calculateprogressivetax",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L218",
+      "source_location": "L224",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatetaxplan",
@@ -9568,11 +10228,23 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
+      "target": "src_logic_taxlogic_getmarginaltaxrate",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L219",
+      "source_location": "L225",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatetaxplan",
@@ -9596,7 +10268,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/logic/taxLogic.js",
-      "source_location": "L214",
+      "source_location": "L220",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_logic_taxlogic_calculatetaxplan",
@@ -9636,6 +10308,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_taxlogic_test",
+      "target": "src_logic_taxlogic_calculatetaxplan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
       "target": "src_logic_taxlogic_calculatetaxplan",
       "confidence_score": 1.0
     },
@@ -10804,7 +11488,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_companylogic_test",
-      "target": "tests_companylogic_test_calculates_social_security_properly_capped_per_month_105",
+      "target": "tests_companylogic_test_calculates_social_security_properly_capped_per_month_875_mo_10_500_yr_in_2569_105",
       "confidence_score": 1.0
     },
     {
@@ -10865,6 +11549,384 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
+      "target": "tests_fixtures_taxlogic_scenarios_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_01",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_02",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_03",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_04",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_05",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L145",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_06",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_07",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L200",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_08",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L226",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_09",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L260",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L296",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L331",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_12",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L367",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_13",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/fixtures/taxLogic/scenarios.data.js",
+      "source_location": "L391",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios_case_14",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-api/taxLogicScenario.api.spec.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_api_taxlogicscenario_api_spec",
+      "target": "tests_fixtures_taxlogic_scenarios_data_scenarios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_pages_taxlogic_taxplannerpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L100",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_addcompany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectactiveladderrate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L165",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectretirementpoolvisible",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L149",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectrmfdroprecommendation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L158",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_expectsocialsecurity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillbasesalary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillfixedbonusmonths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L71",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_fillpvdrate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_gotoandreset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_selectcompanytab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setemploymentperiod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setinsurance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/pages/taxLogic/TaxPlannerPage.js",
+      "source_location": "L130",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage_setpensioninsurance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_pages_taxlogic_taxplannerpage_taxplannerpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "tests/taxLogic.test.js",
       "source_location": "L30",
       "weight": 1.0,
@@ -10920,6 +11982,50 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_001_single_employer_bracket_10_zero_insurance_rmf_drop_to_5_feature_high_scenario_12",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_002_single_employer_bracket_15_partial_insurance_life_30k_health_15k_feature_high_scenario_28",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_003_job_switcher_2_employers_combined_income_2569_social_security_cap_feature_high_scenario_43",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/tests-web/taxLogicScenario.ui.spec.js",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_tests_web_taxlogicscenario_ui_spec",
+      "target": "tests_tests_web_taxlogicscenario_ui_spec_tc_tax_web_004_pension_insurance_overflow_into_unused_general_life_insurance_feature_medium_scenario_65",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "vite.config.js",
       "source_location": "L6",
       "weight": 1.0,
@@ -10937,6 +12043,72 @@
       "_origin": "ast",
       "source": "vite_config",
       "target": "vite_config_sharedpackagesroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme",
+      "target": "tests_readme_taxlogicscenario_comprehensive_tax_rmf_verification_matrix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme_taxlogicscenario_comprehensive_tax_rmf_verification_matrix",
+      "target": "tests_readme_\u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme_taxlogicscenario_comprehensive_tax_rmf_verification_matrix",
+      "target": "tests_readme_\u0e27_\u0e15\u0e16_\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04_\u0e2b\u0e25_\u0e01_2_\u0e02_\u0e2d\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme_taxlogicscenario_comprehensive_tax_rmf_verification_matrix",
+      "target": "tests_readme_\u0e27_\u0e18_\u0e01\u0e32\u0e23\u0e23_\u0e19\u0e0a_\u0e14\u0e17\u0e14\u0e2a\u0e2d\u0e1a_execution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme_\u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_scope",
+      "target": "tests_readme_\u0e2a_\u0e07\u0e17_\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_in_scope_included",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/README.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_readme_\u0e02\u0e2d\u0e1a\u0e40\u0e02\u0e15\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_scope",
+      "target": "tests_readme_\u0e2a_\u0e07\u0e17_\u0e44\u0e21_\u0e23\u0e27\u0e21\u0e43\u0e19\u0e01\u0e32\u0e23\u0e17\u0e14\u0e2a\u0e2d\u0e1a_\u0e41\u0e25\u0e30\u0e40\u0e2b\u0e15_\u0e1c\u0e25_out_of_scope_excluded_rationale",
       "confidence_score": 1.0
     },
     {
@@ -11113,116 +12285,6 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "PRODUCT.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "product_product_pointer",
-      "target": "products_product_specification"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "products_product_specification",
-      "target": "products_ai_rmf_prompt"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "products_product_specification",
-      "target": "products_retirement_pool_cap"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "products_product_specification",
-      "target": "products_rmf_dca_advice"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "products_product_specification",
-      "target": "products_what_if_simulator"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "readme_readme",
-      "target": "products_product_specification"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/design/mip-tax-core-plan.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_mip_tax_core_plan_pension_overflow",
-      "target": "products_retirement_pool_cap"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "AMBIGUOUS",
-      "confidence_score": 0.6,
-      "source_file": "PRODUCTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "products_social_security_rule",
-      "target": "docs_design_mip_tax_core_plan_calculate_social_security"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "docs/design/mip-tax-gui-agy-report.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_mip_tax_gui_agy_report_tax_simulator",
-      "target": "products_what_if_simulator"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/design/mip-tax-core-plan.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt",
-      "target": "products_ai_rmf_prompt"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/design/mip-tax-core-plan.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_mip_tax_core_plan_calculate_rmf_drop_advice",
-      "target": "products_rmf_dca_advice"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "docs/design/mip-tax-core-agy-report.md",
       "source_location": null,
       "weight": 1.0,
@@ -11371,5 +12433,5 @@
       "source_file": "docs/design/mip-tax-core-plan.md"
     }
   ],
-  "built_at_commit": "99e1c0a3f8f172916b405fc7002d3d94849ab665"
+  "built_at_commit": "a6bf34cc2422c52c6b2b4241fe11533b64a26e21"
 }
