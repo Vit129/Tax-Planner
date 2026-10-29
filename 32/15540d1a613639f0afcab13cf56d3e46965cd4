@@ -1,0 +1,20 @@
+src/logic/easyTaxAdapter.js
+  h_d82339d8725694 1-493
+tests/easyTaxAdapter.test.js
+  h_d82339d8725694 1-251
+tests/fixtures/taxLogic/scenarios.data.js
+  h_d82339d8725694 417-533
+tests/tests-api/taxLogicScenario.api.spec.js
+  h_d82339d8725694 2-3,5-18,74-80,83-123,125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "3215540d1a613639f0afcab13cf56d3e46965cd4",
+  "prompts": {},
+  "humans": {
+    "h_d82339d8725694": {
+      "author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
