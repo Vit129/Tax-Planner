@@ -322,7 +322,7 @@ export default function SalarySection({
                 label={STRINGS.LBL_MONTH_OTHER}
                 prefix="฿"
                 value={selOther || ''}
-                placeholder="0"
+                placeholder={STRINGS.PH_MONTH_OTHER}
                 onChange={handleMonthOtherChange}
                 dataTestId="input-month-other"
               />
@@ -341,7 +341,10 @@ export default function SalarySection({
               <legend className="mut" style={{ padding: 0, marginBottom: 4 }}>
                 {STRINGS.LEGEND_SALARY_SCOPE}
               </legend>
-              <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              <label
+                title={STRINGS.SCOPE_FWD_SUB}
+                style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}
+              >
                 <input
                   type="radio"
                   name="scope"
@@ -350,12 +353,12 @@ export default function SalarySection({
                   onChange={() => setOnlyThisMonth(false)}
                   style={{ marginTop: 6 }}
                 />
-                <span>
-                  {STRINGS.SCOPE_FWD_TITLE}{' '}
-                  <span className="mut">{STRINGS.SCOPE_FWD_SUB}</span>
-                </span>
+                <span>{STRINGS.SCOPE_FWD_TITLE}</span>
               </label>
-              <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              <label
+                title={STRINGS.SCOPE_ONE_SUB}
+                style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}
+              >
                 <input
                   type="radio"
                   name="scope"
@@ -364,23 +367,18 @@ export default function SalarySection({
                   onChange={() => setOnlyThisMonth(true)}
                   style={{ marginTop: 6 }}
                 />
-                <span>
-                  {STRINGS.SCOPE_ONE_TITLE}{' '}
-                  <span className="mut">{STRINGS.SCOPE_ONE_SUB}</span>
-                </span>
+                <span>{STRINGS.SCOPE_ONE_TITLE}</span>
               </label>
             </fieldset>
-
-            <p className="note">{STRINGS.NOTE_MONTH_EDIT}</p>
 
             <div className="slip">
               <span>
                 {STRINGS.SLIP_TOTAL} <b className="num">{formatBaht(selSal + selOther)}</b>
               </span>
-              <span>
+              <span className="mut">
                 {STRINGS.SLIP_PVD} <b className="num">−{formatBaht(selPvd)}</b>
               </span>
-              <span>
+              <span className="mut">
                 {STRINGS.SLIP_SS} <b className="num">−{formatBaht(selSs)}</b>
               </span>
               {diffPct !== 0 && (
