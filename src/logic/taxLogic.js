@@ -158,6 +158,12 @@ export function calculateAllDeductions(
   const solar = Math.min(evalNumber(d.solarRooftop), DEDUCTION_RULES.SOLAR_ROOFTOP_CAP);
   add(labels.solarRooftop, solar);
 
+  const art = Math.min(evalNumber(d.artSoftPower), DEDUCTION_RULES.ART_SOFT_POWER_CAP);
+  add(labels.artSoftPower, art);
+
+  const se = Math.min(evalNumber(d.socialEnterprise), DEDUCTION_RULES.SOCIAL_ENTERPRISE_CAP);
+  add(labels.socialEnterprise, se);
+
   const easyReceipt = Math.min(evalNumber(d.easyEReceipt), DEDUCTION_RULES.EASY_E_RECEIPT_CAP);
   add(labels.easyEReceipt, easyReceipt);
 
