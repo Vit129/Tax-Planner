@@ -414,3 +414,119 @@ export const SCENARIOS = [
     },
   },
 ];
+
+/**
+ * Invented company with the same SHAPE as a real saved plan: salary that rises in March, a different
+ * extra amount every month (March has one more payment), a fixed bonus in months of salary, a PVD
+ * rate and a typed withholding. All values are made up; this repo is public, never put real figures here.
+ */
+export const SHAPE_FIXTURE = {
+  id: 'shape-fixture',
+  companies: [
+    {
+      id: 'sample-company-1',
+      name: 'SAMPLE CO',
+      startMonth: 1,
+      endMonth: 12,
+      baseSalary: 52000,
+      salaryAdjustments: [{ month: 3, salary: 54500 }],
+      monthlyOverrides: {},
+      otMonthly: {
+        1: 1500,
+        2: 1500,
+        3: 3200,
+        4: 1500,
+        5: 1500,
+        6: 1500,
+        7: 1500,
+        8: 1500,
+        9: 1500,
+        10: 1500,
+        11: 1500,
+        12: 1500,
+      },
+      bonusFixedMonths: 2,
+      bonusVariable: 0,
+      pvdRateEmp: 3,
+      pvdRateCo: 3,
+      withholdingTax: 41000,
+    },
+  ],
+  deductions: {
+    hasSpouse: false,
+    childrenCount: 0,
+    parentsCount: 0,
+    lifeInsurance: 12000,
+    healthInsurance: 18000,
+    pensionInsurance: 0,
+    parentsHealthInsurance: 0,
+    mortgageInterest: 0,
+    easyEReceipt: 0,
+    rmf: 5000,
+    thaiEsg: 0,
+    gpf: 0,
+    donationGeneral: 0,
+    donationEducation: 0,
+  },
+  expectedDisplay: {
+    startSalary: 52000,
+    raiseMonth: 3,
+    raiseSalary: 54500,
+    yearlyOtherIncome: 19700,
+    bonusTotal: 109000,
+    pvdEmpRate: 3,
+    pvdCoRate: 3,
+    withholdingTax: 41000,
+    totalIncome: 777700,
+    expenses: 100000,
+    deductions: 124970,
+    netIncome: 552730,
+    taxPayable: 35410,
+    settlementDiff: 5590,
+  },
+};
+
+export const LEGACY_V2_SAMPLE_FIXTURE = {
+  id: 'legacy-v2-sample',
+  companies: [
+    {
+      name: 'Sample Co A',
+      baseSalary: '40000',
+      startMonth: 1,
+      endMonth: 3,
+      bonusFixedMonths: '0',
+      bonusVariable: '0',
+      pvdRateEmp: '3',
+      pvdRateCo: '3',
+      withholdingTax: '',
+      salaryAdjustments: [],
+      monthlyOverrides: {},
+      otMonthly: { 2: 3000 },
+    },
+    {
+      name: 'Sample Co B',
+      baseSalary: '48000',
+      startMonth: 4,
+      endMonth: 12,
+      bonusFixedMonths: '1.5',
+      bonusVariable: '0',
+      pvdRateEmp: '5',
+      pvdRateCo: '5',
+      withholdingTax: '',
+      salaryAdjustments: [{ month: 9, salary: 52000 }],
+      monthlyOverrides: {},
+      otMonthly: { 6: 2500, 9: 5000 },
+    },
+  ],
+  deductions: {
+    hasSpouse: false,
+    childrenCount: 0,
+    parentsCount: 1,
+    lifeInsurance: '20000',
+    healthInsurance: '12000',
+    rmf: '30000',
+    thaiEsg: '10000',
+  },
+};
+
+
