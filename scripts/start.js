@@ -37,24 +37,69 @@ async function runPatchRelease() {
     throw new Error(`Patch release must run from main (current branch: ${branch}).`);
   }
 
+  await runCommand('git', ['fetch', 'origin', 'main', '--tags']);
   const dirty = await runCommandCapture('git', ['status', '--porcelain']);
   if (dirty) {
-    throw new Error('Patch release requires a clean working tree. Commit or stash changes first.');
+    throw new Error('Release requires a clean working tree. Inspect and preserve any intended edits first; if a prior release attempt left partial metadata changes, resolve those changes manually, verify package.json and CHANGELOG.md match the latest tag, then retry.');
   }
 
   console.log('\n🧪 Running tests and production build before release...\n');
   await runCommand('npm', ['test']);
   await runCommand('npm', ['run', 'build']);
+  const sharedCommit = await getSharedPackagesCommit();
 
   // Refresh refs before selecting a version and never release a stale local main.
-  await runCommand('git', ['fetch', 'origin', 'main', '--tags']);
   const head = await runCommandCapture('git', ['rev-parse', 'HEAD']);
   const remoteHead = await runCommandCapture('git', ['rev-parse', 'origin/main']);
-  if (head !== remoteHead) throw new Error('Local main differs from origin/main; synchronize before release.');
 
   const currentVersionValue = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).version;
   const tags = (await runCommandCapture('git', ['tag', '--list'])).split('\n').filter(Boolean);
+  const currentTag = await runCommandCapture('git', ['rev-parse', '--verify', `refs/tags/v${currentVersionValue}^{}`]).catch(() => '');
+  if (head !== remoteHead && !currentTag) {
+    const subject = await runCommandCapture('git', ['log', '-1', '--format=%s']);
+    if (subject !== `chore: release v${currentVersionValue}`) {
+      throw new Error('Local main differs from origin/main and is not an identifiable release commit; synchronize manually before release.');
+    }
+    await runCommand('git', ['merge-base', '--is-ancestor', 'origin/main', 'HEAD']);
+    await runCommand('git', ['tag', `v${currentVersionValue}`]);
+  }
+  const effectiveCurrentTag = currentTag || await runCommandCapture('git', ['rev-parse', '--verify', `refs/tags/v${currentVersionValue}^{}`]).catch(() => '');
+  if (head !== remoteHead) {
+    if (effectiveCurrentTag !== head) throw new Error('Local main differs from origin/main and has no matching release tag; synchronize manually before release.');
+    await runCommand('git', ['merge-base', '--is-ancestor', 'origin/main', 'HEAD']);
+    console.log(`\n🔁 Resuming push of v${currentVersionValue} to origin...\n`);
+    await runCommand('git', ['push', 'origin', 'main', `v${currentVersionValue}`]);
+  } else if (effectiveCurrentTag === head) {
+    // A previous push may have updated main but failed before pushing the tag.
+    await runCommand('git', ['push', 'origin', 'main', `v${currentVersionValue}`]);
+  }
+
+  if (effectiveCurrentTag === head) {
+    const releaseManifest = readReleaseManifest();
+    const published = await getPagesDeployInfo();
+    const releaseExists = await runCommandCapture('gh', ['release', 'view', `v${currentVersionValue}`, '--json', 'tagName']).then(() => true).catch(() => false);
+    const expectedSharedCommit = releaseManifest?.sharedCommit || sharedCommit;
+    const alreadyComplete = releaseExists && published?.commit === head && published?.version === currentVersionValue && published?.sharedCommit === expectedSharedCommit;
+    if (!alreadyComplete && releaseManifest?.sharedCommit && releaseManifest.sharedCommit !== sharedCommit) {
+      throw new Error(`Pending v${currentVersionValue} requires My-Investment-Port ${releaseManifest.sharedCommit}; current main is ${sharedCommit}. Check out the recorded commit in a clean worktree and set SHARED_PACKAGES_ROOT to its packages directory to resume.`);
+    }
+    if (!releaseExists) {
+      console.log(`\n🏷️ Completing GitHub Release v${currentVersionValue}...\n`);
+      await runCommand('gh', ['release', 'create', `v${currentVersionValue}`, '--title', `v${currentVersionValue}`, '--generate-notes']);
+    }
+    if (!alreadyComplete) {
+      console.log(`\n🔁 Resuming GitHub Pages deploy for v${currentVersionValue}...\n`);
+      await runCommand('bash', [path.join(REPO_ROOT, 'scripts/deploy-gh-pages.sh')]);
+    }
+    if (!alreadyComplete) {
+      console.log(`\n✅ Completed pending release v${currentVersionValue}.\n`);
+      return;
+    }
+  }
+
+  await runCommand('git', ['cliff', '--version']);
   const version = planPatchVersion(currentVersionValue, tags);
+  const changelog = await runCommandCapture('git', ['cliff', '--tag', `v${version}`]);
   if (version !== currentVersionValue) await runCommand('npm', ['version', version, '--no-git-tag-version']);
   const existingTag = await runCommandCapture('git', ['tag', '--list', `v${version}`]);
   if (existingTag) throw new Error(`Release tag v${version} already exists.`);
@@ -62,18 +107,58 @@ async function runPatchRelease() {
   const readmePath = path.join(REPO_ROOT, 'README.md');
   const readme = fs.readFileSync(readmePath, 'utf8');
   fs.writeFileSync(readmePath, readme.replace(/^# 🇹🇭 Tax-Planner \(v[^)]+\)/m, `# 🇹🇭 Tax-Planner (v${version})`));
+  fs.writeFileSync(path.join(REPO_ROOT, 'release-manifest.json'), `${JSON.stringify({ version, sharedCommit }, null, 2)}\n`);
+  fs.writeFileSync(path.join(REPO_ROOT, 'CHANGELOG.md'), changelog);
 
   console.log(`\n📦 Committing and tagging v${version}...\n`);
-  await runCommand('git', ['add', 'package.json', 'package-lock.json', 'README.md']);
+  await runCommand('git', ['add', 'package.json', 'package-lock.json', 'README.md', 'CHANGELOG.md', 'release-manifest.json']);
   const staged = await runCommandCapture('git', ['diff', '--cached', '--name-only']);
   if (needsReleaseCommit(staged)) await runCommand('git', ['commit', '-m', `chore: release v${version}`]);
   else console.log('Version already committed; tagging current HEAD.');
   await runCommand('git', ['tag', `v${version}`]);
   await runCommand('git', ['push', 'origin', 'main', `v${version}`]);
 
+  console.log(`\n🏷️ Creating GitHub Release v${version}...\n`);
+  await runCommand('gh', ['release', 'create', `v${version}`, '--title', `v${version}`, '--generate-notes']);
+
   console.log('\n🚀 Deploying the released build to GitHub Pages...\n');
   await runCommand('bash', [path.join(REPO_ROOT, 'scripts/deploy-gh-pages.sh')]);
   console.log(`\n🎉 Released v${version} and deployed to https://vit129.github.io/Tax-Planner/\n`);
+}
+
+async function getPagesDeployInfo() {
+  try {
+    await runCommand('git', ['fetch', 'origin', 'gh-pages']);
+    const raw = await runCommandCapture('git', ['show', 'FETCH_HEAD:deploy-info.json']);
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function getSharedPackagesCommit() {
+  const isPinnedWorktree = Boolean(process.env.SHARED_PACKAGES_ROOT);
+  const root = isPinnedWorktree
+    ? path.dirname(path.resolve(process.env.SHARED_PACKAGES_ROOT))
+    : path.resolve(REPO_ROOT, '..', 'My-Investment-Port');
+  const dirty = await runCommandCapture('git', ['status', '--porcelain'], root);
+  if (dirty) throw new Error('Shared My-Investment-Port packages require a clean working tree.');
+  const head = await runCommandCapture('git', ['rev-parse', 'HEAD'], root);
+  if (isPinnedWorktree) return head;
+  const branch = await runCommandCapture('git', ['branch', '--show-current'], root);
+  if (branch !== 'main') throw new Error(`Shared My-Investment-Port packages must be on main (current branch: ${branch}).`);
+  await runCommand('git', ['fetch', 'origin', 'main'], root);
+  const remote = await runCommandCapture('git', ['rev-parse', 'origin/main'], root);
+  if (head !== remote) throw new Error('My-Investment-Port main differs from origin/main; synchronize shared packages before release.');
+  return head;
+}
+
+function readReleaseManifest() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'release-manifest.json'), 'utf8'));
+  } catch {
+    return null;
+  }
 }
 
 function runCommandCapture(command, args, cwd = REPO_ROOT) {
@@ -182,6 +267,11 @@ async function promptMessage(promptText) {
 
 async function main() {
   try {
+    if (process.argv.includes('--release')) {
+      await runPatchRelease();
+      return;
+    }
+
     const options = [
       {
         display: '1) Dev Server (localhost:5180)',
@@ -192,7 +282,7 @@ async function main() {
         value: 'test'
       },
       {
-        display: '3) Deploy to GitHub Pages (Live Web)',
+        display: '3) Deploy Only to GitHub Pages (Production)',
         value: 'deploy'
       },
       {
@@ -200,7 +290,7 @@ async function main() {
         value: 'commit-push'
       },
       {
-        display: '5) Full Cycle: Test + Commit + Deploy to GitHub Pages',
+        display: '5) Full Cycle: Test + Commit + Release + Deploy to GitHub Pages',
         value: 'full-cycle'
       },
       {
@@ -208,7 +298,7 @@ async function main() {
         value: 'preview'
       },
       {
-        display: '7) Patch Release: Test + Version + Push + Deploy (main only)',
+        display: '7) Release + Deploy: Test + Version + GitHub Release + Pages (main only)',
         value: 'patch-release'
       }
     ];
@@ -233,23 +323,24 @@ async function main() {
       await runCommand('git', ['push', 'origin', 'main']);
       console.log('\n✅ Pushed to main!\n');
     } else if (choice === 'full-cycle') {
-      console.log('\n🧪 Step 1/3: Running Test Suite & Architecture Guard...\n');
+      const branch = await runCommandCapture('git', ['branch', '--show-current']);
+      if (branch !== 'main') throw new Error(`Full cycle must run from main (current branch: ${branch}).`);
+      await getSharedPackagesCommit();
+      console.log('\n🧪 Verifying changes before pushing to main...\n');
       await runCommand('npm', ['test']);
-
-      console.log('\n📝 Step 2/3: Git Commit & Push...\n');
+      await runCommand('npm', ['run', 'build']);
+      console.log('\n📝 Committing changes before release...\n');
       const msg = await promptMessage('Enter commit message (or press Enter for auto message): ');
       const finalMsg = msg || `chore: release v${currentVersion} update`;
-      try {
+      const dirty = await runCommandCapture('git', ['status', '--porcelain']);
+      if (dirty) {
         await runCommand('git', ['add', '.']);
         await runCommand('git', ['commit', '-m', finalMsg]);
-        await runCommand('git', ['push', 'origin', 'main']);
-      } catch (e) {
-        console.log('ℹ️ Nothing new to commit or push, proceeding to deploy...');
+      } else {
+        console.log('ℹ️ Working tree clean; continuing with the current main commit.');
       }
-
-      console.log('\n🚀 Step 3/3: Deploying to GitHub Pages...\n');
-      await runCommand('bash', [path.join(REPO_ROOT, 'scripts/deploy-gh-pages.sh')]);
-      console.log('\n🎉 Full cycle complete! Live at: https://vit129.github.io/Tax-Planner/\n');
+      await runCommand('git', ['push', 'origin', 'main']);
+      await runPatchRelease();
     } else if (choice === 'preview') {
       await runCommand('npm', ['run', 'build']);
       await runCommand('npm', ['run', 'preview']);

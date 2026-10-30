@@ -18,6 +18,9 @@
     "test:scenarios": "playwright test",
     "test:all": "npm test && npm run test:scenarios",
     "deploy": "bash scripts/deploy-gh-pages.sh",
+    "deploy:prod": "bash scripts/deploy-gh-pages.sh",
+    "release": "node scripts/start.js --release",
+    "changelog": "git cliff -o CHANGELOG.md",
     "start": "node scripts/start.js"
   },
   "dependencies": {

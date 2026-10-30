@@ -68,6 +68,10 @@ Tax-Planner is built on clean decoupled layers and utilizes `@vit129` shared pac
 ### Prerequisites
 - Node.js `>= 18.0.0`
 - npm `>= 9.0.0`
+- `gh` CLI authenticated with access to this GitHub repository
+- `git-cliff` installed for release changelog generation
+
+On macOS, install the tools with `brew install gh git-cliff`, then run `gh auth login`.
 
 ### Installation
 ```bash
@@ -76,6 +80,12 @@ npm install
 
 # Open the workflow menu (development, tests, deploy, or patch release)
 npm run start
+
+# Create the next patch release and deploy GitHub Pages
+npm run release
+
+# Deploy the current production build only
+npm run deploy:prod
 
 # Start local development server (port 5180)
 npm run dev
@@ -90,7 +100,11 @@ npm run build
 npm run preview
 ```
 
-The patch release option in `npm run start` is for a clean `main` checkout. It runs tests and a production build, synchronizes the package and README versions, commits and pushes the version tag, then deploys to GitHub Pages.
+`npm run release` (or option 7 in `npm run start`) is for a clean, synchronized `main` checkout. It runs tests and a production build, updates package, README, `release-manifest.json`, and `CHANGELOG.md`, commits and pushes the version tag, creates the matching GitHub Release, then deploys to GitHub Pages. If GitHub Release creation or Pages deployment fails after the tag is pushed, run `npm run release` again to resume that version; a failed tag push is also retried safely. If an error leaves a dirty working tree before the release commit, inspect and preserve intended edits, resolve the partial metadata changes manually, then retry; the script will not guess which files are safe to overwrite. For a pending older release after My Investment Port advances, create a clean worktree at the recorded shared commit and set `SHARED_PACKAGES_ROOT` to its `packages` directory before resuming. `npm run deploy:prod` (or option 3) deploys only a clean, synchronized `main` whose current version has both a matching tag and GitHub Release. Option 5 tests and builds before commit/push, then runs the same full release workflow.
+
+### Release and deployment history
+
+- **2026-10-30 — v1.4.2 alignment:** `main` and tag `v1.4.2` already contained the current app, but the patch-release workflow only pushed the Git tag and deployed `gh-pages`; it never created a GitHub Release. That left Releases showing v1.4.0 while Pages and source were newer, requiring manual diagnosis and separate release creation. The patch-release workflow now creates a GitHub Release from the same tag before deploying Pages, so one release action updates all three surfaces.
 
 ---
 
