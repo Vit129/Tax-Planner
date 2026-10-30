@@ -6,6 +6,8 @@ import {
   isSampleBannerVisible,
 } from '@vit129/tax-ui';
 import STRINGS from '../config/strings';
+import OtherIncomeStep from './OtherIncomeStep';
+import OtherIncomeSummary from './OtherIncomeSummary';
 import COLORS from '../config/colors';
 import TYPOGRAPHY from '../config/typography';
 import {
@@ -20,6 +22,8 @@ export default function EasyTaxApp({
   companies,
   deductions,
   foreignIncome = 0,
+  otherIncome = [],
+  onChangeOtherIncome,
   flowState,
   onUpdateFlow,
   simExtra,
@@ -47,23 +51,24 @@ export default function EasyTaxApp({
   );
 
   const easyPlan = useMemo(
-    () => toEasyPlan(companies, deductions, { foreignIncome }),
-    [companies, deductions, foreignIncome]
+    () => toEasyPlan(companies, deductions, { foreignIncome, otherIncome }),
+    [companies, deductions, foreignIncome, otherIncome]
   );
 
   const simModel = useMemo(() => {
-    const recalculate = createEasySimulatorRecalculate(companies, deductions, foreignIncome);
+    const recalculate = createEasySimulatorRecalculate(companies, deductions, foreignIncome, otherIncome);
     return buildSimulatorModel({
       base: easyPlan,
       simExtra,
       recalculate,
     });
-  }, [companies, deductions, foreignIncome, easyPlan, simExtra]);
+  }, [companies, deductions, foreignIncome, otherIncome, easyPlan, simExtra]);
 
   const labels = useMemo(
     () => ({
       ...TAX_UI_TH_STRINGS,
       AI_HOUSES: STRINGS.DEFAULT_AI_HOUSES,
+      VAL_TAX_FORM_90: STRINGS.VAL_TAX_FORM_90,
     }),
     []
   );
@@ -126,6 +131,8 @@ export default function EasyTaxApp({
       </div>
 
       <TaxEasyApp
+        renderIncomeStep={(salary) => <OtherIncomeStep salary={salary} entries={otherIncome} onChange={onChangeOtherIncome} />}
+        incomeSummary={<OtherIncomeSummary plan={easyPlan} />}
         inputs={easyInputs}
         plan={easyPlan}
         flowState={flowState}

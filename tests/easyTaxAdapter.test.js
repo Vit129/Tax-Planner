@@ -16,7 +16,6 @@ import {
   toEasyDeductions,
   fromEasyDeductions,
   applyEasyDeductionUpdate,
-  fromEasyDeductions,
   toEasyInputs,
   toEasyPlan,
   createEasySimulatorRecalculate,

@@ -1,3 +1,5 @@
+import { summarizeOtherIncome } from './otherIncome.js';
+import { compareIncomeTaxMethods } from './incomeTaxMethods.js';
 import {
   TAX_BRACKETS,
   DEDUCTION_RULES,
@@ -71,7 +73,10 @@ export function calculateAllDeductions(
   totalIncome,
   extraRmf = 0,
   extraEsg = 0,
-  labels = STRINGS.DEDUCTION_ITEM_LABELS
+  labels = STRINGS.DEDUCTION_ITEM_LABELS,
+  expensesOverride = null,
+  fundIncome = totalIncome,
+  employmentIncome = totalIncome
 ) {
   const d = deductionsInput || {};
   const items = [];
@@ -123,18 +128,18 @@ export function calculateAllDeductions(
   // 4. Retirement Pool (RMF + PVD + Pension Life Remainder + GPF/NSF)
   const autoPvd = (companies || []).reduce((acc, c) => acc + getCompanyPvdEmployee(c), 0);
   const pvdAmount = d.pvdManual != null && d.pvdManual !== '' ? evalNumber(d.pvdManual) : autoPvd;
-  const pvdCap = Math.min(totalIncome * DEDUCTION_RULES.PVD_RATE, DEDUCTION_RULES.RETIREMENT_POOL_CAP);
+  const pvdCap = Math.min(employmentIncome * DEDUCTION_RULES.PVD_RATE, DEDUCTION_RULES.RETIREMENT_POOL_CAP);
   const pvdAllowed = Math.min(pvdAmount, pvdCap);
   const pvdRoom = Math.max(0, pvdCap - pvdAllowed);
 
-  const rmfCap = Math.min(totalIncome * DEDUCTION_RULES.RMF_RATE, DEDUCTION_RULES.RETIREMENT_POOL_CAP);
+  const rmfCap = Math.min(fundIncome * DEDUCTION_RULES.RMF_RATE, DEDUCTION_RULES.RETIREMENT_POOL_CAP);
   const rmfInput = evalNumber(d.rmf) + extraRmf;
   const rmfAllowed = Math.min(rmfInput, rmfCap);
 
   const pensionRemainder = Math.max(0, pensionLife - pensionOverflowToLife);
   const pensionAllowed = Math.min(
     pensionRemainder,
-    totalIncome * DEDUCTION_RULES.PENSION_INSURANCE_RATE,
+    fundIncome * DEDUCTION_RULES.PENSION_INSURANCE_RATE,
     DEDUCTION_RULES.PENSION_INSURANCE_CAP
   );
 
@@ -146,7 +151,7 @@ export function calculateAllDeductions(
   add(labels.retirementGroup, retirementUsed);
 
   // 5. Thai ESG (Separate 300,000 cap)
-  const esgCap = Math.min(totalIncome * DEDUCTION_RULES.THAI_ESG_RATE, DEDUCTION_RULES.THAI_ESG_CAP);
+  const esgCap = Math.min(fundIncome * DEDUCTION_RULES.THAI_ESG_RATE, DEDUCTION_RULES.THAI_ESG_CAP);
   const esgInput = evalNumber(d.thaiEsg) + extraEsg;
   const esgAllowed = Math.min(esgInput, esgCap);
   add(labels.thaiEsg, esgAllowed);
@@ -169,7 +174,7 @@ export function calculateAllDeductions(
 
   // Subtotal before donations
   const baseDeductions = items.reduce((acc, item) => acc + item.amount, 0);
-  const standardExpenses = Math.min(totalIncome * DEDUCTION_RULES.EXPENSE_RATE, DEDUCTION_RULES.EXPENSE_CAP);
+  const standardExpenses = expensesOverride ?? Math.min(totalIncome * DEDUCTION_RULES.EXPENSE_RATE, DEDUCTION_RULES.EXPENSE_CAP);
   const netBeforeDonations = Math.max(0, totalIncome - standardExpenses - baseDeductions);
 
   // 7. Donations (Capped at 10% of net income before donations)
@@ -220,32 +225,39 @@ export function calculateAllDeductions(
 /**
  * Master tax calculation function.
  */
-export function calculateTaxPlan(companies, deductionsInput, foreignIncome = 0, extraRmf = 0, extraEsg = 0) {
+export function calculateTaxPlan(companies, deductionsInput, foreignIncome = 0, extraRmf = 0, extraEsg = 0, otherIncome = []) {
   const cos = companies || [];
   const companyBreakdowns = cos.map((c) => getCompanyBreakdown(c, calculateProgressiveTax));
   const domesticIncome = companyBreakdowns.reduce((acc, c) => acc + c.income, 0);
-  const totalIncome = domesticIncome + evalNumber(foreignIncome);
+  // The legacy foreignIncome field is retained for backward compatibility; new
+  // foreign income must be classified and entered through otherIncome.
+  const employmentAndLegacyIncome = domesticIncome + evalNumber(foreignIncome);
+  const otherIncomeSummary = summarizeOtherIncome(otherIncome, employmentAndLegacyIncome);
+  const totalIncome = employmentAndLegacyIncome + otherIncomeSummary.includedIncome;
 
-  const deductions = calculateAllDeductions(cos, deductionsInput, totalIncome, extraRmf, extraEsg);
+  const deductions = calculateAllDeductions(cos, deductionsInput, totalIncome, extraRmf, extraEsg, undefined, otherIncomeSummary.expenses, totalIncome + otherIncomeSummary.finalTaxIncome, domesticIncome);
   const netIncome = Math.max(0, totalIncome - deductions.standardExpenses - deductions.totalDeductions);
 
-  const taxPayable = calculateProgressiveTax(netIncome);
+  const taxMethods = compareIncomeTaxMethods(calculateProgressiveTax(netIncome), otherIncomeSummary.methodTwoBase);
+  const taxPayable = Math.round(taxMethods.taxBeforeCredits);
   const marginalRate = getMarginalTaxRate(netIncome);
   const bracketFloor = getBracketFloor(netIncome);
   const neededToDropBracket = marginalRate > 0 ? Math.max(0, netIncome - bracketFloor) + 1 : 0;
   const recommendedRmf =
-    marginalRate > 0 && neededToDropBracket > 0 && neededToDropBracket <= deductions.rmfRoom
+    !taxMethods.applies && marginalRate > 0 && neededToDropBracket > 0 && neededToDropBracket <= deductions.rmfRoom
       ? neededToDropBracket
       : 0;
 
-  const totalWithholding = companyBreakdowns.reduce((acc, c) => acc + c.wh, 0);
+  const totalWithholding = companyBreakdowns.reduce((acc, c) => acc + c.wh, 0) + otherIncomeSummary.withholding;
   const whRealAll = companyBreakdowns.length > 0 && companyBreakdowns.every((c) => c.whReal);
 
-  const settlementDiff = totalWithholding - taxPayable;
+  const settlementDiff = totalWithholding + otherIncomeSummary.dividendTaxCredit - taxPayable;
   const isRefund = settlementDiff >= 0;
 
   return {
     companyBreakdowns,
+    otherIncomeSummary,
+    taxMethods,
     domesticIncome,
     foreignIncome: evalNumber(foreignIncome),
     totalIncome,

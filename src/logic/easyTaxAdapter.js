@@ -318,10 +318,10 @@ export function toEasyInputs(tpCompanies = [], tpDeductions = {}) {
 export function toEasyPlan(
   tpCompanies = [],
   tpDeductions = {},
-  { extraRmf = 0, extraEsg = 0, foreignIncome = 0, basePlan = null, includeFull = true } = {}
+  { extraRmf = 0, extraEsg = 0, foreignIncome = 0, otherIncome = [], basePlan = null, includeFull = true } = {}
 ) {
   const tpPlan =
-    basePlan || calculateTaxPlan(tpCompanies, tpDeductions, foreignIncome, extraRmf, extraEsg);
+    basePlan || calculateTaxPlan(tpCompanies, tpDeductions, foreignIncome, extraRmf, extraEsg, otherIncome);
 
   let fullRmfSaved = 0;
   let fullEsgSaved = 0;
@@ -333,7 +333,8 @@ export function toEasyPlan(
         tpDeductions,
         foreignIncome,
         tpPlan.rmfRoom,
-        0
+        0,
+        otherIncome
       );
       fullRmfSaved = Math.max(0, tpPlan.taxPayable - fullRmfPlan.taxPayable);
     }
@@ -343,7 +344,8 @@ export function toEasyPlan(
         tpDeductions,
         foreignIncome,
         0,
-        tpPlan.esgRoom
+        tpPlan.esgRoom,
+        otherIncome
       );
       fullEsgSaved = Math.max(0, tpPlan.taxPayable - fullEsgPlan.taxPayable);
     }
@@ -439,12 +441,13 @@ export function toEasyPlan(
  * Pure recalculate callback for @vit129/tax-ui's buildSimulatorModel.
  * Never mutates the base plan or headline refund.
  */
-export function createEasySimulatorRecalculate(tpCompanies = [], tpDeductions = {}, foreignIncome = 0) {
+export function createEasySimulatorRecalculate(tpCompanies = [], tpDeductions = {}, foreignIncome = 0, otherIncome = []) {
   return ({ extraRmf = 0, extraEsg = 0 } = {}) =>
     toEasyPlan(tpCompanies, tpDeductions, {
       extraRmf,
       extraEsg,
       foreignIncome,
+      otherIncome,
       includeFull: false,
     });
 }

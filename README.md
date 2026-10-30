@@ -1,7 +1,7 @@
-# 🇹🇭 Tax-Planner (v1.3.0)
+# 🇹🇭 Tax-Planner (v1.4.1)
 
 > **Live Web Application:** [https://vit129.github.io/Tax-Planner/](https://vit129.github.io/Tax-Planner/)  
-> **Thai Personal Income Tax (ภ.ง.ด. 90/91) & Investment Deduction Planner for **  
+> **Thai Personal Income Tax (ภ.ง.ด. 90/91) & Investment Deduction Planner**
 > Fast, responsive, privacy-first, and powered by shared `@vit129` micro-packages.
 
 ---
@@ -24,8 +24,10 @@
    - Manage up to 5 employment periods with custom start/end months (Jan–Dec).
    - Add salary adjustment events (e.g. raise from May onward) with automated PVD and Social Security calculation.
    - Click any month on the 12-month calendar grid to customize bonuses, overtime, or variable income.
-2. **2569 Thai Tax Math & Deductions Matrix:**
-   - 100% compliant with Thai Revenue Department progressive brackets (0% to 35%).
+2. **Thai Tax Math, Income Types & Deductions Matrix:**
+   - Calculates salary and other assessable income, including investment income, rent, independent professions, contract work, and business income.
+   - Compares the progressive tax calculation with the alternate 0.5% method when applicable.
+   - Uses Thai Revenue Department progressive brackets (0% to 35%).
    - Combined **฿500,000 Retirement Pool** (RMF + PVD + Pension Life + GPF/NSF) with real-time sub-cap meters.
    - Separate **฿300,000 Thai ESG** allowance.
    - Automatic pension insurance overflow into unused general life insurance room (up to ฿100,000).
@@ -72,6 +74,9 @@ Tax-Planner is built on clean decoupled layers and utilizes `@vit129` shared pac
 # Install dependencies
 npm install
 
+# Open the workflow menu (development, tests, deploy, or patch release)
+npm run start
+
 # Start local development server (port 5180)
 npm run dev
 
@@ -84,6 +89,8 @@ npm run build
 # Preview production build locally
 npm run preview
 ```
+
+The patch release option in `npm run start` is for a clean `main` checkout. It runs tests and a production build, synchronizes the package and README versions, commits and pushes the version tag, then deploys to GitHub Pages.
 
 ---
 
