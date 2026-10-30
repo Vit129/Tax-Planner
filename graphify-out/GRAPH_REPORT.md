@@ -1,46 +1,46 @@
-# Graph Report - adopt-easy-ui  (2026-10-29)
+# Graph Report - Tax-Planner  (2026-10-30)
 
 ## Corpus Check
-- 43 files · ~25,197 words
+- 61 files · ~31,111 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 461 nodes · 656 edges · 30 communities (19 shown, 11 thin omitted)
+- 579 nodes · 837 edges · 35 communities (23 shown, 12 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.72)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d770b231`
+- Built from commit: `14d76407`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## God Nodes (most connected - your core abstractions)
-1. `TaxPlannerPage` - 22 edges
+1. `TaxPlannerPage` - 23 edges
 2. `SCENARIOS` - 18 edges
-3. `render()` - 12 edges
-4. `getCompanyBreakdown()` - 11 edges
-5. `calculateTaxPlan()` - 11 edges
-6. `getCompanyMonthlySalaries()` - 10 edges
-7. `renderMonths()` - 8 edges
-8. `SAMPLE_RMF_FUNDS` - 8 edges
-9. `getCompanyTotalIncome()` - 8 edges
-10. `App()` - 8 edges
+3. `calculateTaxPlan()` - 14 edges
+4. `render()` - 12 edges
+5. `STRINGS` - 11 edges
+6. `getCompanyBreakdown()` - 11 edges
+7. `getCompanyMonthlySalaries()` - 10 edges
+8. `App()` - 10 edges
+9. `runPatchRelease()` - 9 edges
+10. `renderMonths()` - 8 edges
 
 ## Cross-Cutting Nodes (span the most distinct areas of the codebase)
 A high-degree node isn't always architecturally central - a widely-used
 utility/config file can rack up more edges than a real coupler while only
 ever touching one area. This ranks by how many DIFFERENT communities a
 node's neighbors span, not by raw edge count.
-1. `STRINGS` - bridges 3 areas (7 edges)
-2. `render()` - bridges 2 areas (12 edges)
-3. `calculateTaxPlan()` - bridges 2 areas (11 edges)
-4. `renderMonths()` - bridges 2 areas (8 edges)
-5. `toEasyPlan()` - bridges 2 areas (7 edges)
-6. `on()` - bridges 2 areas (6 edges)
-7. `fromCoreCompany()` - bridges 2 areas (6 edges)
-8. `CO()` - bridges 2 areas (5 edges)
-9. `createNextTpCompany()` - bridges 2 areas (5 edges)
-10. `applyEasyDeductionUpdate()` - bridges 2 areas (5 edges)
+1. `calculateTaxPlan()` - bridges 3 areas (14 edges)
+2. `TaxPlannerPage` - bridges 2 areas (23 edges)
+3. `render()` - bridges 2 areas (12 edges)
+4. `STRINGS` - bridges 2 areas (11 edges)
+5. `renderMonths()` - bridges 2 areas (8 edges)
+6. `toEasyPlan()` - bridges 2 areas (8 edges)
+7. `on()` - bridges 2 areas (6 edges)
+8. `toEasyInputs()` - bridges 2 areas (6 edges)
+9. `createEasySimulatorRecalculate()` - bridges 2 areas (6 edges)
+10. `CO()` - bridges 2 areas (5 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]
@@ -61,7 +61,7 @@ node's neighbors span, not by raw edge count.
 - **Zero hardcoded literals contract (strings, colors, typography) enforced by guard** — architecture_architecture_guard, architecture_strings_dictionary, design_color_tokens, design_typography_tokens [EXTRACTED 0.90]
 - **@vit129/thai-tax-core public calculation API** — docs_design_mip_tax_core_plan_calculate_tax, docs_design_mip_tax_core_plan_calculate_social_security, docs_design_mip_tax_core_plan_calculate_deductions, docs_design_mip_tax_core_plan_calculate_rmf_drop_advice, docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt [EXTRACTED 0.90]
 
-## Communities (30 total, 11 thin omitted)
+## Communities (35 total, 12 thin omitted)
 
 ### Community 0 - "tax-planner-mockup.html"
 Cohesion: 0.02
@@ -75,28 +75,28 @@ input:focus-visible,
 select:focus-visible, .grid, .card (+80 more)
 
 ### Community 2 - "App.jsx"
-Cohesion: 0.08
-Nodes (30): STRINGS, BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, SAMPLE_RMF_FUNDS, SCBRMS&P500, BGOLDRMF (+22 more)
+Cohesion: 0.11
+Nodes (17): COLORS, STRINGS, TYPOGRAPHY, IncomeCategoryTabs(), OtherIncomeStep(), OtherIncomeSummary(), __dirname, has zero hardcoded fontSize or fontFamily outside src/config/typography.js (+9 more)
 
 ### Community 3 - "Plan: Extract tax-core & Redesign TaxPage"
 Cohesion: 0.11
 Nodes (24): Tax-Planner Agent Instructions, Automated Architecture Guard (tests/architectureGuard.test.js), Dependency Direction ui -> logic -> config, Centralized Strings Dictionary (src/config/strings.js), Tax-Planner Architecture, @vit129/tax-ui package, @vit129/thai-tax-core package, Tax-Planner Guidelines (CLAUDE.md) (+16 more)
 
-### Community 4 - "taxLogic.js"
-Cohesion: 0.11
-Nodes (36): COLORS, TYPOGRAPHY, estimateCompanyWithholding(), getCompanyAnnualSalary(), getCompanyBaseSalaryAtMonth(), getCompanyBreakdown(), getCompanyExtraIncome(), getCompanyFixedBonus() (+28 more)
+### Community 4 - "companyLogic.test.js"
+Cohesion: 0.06
+Nodes (55): BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, SAMPLE_RMF_FUNDS, SCBRMS&P500, BGOLDRMF, KKP PGE RMF-H (+47 more)
 
 ### Community 5 - "scripts"
 Cohesion: 0.07
-Nodes (26): contributors, dependencies, react, react-dom, @vit129/tax-ui, @vit129/thai-tax-core, devDependencies, @playwright/test (+18 more)
+Nodes (29): contributors, dependencies, react, react-dom, @vit129/tax-ui, @vit129/thai-tax-core, devDependencies, @playwright/test (+21 more)
 
 ### Community 6 - "render"
 Cohesion: 0.22
 Nodes (18): all(), baseAt(), coCalc(), compute(), f(), floorOf(), generateAiPrompt(), k() (+10 more)
 
 ### Community 8 - "start.js"
-Cohesion: 0.33
-Nodes (8): __dirname, __filename, main(), promptMessage(), REPO_ROOT, runCommand(), selectWithArrows(), selectWithReadline()
+Cohesion: 0.14
+Nodes (24): compare(), needsReleaseCommit(), parts(), planPatchVersion(), __dirname, __filename, getPagesDeployInfo(), getSharedPackagesCommit() (+16 more)
 
 ### Community 10 - "CO"
 Cohesion: 1.00
@@ -107,12 +107,12 @@ Cohesion: 0.67
 Nodes (3): @media (min-width: 900px), .grid, .results
 
 ### Community 17 - "@media (min-width: 900px)"
-Cohesion: 0.26
-Nodes (10): applyEasyDeductionUpdate(), createNextTpCompany(), fromCoreCompany(), getTaxYearMetadata(), App(), cloneCompanies(), createEmptyCompany(), DEFAULT_SAMPLE_COMPANIES (+2 more)
+Cohesion: 0.08
+Nodes (24): amount(), summarizeOtherIncome(), VALID_TYPES, [BE-UT] legacy income election migration, normalizes legacy interest and flags conflicting elections in both rows, preserves an unsupported prior exclusion for review without crashing, validates inconsistent legacy interest even without migration, [Alternative] excludes final-tax withholding from the annual settlement (+16 more)
 
 ### Community 22 - "SCENARIOS"
-Cohesion: 0.06
-Nodes (39): fromEasyDeductions(), creates next company and builds AI prompt and URLs accurately, each field changes the tax and reverting restores it exactly, easyTaxAdapter — Display, Round-Trip, Edit, and Legacy V2 Compatibility, easyTaxAdapter — pension insurance, NSF (gpf), retirement pool and tax waterfall, keeps the What-If simulator isolated from basePlan taxPayable and settlement, loads legacy V2 localStorage data blobs without error, maps Tax-Planner gpf to the shared nsf field and back (+31 more)
+Cohesion: 0.07
+Nodes (45): AI_CHAT_URL_PREFIX, applyEasyDeductionUpdate(), buildAiChatUrl(), buildEasyAiPrompt(), createEasySimulatorRecalculate(), createNextTpCompany(), fromCoreCompany(), fromEasyDeductions() (+37 more)
 
 ### Community 23 - "🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix"
 Cohesion: 0.29
@@ -122,27 +122,43 @@ Nodes (6): 🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix
 Cohesion: 0.33
 Nodes (5): compilerOptions, baseUrl, paths, @vit129/tax-ui, @vit129/thai-tax-core
 
+### Community 30 - "EasyTaxApp.jsx"
+Cohesion: 0.10
+Nodes (19): [1.1.0] - 2026-10-24, [1.2.0] - 2026-10-29, [1.3.0] - 2026-10-29, [1.4.0] - 2026-10-29, [1.4.1] - 2026-10-30, [1.4.2] - 2026-10-30, [1.4.3] - 2026-10-30, Added (+11 more)
+
+### Community 31 - "otherIncome.test.js"
+Cohesion: 0.13
+Nodes (15): SCENARIOS, บริษัทเดียว · ฐาน 10% · ไม่ปรับเงินเดือน · Fixed โบนัส 1 ด. · PVD 3% · ไม่มีประกัน, บริษัทเดียว · ฐาน 15% · ปรับเงินเดือน 1 ครั้ง (ผ่านโปร ด.4) · Var โบนัส 1.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับเงินเดือน 2 ครั้ง (ด.4 + ด.10) · Fixed + Var 2 ด. · PVD 2% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับ 1 ครั้ง · Fixed 2 ด. · PVD 10% · ประกันเต็ม Max (100k), บริษัทเดียว · ฐาน 25% · ไม่ปรับเงินเดือน · Perf โบนัสปลายปี 2.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 25% · ปรับ 1 ครั้ง · Fixed 1 ด. + Perf 2 ด. · PVD 10% · ประกันเต็ม Max + บำนาญ, บริษัทเดียว · ฐาน 30% · ปรับ 2 ครั้ง · Hybrid โบนัส 3 ด. · PVD 15% · ประกันเต็ม Max ทุกตัว (+7 more)
+
+### Community 32 - "incomeTaxMethods.test.js"
+Cohesion: 0.22
+Nodes (8): compareIncomeTaxMethods(), [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
+
+### Community 33 - "SAMPLE_RMF_FUNDS"
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: Tax planner initial flow state default summary versus wizard and condition when no data, Source Nodes
+
 ## Knowledge Gaps
-- **303 isolated node(s):** `#sampleBar`, `#startOwn`, `#stickyBar`, `#stickyVal`, `#coTabs` (+298 more)
+- **366 isolated node(s):** `changelog`, `git`, `#sampleBar`, `#startOwn`, `#stickyBar` (+361 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 - **4 possibly unreachable function(s):** `__dirname`, `__dirname`, `__dirname`, `__filename`
   Not reached from any recognized entry point - could be dead code, or dynamically dispatched/decorator-registered.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `TaxPlannerPage` connect `TaxPlannerPage` to `SCENARIOS`?**
-  _High betweenness centrality (0.045) - this node is a cross-community bridge._
-- **What connects `#sampleBar`, `#startOwn`, `#stickyBar` to the rest of the system?**
-  _304 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `STRINGS` connect `App.jsx` to `companyLogic.test.js`, `SCENARIOS`?**
+  _High betweenness centrality (0.039) - this node is a cross-community bridge._
+- **Why does `TaxPlannerPage` connect `TaxPlannerPage` to `App.jsx`, `SCENARIOS`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
+- **Why does `SCENARIOS` connect `otherIncome.test.js` to `SCENARIOS`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **What connects `changelog`, `git`, `#sampleBar` to the rest of the system?**
+  _367 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `tax-planner-mockup.html` be split into smaller, more focused modules?**
   _Cohesion score 0.02127659574468085 - nodes in this community are weakly interconnected._
 - **Should `index.css` be split into smaller, more focused modules?**
   _Cohesion score 0.02247191011235955 - nodes in this community are weakly interconnected._
 - **Should `App.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07657657657657657 - nodes in this community are weakly interconnected._
-- **Should `Plan: Extract tax-core & Redesign TaxPage` be split into smaller, more focused modules?**
-  _Cohesion score 0.10507246376811594 - nodes in this community are weakly interconnected._
-- **Should `taxLogic.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.11382113821138211 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10873440285204991 - nodes in this community are weakly interconnected._

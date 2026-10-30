@@ -4,6 +4,11 @@ Notable changes to Tax-Planner are documented here. This file follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-10-30
+
+### Fixed
+- Open the tax summary by default when tax data exists, and start with data entry when inputs are empty.
+
 ## [1.4.2] - 2026-10-30
 
 ### Fixed

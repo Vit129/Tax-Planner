@@ -9,6 +9,7 @@ import {
   fromCoreCompany,
   createNextTpCompany,
   applyEasyDeductionUpdate,
+  hasTaxSummaryData,
 } from '../logic/easyTaxAdapter';
 
 const STORAGE_KEY = 'TAX_PLANNER_DATA_V2';
@@ -167,6 +168,7 @@ export default function App() {
 
   const [flowState, setFlowState] = useState(() => ({
     ...INITIAL_FLOW_STATE,
+    isSummaryMode: hasTaxSummaryData(companies, deductions, foreignIncome, otherIncome),
   }));
 
   const [simExtra, setSimExtra] = useState({
@@ -214,6 +216,7 @@ export default function App() {
     setFlowState({
       ...INITIAL_FLOW_STATE,
       hasSavedOwnData: true,
+      isSummaryMode: false,
     });
   };
 
@@ -227,6 +230,7 @@ export default function App() {
     setFlowState({
       ...INITIAL_FLOW_STATE,
       hasSavedOwnData: false,
+      isSummaryMode: true,
     });
   };
 
