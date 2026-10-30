@@ -7,7 +7,8 @@ Notable changes to Tax-Planner are documented here. This file follows
 ## [1.4.3] - 2026-10-30
 
 ### Fixed
-- Open the tax summary by default when tax data exists, and start with data entry when inputs are empty.
+- Align release and Pages deployment workflow ([`59ec3ab`](https://github.com/Vit129/Tax-Planner/commit/59ec3ab5c2cdcc08d9614c6fd1e62041aac67d46))
+- Open tax summary when inputs exist ([`14d7640`](https://github.com/Vit129/Tax-Planner/commit/14d764073f8437c459917292e055f40ba6e4d54a))
 
 ## [1.4.2] - 2026-10-30
 
@@ -67,4 +68,3 @@ Notable changes to Tax-Planner are documented here. This file follows
 ### Documentation
 - Add UI mockup and stack/logic/UI decision page ([`e51d93b`](https://github.com/Vit129/Tax-Planner/commit/e51d93b74e803d028e039f23da19da5a4ef8c4fc))
 - Update tax mockup to match latest Tax page design ([`e8df47c`](https://github.com/Vit129/Tax-Planner/commit/e8df47cd24147863600c7b0ddb7cad2dcb0337f9))
-
