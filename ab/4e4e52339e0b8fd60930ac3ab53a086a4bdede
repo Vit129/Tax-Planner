@@ -1,0 +1,32 @@
+src/ui/OtherIncomeStep.jsx
+  s_109bc1ec6908b8::t_1e8d267478bbb0 1,6,12,36
+package.json
+  s_109bc1ec6908b8::t_d4635220988c6c 4
+README.md
+  s_109bc1ec6908b8::t_84f46e80b698b5 1
+src/ui/IncomeCategoryTabs.jsx
+  s_109bc1ec6908b8::t_046d3af8b9ca30 1-7,9-45,47-63
+  s_109bc1ec6908b8::t_6ed4255ac5699d 8,46
+src/config/strings.js
+  s_109bc1ec6908b8::t_81566a05c9f203 24
+src/ui/EasyTaxApp.jsx
+  s_109bc1ec6908b8::t_906997f347ccd3 1,11,48,91,135-141
+package-lock.json
+  s_109bc1ec6908b8::t_18bc36c52c35c3 3,9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "ab4e4e52339e0b8fd60930ac3ab53a086a4bdede",
+  "prompts": {},
+  "sessions": {
+    "s_109bc1ec6908b8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18ad0-4d93-7fd2-b58b-92512057c34a",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
