@@ -10,3 +10,4 @@
 - `src/logic/`: Pure calculation functions (no UI, no DOM).
 - `src/ui/`: React presentation components.
 - `tests/`: Vitest test suites.
+@AGENTS.md

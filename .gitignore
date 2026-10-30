@@ -45,3 +45,4 @@ graphify-out/20*/
 
 # Local git worktrees (one per task, created by Kouen)
 .kouen-worktrees/
+__pycache__/
