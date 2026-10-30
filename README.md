@@ -1,4 +1,4 @@
-# 🇹🇭 Tax-Planner (v1.4.2)
+# 🇹🇭 Tax-Planner (v1.4.3)
 
 > **Live Web Application:** [https://vit129.github.io/Tax-Planner/](https://vit129.github.io/Tax-Planner/)  
 > **Thai Personal Income Tax (ภ.ง.ด. 90/91) & Investment Deduction Planner**

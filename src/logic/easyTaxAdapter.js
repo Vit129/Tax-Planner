@@ -312,6 +312,35 @@ export function toEasyInputs(tpCompanies = [], tpDeductions = {}) {
   };
 }
 
+export function hasTaxSummaryData(tpCompanies = [], tpDeductions = {}, foreignIncome = 0, otherIncome = []) {
+  const hasCompanyData = tpCompanies.some((company) => {
+    const monthlyValues = [
+      ...Object.values(company.salaryAdjustments || {}).map((item) => item?.salary),
+      ...Object.values(company.monthlyOverrides || {}).flatMap((item) =>
+        item && typeof item === 'object' ? Object.values(item) : [item]
+      ),
+      ...Object.values(company.otMonthly || {}),
+    ];
+    return [
+      company.baseSalary,
+      company.bonusFixedMonths,
+      company.bonusVariable,
+      company.pvdRateEmp,
+      company.pvdRateCo,
+      company.withholdingTax,
+      ...monthlyValues,
+    ].some((value) => evalNumber(value) > 0);
+  });
+  const hasDeductions = Object.values(tpDeductions).some((value) =>
+    typeof value === 'boolean' ? value : evalNumber(value) > 0
+  );
+  const hasOtherIncome = otherIncome.some((item) =>
+    evalNumber(item?.gross) > 0 || evalNumber(item?.withholding) > 0
+  );
+
+  return hasCompanyData || hasDeductions || evalNumber(foreignIncome) > 0 || hasOtherIncome;
+}
+
 /**
  * Maps Tax-Planner's calculateTaxPlan output into the `plan` shape expected by <TaxEasyApp />.
  */
