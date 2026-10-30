@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import STRINGS from '../config/strings';
 import COLORS from '../config/colors';
 import TYPOGRAPHY from '../config/typography';
 
-export default function OtherIncomeStep({ salary, entries, onChange }) {
-  const [tab, setTab] = useState('salary');
+export default function OtherIncomeStep({ entries, onChange }) {
   const update = (index, field, value) => onChange(entries.map((item, i) => i === index || (field === 'treatment' && entries[index].electionGroup && item.electionGroup === entries[index].electionGroup) ? { ...item, [field]: value, ...(field === 'gross' ? { actualExpense: Math.min(item.actualExpense ?? item.expenses ?? 0, value), expenses: item.expenses == null ? undefined : Math.min(item.expenses, value) } : {}), ...(field === 'actualExpense' ? { actualExpenseEntered: true } : {}) } : item));
   const add = () => onChange([...entries, { type: '2', gross: 0, withholding: 0, treatment: 'included', exclusionKind: 'exempt' }]);
   const fieldStyle = { display: 'flex', flexDirection: 'column', gap: '4px' };
   const subtypes = { '3': [['rights', STRINGS.OTHER_40_3_RIGHTS], ['annuity', STRINGS.OTHER_40_3_ANNUITY]], '5': [['building', STRINGS.OTHER_RENT_BUILDING], ['agri', STRINGS.OTHER_RENT_AGRI], ['nonAgri', STRINGS.OTHER_RENT_NONAGRI], ['vehicle', STRINGS.OTHER_RENT_VEHICLE], ['other', STRINGS.OTHER_RENT_OTHER], ['hirePurchaseBreach', STRINGS.OTHER_RENT_BREACH]], '6': [['medical', STRINGS.OTHER_PROF_MEDICAL], ['fineArts', STRINGS.OTHER_PROF_FINEARTS], ['profession', STRINGS.OTHER_PROF_OTHER]] };
   const getExpenseMethod = (entry) => entry.expenseMethod || 'actual';
-  return <div style={{ display: 'grid', gap: '14px' }}>
-    <div role="tablist" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {['salary', 'other'].map(id => <button type="button" role="tab" aria-selected={tab === id} className="btn" key={id} onClick={() => setTab(id)} style={{ color: tab === id ? COLORS.BLUE : COLORS.FG }}>{id === 'salary' ? STRINGS.INCOME_TAB_SALARY : STRINGS.INCOME_TAB_OTHER}</button>)}
-    </div>
-    {tab === 'salary' ? salary : <section style={{ display: 'grid', gap: '14px' }}>
+  return <section style={{ display: 'grid', gap: '14px' }}>
       <div><h2 style={{ fontSize: TYPOGRAPHY.SIZE_H2 }}>{STRINGS.OTHER_TITLE}</h2><p>{STRINGS.OTHER_NOTE}</p><p style={{ color: COLORS.BAD }}>{STRINGS.OTHER_WARNING}</p></div>
       {entries.length === 0 && <p>{STRINGS.OTHER_EMPTY}</p>}
       {entries.map((entry, index) => <div key={index} className="card" style={{ display: 'grid', gap: '12px', padding: '16px' }}>
@@ -38,6 +33,5 @@ export default function OtherIncomeStep({ salary, entries, onChange }) {
         {entry.type === '4' && entry.electionGroup === 'thai_dividend' && entry.treatment === 'included' && <label style={fieldStyle}>{STRINGS.OTHER_DIVIDEND_RATE}<input type="number" min="0" max="99" value={entry.dividendCorpTaxRate == null ? '' : entry.dividendCorpTaxRate * 100} onChange={e => update(index, 'dividendCorpTaxRate', e.target.value === '' ? undefined : Math.min(99, Math.max(0, Number(e.target.value) || 0)) / 100)} /><small>{STRINGS.OTHER_DIVIDEND_HELP}</small></label>}
       </div>)}
       <button type="button" className="btn" onClick={add}>{STRINGS.OTHER_ADD}</button>
-    </section>}
-  </div>;
+  </section>;
 }

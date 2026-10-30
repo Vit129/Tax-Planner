@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   TaxEasyApp,
   TAX_UI_TH_STRINGS,
@@ -8,6 +8,7 @@ import {
 import STRINGS from '../config/strings';
 import OtherIncomeStep from './OtherIncomeStep';
 import OtherIncomeSummary from './OtherIncomeSummary';
+import IncomeCategoryTabs from './IncomeCategoryTabs';
 import COLORS from '../config/colors';
 import TYPOGRAPHY from '../config/typography';
 import {
@@ -44,6 +45,7 @@ export default function EasyTaxApp({
   taxYear,
 }) {
   const isDark = theme === 'dark';
+  const [incomeTab, setIncomeTab] = useState('salary');
 
   const easyInputs = useMemo(
     () => toEasyInputs(companies, deductions),
@@ -86,7 +88,7 @@ export default function EasyTaxApp({
 
 
   return (
-    <div className="easy-tax-shell" data-theme={theme}>
+    <div className="easy-tax-shell planner-income-step" data-theme={theme} data-income-tab={incomeTab}>
       <div
         style={{
           width: '100%',
@@ -130,8 +132,14 @@ export default function EasyTaxApp({
         </button>
       </div>
 
+      <IncomeCategoryTabs
+        active={flowState?.currentStep === 1 && !flowState?.isSummaryMode}
+        entries={otherIncome}
+        onChange={onChangeOtherIncome}
+        tab={incomeTab}
+        onSelectTab={setIncomeTab}
+      />
       <TaxEasyApp
-        renderIncomeStep={(salary) => <OtherIncomeStep salary={salary} entries={otherIncome} onChange={onChangeOtherIncome} />}
         incomeSummary={<OtherIncomeSummary plan={easyPlan} />}
         inputs={easyInputs}
         plan={easyPlan}
