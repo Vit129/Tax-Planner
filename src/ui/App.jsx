@@ -1,3 +1,4 @@
+import { migrateOtherIncome } from '../logic/migrateOtherIncome';
 import React, { useState, useEffect, useMemo } from 'react';
 import { INITIAL_FLOW_STATE } from '@vit129/tax-ui';
 import EasyTaxApp from './EasyTaxApp';
@@ -157,6 +158,13 @@ export default function App() {
     return 0;
   });
 
+  const [otherIncome, setOtherIncome] = useState(() => {
+    try {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      return migrateOtherIncome(data.otherIncome);
+    } catch { return []; }
+  });
+
   const [flowState, setFlowState] = useState(() => ({
     ...INITIAL_FLOW_STATE,
   }));
@@ -174,13 +182,14 @@ export default function App() {
           companies,
           deductions,
           foreignIncome,
+          otherIncome,
           isSampleMode,
         })
       );
     } catch {
       // ignore
     }
-  }, [companies, deductions, foreignIncome, isSampleMode]);
+  }, [companies, deductions, foreignIncome, otherIncome, isSampleMode]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -199,6 +208,7 @@ export default function App() {
     setCompanies([createEmptyCompany()]);
     setDeductions({ ...EMPTY_DEDUCTIONS });
     setForeignIncome(0);
+    setOtherIncome([]);
     setSimExtra({ extraRmf: 0, extraEsg: 0 });
     setIsSampleMode(false);
     setFlowState({
@@ -211,6 +221,7 @@ export default function App() {
     setCompanies(cloneCompanies(DEFAULT_SAMPLE_COMPANIES));
     setDeductions({ ...DEFAULT_SAMPLE_DEDUCTIONS });
     setForeignIncome(0);
+    setOtherIncome([]);
     setSimExtra({ extraRmf: 0, extraEsg: 0 });
     setIsSampleMode(true);
     setFlowState({
@@ -273,6 +284,8 @@ export default function App() {
       companies={companies}
       deductions={deductions}
       foreignIncome={foreignIncome}
+      otherIncome={otherIncome}
+      onChangeOtherIncome={setOtherIncome}
       flowState={flowState}
       onUpdateFlow={setFlowState}
       simExtra={simExtra}

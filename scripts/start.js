@@ -3,6 +3,7 @@ import readline from 'readline';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { needsReleaseCommit, planPatchVersion } from './patch-version.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,66 @@ function runCommand(command, args, cwd = REPO_ROOT) {
       } else {
         reject(new Error(`Command failed with code ${code}`));
       }
+    });
+    child.on('error', reject);
+  });
+}
+
+async function runPatchRelease() {
+  const branch = await runCommandCapture('git', ['branch', '--show-current']);
+  if (branch !== 'main') {
+    throw new Error(`Patch release must run from main (current branch: ${branch}).`);
+  }
+
+  const dirty = await runCommandCapture('git', ['status', '--porcelain']);
+  if (dirty) {
+    throw new Error('Patch release requires a clean working tree. Commit or stash changes first.');
+  }
+
+  console.log('\n🧪 Running tests and production build before release...\n');
+  await runCommand('npm', ['test']);
+  await runCommand('npm', ['run', 'build']);
+
+  // Refresh refs before selecting a version and never release a stale local main.
+  await runCommand('git', ['fetch', 'origin', 'main', '--tags']);
+  const head = await runCommandCapture('git', ['rev-parse', 'HEAD']);
+  const remoteHead = await runCommandCapture('git', ['rev-parse', 'origin/main']);
+  if (head !== remoteHead) throw new Error('Local main differs from origin/main; synchronize before release.');
+
+  const currentVersionValue = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).version;
+  const tags = (await runCommandCapture('git', ['tag', '--list'])).split('\n').filter(Boolean);
+  const version = planPatchVersion(currentVersionValue, tags);
+  if (version !== currentVersionValue) await runCommand('npm', ['version', version, '--no-git-tag-version']);
+  const existingTag = await runCommandCapture('git', ['tag', '--list', `v${version}`]);
+  if (existingTag) throw new Error(`Release tag v${version} already exists.`);
+
+  const readmePath = path.join(REPO_ROOT, 'README.md');
+  const readme = fs.readFileSync(readmePath, 'utf8');
+  fs.writeFileSync(readmePath, readme.replace(/^# 🇹🇭 Tax-Planner \(v[^)]+\)/m, `# 🇹🇭 Tax-Planner (v${version})`));
+
+  console.log(`\n📦 Committing and tagging v${version}...\n`);
+  await runCommand('git', ['add', 'package.json', 'package-lock.json', 'README.md']);
+  const staged = await runCommandCapture('git', ['diff', '--cached', '--name-only']);
+  if (needsReleaseCommit(staged)) await runCommand('git', ['commit', '-m', `chore: release v${version}`]);
+  else console.log('Version already committed; tagging current HEAD.');
+  await runCommand('git', ['tag', `v${version}`]);
+  await runCommand('git', ['push', 'origin', 'main', `v${version}`]);
+
+  console.log('\n🚀 Deploying the released build to GitHub Pages...\n');
+  await runCommand('bash', [path.join(REPO_ROOT, 'scripts/deploy-gh-pages.sh')]);
+  console.log(`\n🎉 Released v${version} and deployed to https://vit129.github.io/Tax-Planner/\n`);
+}
+
+function runCommandCapture(command, args, cwd = REPO_ROOT) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, { cwd, encoding: 'utf8' });
+    let output = '';
+    let errorOutput = '';
+    child.stdout.on('data', (chunk) => { output += chunk.toString(); });
+    child.stderr.on('data', (chunk) => { errorOutput += chunk.toString(); });
+    child.on('close', (code) => {
+      if (code === 0) resolve(output.trim());
+      else reject(new Error(errorOutput.trim() || `Command failed with code ${code}`));
     });
     child.on('error', reject);
   });
@@ -145,6 +206,10 @@ async function main() {
       {
         display: '6) Preview Production Build Locally',
         value: 'preview'
+      },
+      {
+        display: '7) Patch Release: Test + Version + Push + Deploy (main only)',
+        value: 'patch-release'
       }
     ];
 
@@ -188,6 +253,8 @@ async function main() {
     } else if (choice === 'preview') {
       await runCommand('npm', ['run', 'build']);
       await runCommand('npm', ['run', 'preview']);
+    } else if (choice === 'patch-release') {
+      await runPatchRelease();
     }
   } catch (err) {
     console.error('\n❌ Error:', err.message);
