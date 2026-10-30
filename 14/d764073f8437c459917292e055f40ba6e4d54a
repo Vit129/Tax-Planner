@@ -1,0 +1,37 @@
+package.json
+  s_ea8988758713a3::t_5f05af94189cb6 4
+CHANGELOG.md
+  s_ea8988758713a3::t_d18621edc6c834 7-11
+README.md
+  s_ea8988758713a3::t_16be5ef4bc78a3 1
+package-lock.json
+  s_ea8988758713a3::t_d56439885b49d4 3,9
+src/logic/easyTaxAdapter.js
+  s_3f9beff91c01f6::t_e686f35fd0eb22 315-343
+src/ui/App.jsx
+  s_3f9beff91c01f6::t_89457c324e0dff 12,171,219,233
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "14d764073f8437c459917292e055f40ba6e4d54a",
+  "prompts": {},
+  "sessions": {
+    "s_3f9beff91c01f6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18bf3-8983-71a3-b62f-66d0cc32d15e",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    },
+    "s_ea8988758713a3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18d1c-e354-7911-ab1d-a5a4d77316f4",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
