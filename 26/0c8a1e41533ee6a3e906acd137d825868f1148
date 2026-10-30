@@ -1,0 +1,21 @@
+CHANGELOG.md
+  s_a7be4ad401fa2e::t_2e0cffb4356a4f 10-11,70
+release-manifest.json
+  s_a7be4ad401fa2e::t_64b993d9c8a638 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "260c8a1e41533ee6a3e906acd137d825868f1148",
+  "prompts": {},
+  "sessions": {
+    "s_a7be4ad401fa2e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d477a2b6-7c81-40a2-b1f5-2ef3ed88fdea",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
