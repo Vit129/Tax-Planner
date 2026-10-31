@@ -3,13 +3,13 @@ _Auto-generated from GRAPH_REPORT.md · do not edit manually_
 _Regen: `graphify update .`_
 
 ## Summary
-- 2694 nodes · 3075 edges · 221 communities (188 shown, 33 thin omitted)
+- 2704 nodes · 3084 edges · 220 communities (187 shown, 33 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 
 ## Graph Freshness
-- Built from commit: `260c8a1e`
+- Built from commit: `e6af78d4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,15 +32,15 @@ A high-degree node isn't always architecturally central - a widely-used
 utility/config file can rack up more edges than a real coupler while only
 ever touching one area. This ranks by how many DIFFERENT communities a
 node's neighbors span, not by raw edge count.
-1. `calculateTaxPlan()` - bridges 5 areas (14 edges)
+1. `calculateTaxPlan()` - bridges 4 areas (14 edges)
 2. `STRINGS` - bridges 4 areas (11 edges)
 3. `f()` - bridges 4 areas (8 edges)
-4. `toEasyPlan()` - bridges 4 areas (8 edges)
+4. `toEasyPlan()` - bridges 3 areas (8 edges)
 5. `fromCoreCompany()` - bridges 3 areas (6 edges)
-6. `createEasySimulatorRecalculate()` - bridges 3 areas (6 edges)
-7. `Test generation (plan → generate → heal)` - bridges 3 areas (6 edges)
-8. `applyEasyDeductionUpdate()` - bridges 3 areas (5 edges)
-9. `SCENARIOS` - bridges 2 areas (18 edges)
+6. `toEasyInputs()` - bridges 3 areas (6 edges)
+7. `createNextTpCompany()` - bridges 3 areas (5 edges)
+8. `Browser Automation with playwright-cli` - bridges 2 areas (17 edges)
+9. `render()` - bridges 2 areas (12 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]

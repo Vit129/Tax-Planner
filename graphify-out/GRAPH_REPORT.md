@@ -1,16 +1,16 @@
 # Graph Report - delivery-workflow-completion  (2026-10-31)
 
 ## Corpus Check
-- 251 files · ~179,671 words
+- 252 files · ~179,777 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2694 nodes · 3075 edges · 221 communities (188 shown, 33 thin omitted)
+- 2704 nodes · 3084 edges · 220 communities (187 shown, 33 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `260c8a1e`
+- Built from commit: `e6af78d4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,16 +31,16 @@ A high-degree node isn't always architecturally central - a widely-used
 utility/config file can rack up more edges than a real coupler while only
 ever touching one area. This ranks by how many DIFFERENT communities a
 node's neighbors span, not by raw edge count.
-1. `calculateTaxPlan()` - bridges 5 areas (14 edges)
+1. `calculateTaxPlan()` - bridges 4 areas (14 edges)
 2. `STRINGS` - bridges 4 areas (11 edges)
 3. `f()` - bridges 4 areas (8 edges)
-4. `toEasyPlan()` - bridges 4 areas (8 edges)
+4. `toEasyPlan()` - bridges 3 areas (8 edges)
 5. `fromCoreCompany()` - bridges 3 areas (6 edges)
-6. `createEasySimulatorRecalculate()` - bridges 3 areas (6 edges)
-7. `Test generation (plan → generate → heal)` - bridges 3 areas (6 edges)
-8. `applyEasyDeductionUpdate()` - bridges 3 areas (5 edges)
-9. `SCENARIOS` - bridges 2 areas (18 edges)
-10. `render()` - bridges 2 areas (12 edges)
+6. `toEasyInputs()` - bridges 3 areas (6 edges)
+7. `createNextTpCompany()` - bridges 3 areas (5 edges)
+8. `Browser Automation with playwright-cli` - bridges 2 areas (17 edges)
+9. `render()` - bridges 2 areas (12 edges)
+10. `search()` - bridges 2 areas (10 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]
@@ -61,7 +61,7 @@ node's neighbors span, not by raw edge count.
 - **Zero hardcoded literals contract (strings, colors, typography) enforced by guard** — architecture_architecture_guard, architecture_strings_dictionary, design_color_tokens, design_typography_tokens [EXTRACTED 0.90]
 - **@vit129/thai-tax-core public calculation API** — docs_design_mip_tax_core_plan_calculate_tax, docs_design_mip_tax_core_plan_calculate_social_security, docs_design_mip_tax_core_plan_calculate_deductions, docs_design_mip_tax_core_plan_calculate_rmf_drop_advice, docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt [EXTRACTED 0.90]
 
-## Communities (221 total, 33 thin omitted)
+## Communities (220 total, 33 thin omitted)
 
 ### Community 0 - "tax-planner-mockup.html"
 Cohesion: 0.02
@@ -83,12 +83,12 @@ Cohesion: 0.11
 Nodes (24): Tax-Planner Agent Instructions, Automated Architecture Guard (tests/architectureGuard.test.js), Dependency Direction ui -> logic -> config, Centralized Strings Dictionary (src/config/strings.js), Tax-Planner Architecture, @vit129/tax-ui package, @vit129/thai-tax-core package, Tax-Planner Guidelines (CLAUDE.md) (+16 more)
 
 ### Community 4 - "easyTaxAdapter.js"
-Cohesion: 0.17
-Nodes (26): estimateCompanyWithholding(), getCompanyAnnualSalary(), getCompanyBaseSalaryAtMonth(), getCompanyBreakdown(), getCompanyExtraIncome(), getCompanyFixedBonus(), getCompanyLastSalary(), getCompanyMonthlySalaries() (+18 more)
+Cohesion: 0.18
+Nodes (25): estimateCompanyWithholding(), getCompanyAnnualSalary(), getCompanyBaseSalaryAtMonth(), getCompanyBreakdown(), getCompanyExtraIncome(), getCompanyFixedBonus(), getCompanyLastSalary(), getCompanyMonthlySalaries() (+17 more)
 
 ### Community 5 - "scripts"
 Cohesion: 0.04
-Nodes (44): Component Design, Critical — Eliminating Waterfalls, Cross-Platform Standards, Folder Structure, High — Bundle Size, Hooks, Medium — Re-render Optimization, Naming (+36 more)
+Nodes (45): Component Design, Critical — Eliminating Waterfalls, Cross-Platform Standards, Folder Structure, High — Bundle Size, Hooks, Medium — Re-render Optimization, Naming (+37 more)
 
 ### Community 6 - "render"
 Cohesion: 0.22
@@ -112,11 +112,11 @@ Nodes (24): amount(), summarizeOtherIncome(), VALID_TYPES, [BE-UT] legacy income
 
 ### Community 21 - "TaxPlannerPage"
 Cohesion: 0.06
-Nodes (26): LEGACY_V2_SAMPLE_FIXTURE, SCENARIOS, บริษัทเดียว · ฐาน 10% · ไม่ปรับเงินเดือน · Fixed โบนัส 1 ด. · PVD 3% · ไม่มีประกัน, บริษัทเดียว · ฐาน 15% · ปรับเงินเดือน 1 ครั้ง (ผ่านโปร ด.4) · Var โบนัส 1.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับเงินเดือน 2 ครั้ง (ด.4 + ด.10) · Fixed + Var 2 ด. · PVD 2% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับ 1 ครั้ง · Fixed 2 ด. · PVD 10% · ประกันเต็ม Max (100k), บริษัทเดียว · ฐาน 25% · ไม่ปรับเงินเดือน · Perf โบนัสปลายปี 2.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 25% · ปรับ 1 ครั้ง · Fixed 1 ด. + Perf 2 ด. · PVD 10% · ประกันเต็ม Max + บำนาญ (+18 more)
+Nodes (24): SCENARIOS, บริษัทเดียว · ฐาน 10% · ไม่ปรับเงินเดือน · Fixed โบนัส 1 ด. · PVD 3% · ไม่มีประกัน, บริษัทเดียว · ฐาน 15% · ปรับเงินเดือน 1 ครั้ง (ผ่านโปร ด.4) · Var โบนัส 1.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับเงินเดือน 2 ครั้ง (ด.4 + ด.10) · Fixed + Var 2 ด. · PVD 2% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับ 1 ครั้ง · Fixed 2 ด. · PVD 10% · ประกันเต็ม Max (100k), บริษัทเดียว · ฐาน 25% · ไม่ปรับเงินเดือน · Perf โบนัสปลายปี 2.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 25% · ปรับ 1 ครั้ง · Fixed 1 ด. + Perf 2 ด. · PVD 10% · ประกันเต็ม Max + บำนาญ, บริษัทเดียว · ฐาน 30% · ปรับ 2 ครั้ง · Hybrid โบนัส 3 ด. · PVD 15% · ประกันเต็ม Max ทุกตัว (+16 more)
 
 ### Community 22 - "easyTaxAdapter.test.js"
-Cohesion: 0.12
-Nodes (20): buildAiChatUrl(), buildEasyAiPrompt(), createEasySimulatorRecalculate(), toEasyDeductions(), toEasyInputs(), toEasyPlan(), generateAiRmfPrompt(), EasyTaxApp() (+12 more)
+Cohesion: 0.13
+Nodes (16): fromEasyDeductions(), creates next company and builds AI prompt and URLs accurately, each field changes the tax and reverting restores it exactly, easyTaxAdapter — Display, Round-Trip, Edit, and Legacy V2 Compatibility, easyTaxAdapter — pension insurance, NSF (gpf), retirement pool and tax waterfall, keeps the What-If simulator isolated from basePlan taxPayable and settlement, loads legacy V2 localStorage data blobs without error, maps Tax-Planner gpf to the shared nsf field and back (+8 more)
 
 ### Community 23 - "🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix"
 Cohesion: 0.29
@@ -135,8 +135,8 @@ Cohesion: 0.08
 Nodes (48): claude_home(), home(), memory(), memory_dirs(), plans(), project(), Path, Where AODD keeps its files. Standard library only; every variable is optional. (+40 more)
 
 ### Community 32 - "incomeTaxMethods.test.js"
-Cohesion: 0.22
-Nodes (8): compareIncomeTaxMethods(), [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
+Cohesion: 0.25
+Nodes (7): [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
 
 ### Community 33 - "Q: Tax planner initial flow state default summary versus wizard and condition when no data"
 Cohesion: 0.40
@@ -191,8 +191,8 @@ Cohesion: 0.07
 Nodes (28): 10. Dense Information Display, 11. Trust & Stability (Blues), 12. Growth & Success (Greens), 13. Caution & Urgency (Reds/Oranges), 14. Sans-Serif + Monospace Combination, 15. Clear Hierarchy, 16. Readability Over Personality, 17. Consistent Font Weights (+20 more)
 
 ### Community 47 - "Browser Automation with playwright-cli"
-Cohesion: 0.07
-Nodes (27): Attaching screenshots and videos to pull requests, Browser Automation with playwright-cli, Browser Sessions, Commands, Core, DevTools, Example: Debugging with DevTools, Example: Form submission (+19 more)
+Cohesion: 0.12
+Nodes (16): Attaching screenshots and videos to pull requests, Browser Automation with playwright-cli, Browser Sessions, Example: Debugging with DevTools, Example: Form submission, Example: Interactive session, Example: Multi-tab workflow, Installation (+8 more)
 
 ### Community 48 - "Postman → Playwright Migration (AI-Driven)"
 Cohesion: 0.07
@@ -228,7 +228,7 @@ Nodes (13): DesignSystemGenerator, _filter_anti_patterns_for_mode(), Drop "avoid
 
 ### Community 56 - "taxLogic.js"
 Cohesion: 0.16
-Nodes (17): BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, TAX_BRACKETS, fromEasyDeductions(), calculateProgressiveTax(), calculateTaxPlan() (+9 more)
+Nodes (16): BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, TAX_BRACKETS, compareIncomeTaxMethods(), calculateProgressiveTax(), calculateTaxPlan() (+8 more)
 
 ### Community 57 - "Web Frameworks"
 Cohesion: 0.10
@@ -303,8 +303,8 @@ Cohesion: 0.13
 Nodes (14): Android (Kotlin / Jetpack Compose), Architecture, Checklist — All Platforms, Environment Config (see `env-config-standards.md`), Error Handling (see `error-handling-standards.md`), Flutter, Frontend Code Review, iOS (Swift / SwiftUI) (+6 more)
 
 ### Community 75 - "Browser Session Management"
-Cohesion: 0.13
-Nodes (15): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, A/B Testing Sessions, Best Practices, Browser Session Commands, Browser Session Configuration, Browser Session Isolation Properties (+7 more)
+Cohesion: 0.10
+Nodes (20): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, A/B Testing Sessions, Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser (+12 more)
 
 ### Community 76 - "1. Global Standards & Tooling Facts"
 Cohesion: 0.14
@@ -411,12 +411,12 @@ Cohesion: 0.17
 Nodes (11): Caching Strategy, Core Mental Model, Data Fetching, Folder Structure (Production), Middleware, Next.js 15 — App Router & Server Components, React 19 Hooks in Next.js, Route Handlers (API Routes) (+3 more)
 
 ### Community 102 - "SKILL.md"
-Cohesion: 0.21
+Cohesion: 0.19
 Nodes (4): Examples, Inspecting Element Attributes, Debugging Playwright Tests, Running Playwright Tests
 
 ### Community 103 - "Test generation (plan → generate → heal)"
-Cohesion: 0.17
-Nodes (12): 0. How generation works, 2.1 Inputs, 2.2 Generate one scenario, 2.3 Generate multiple scenarios, 2.4 Run generated tests, 2. Generate, Add assertions manually, Building a test file (+4 more)
+Cohesion: 0.09
+Nodes (23): 0. How generation works, 1.1 Prerequisite: workspace, 1.2 Prerequisite: seed test, 1.3 Explore the app, 1.4 Write the spec file, 1. Planning, 2.1 Inputs, 2.2 Generate one scenario (+15 more)
 
 ### Community 104 - "Playwright Recorder Analyzer"
 Cohesion: 0.17
@@ -523,8 +523,8 @@ Cohesion: 0.20
 Nodes (9): Anti-Pattern Check, By Industry File, Cross-Industry Pattern, Industry Rules (161 Total), Quick Lookup, Rule Structure, Sectors, Single Industry (+1 more)
 
 ### Community 130 - "otherIncomeIntegration.test.js"
-Cohesion: 0.20
-Nodes (8): [Alternative] counts final-tax income for RMF but not annual taxable income, [BE-IT] other income in tax plan and simulator, [BE-IT] separate retirement income bases, [Edge] applies higher method 2 at the threshold after exemption, [Edge] does not use non-employment income to increase PVD cap, [Success] applies actual expenses before donation and sums withholding, [Success] credits eligible dividends after computing tax, [Success] keeps income and method 2 in the simulator
+Cohesion: 0.15
+Nodes (17): AI_CHAT_URL_PREFIX, buildAiChatUrl(), buildEasyAiPrompt(), createEasySimulatorRecalculate(), toEasyDeductions(), toEasyInputs(), toEasyPlan(), generateAiRmfPrompt() (+9 more)
 
 ### Community 131 - "AODD: the operating contract"
 Cohesion: 0.22
@@ -695,8 +695,8 @@ Cohesion: 0.33
 Nodes (5): @Observable (macOS 14+ / Swift 5.9) — prefer this, @Observable vs ObservableObject, ObservableObject (macOS 11–13 compat), SwiftUI State Management, Wrapper Quick-Pick
 
 ### Community 173 - "3. Heal"
-Cohesion: 0.33
-Nodes (6): 3.1 Find failing tests, 3.2 Debug one failure, 3.3 Apply the fix, 3.4 Reconcile with the spec, 3.5 Iteration and giving up, 3. Heal
+Cohesion: 0.18
+Nodes (11): Commands, Core, DevTools, Keyboard, Mouse, Navigation, Network, Save as (+3 more)
 
 ### Community 174 - "Project Blueprint: Structure Standard"
 Cohesion: 0.33
@@ -755,12 +755,8 @@ Cohesion: 0.40
 Nodes (5): Attaching Screenshots and Videos to Pull Requests, From a local session, From CI, Limits, When to attach
 
 ### Community 188 - "Attaching to a Running Browser"
-Cohesion: 0.40
-Nodes (5): Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser, Detach
-
-### Community 189 - "1. Planning"
-Cohesion: 0.40
-Nodes (5): 1.1 Prerequisite: workspace, 1.2 Prerequisite: seed test, 1.3 Explore the app, 1.4 Write the spec file, 1. Planning
+Cohesion: 0.22
+Nodes (8): jobs, check, name, on, pull_request, push, permissions, contents
 
 ### Community 190 - "memory-write-scan.py"
 Cohesion: 0.83
@@ -799,7 +795,7 @@ Cohesion: 0.83
 Nodes (3): _check_file(), main(), _read_rows()
 
 ## Knowledge Gaps
-- **1674 isolated node(s):** `changelog`, `git`, `#sampleBar`, `#startOwn`, `#stickyBar` (+1669 more)
+- **1680 isolated node(s):** `name`, `pull_request`, `push`, `contents`, `check` (+1675 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 - **4 possibly unreachable function(s):** `__dirname`, `__dirname`, `__dirname`, `__filename`
@@ -815,7 +811,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `DesignSystemGenerator` connect `.generate` to `design_system.py`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `Where AODD keeps its files. Standard library only; every variable is optional.`, `All memory roots: AODD_MEMORY may be an os.pathsep-separated list; default one r`, `Short session key for audit filenames: disambiguates Antigravity transcript.json` to the rest of the system?**
-  _1763 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1769 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `tax-planner-mockup.html` be split into smaller, more focused modules?**
   _Cohesion score 0.02127659574468085 - nodes in this community are weakly interconnected._
 - **Should `index.css` be split into smaller, more focused modules?**
