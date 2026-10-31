@@ -10,10 +10,11 @@
   ],
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
+    "release:check": "npm test && npm run build",
     "test:watch": "vitest",
     "test:scenarios": "playwright test",
     "test:all": "npm test && npm run test:scenarios",

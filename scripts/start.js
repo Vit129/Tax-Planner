@@ -44,8 +44,7 @@ async function runPatchRelease() {
   }
 
   console.log('\n🧪 Running tests and production build before release...\n');
-  await runCommand('npm', ['test']);
-  await runCommand('npm', ['run', 'build']);
+  await runCommand('npm', ['run', 'release:check']);
   const sharedCommit = await getSharedPackagesCommit();
 
   // Refresh refs before selecting a version and never release a stale local main.
