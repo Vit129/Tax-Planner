@@ -5,12 +5,12 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2704 nodes · 3084 edges · 220 communities (187 shown, 33 thin omitted)
+- 2704 nodes · 3079 edges · 222 communities (189 shown, 33 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e6af78d4`
+- Built from commit: `ea3637c9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,9 +38,9 @@ node's neighbors span, not by raw edge count.
 5. `fromCoreCompany()` - bridges 3 areas (6 edges)
 6. `toEasyInputs()` - bridges 3 areas (6 edges)
 7. `createNextTpCompany()` - bridges 3 areas (5 edges)
-8. `Browser Automation with playwright-cli` - bridges 2 areas (17 edges)
-9. `render()` - bridges 2 areas (12 edges)
-10. `search()` - bridges 2 areas (10 edges)
+8. `render()` - bridges 2 areas (12 edges)
+9. `search()` - bridges 2 areas (10 edges)
+10. `Browser Session Management` - bridges 2 areas (10 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]
@@ -61,7 +61,7 @@ node's neighbors span, not by raw edge count.
 - **Zero hardcoded literals contract (strings, colors, typography) enforced by guard** — architecture_architecture_guard, architecture_strings_dictionary, design_color_tokens, design_typography_tokens [EXTRACTED 0.90]
 - **@vit129/thai-tax-core public calculation API** — docs_design_mip_tax_core_plan_calculate_tax, docs_design_mip_tax_core_plan_calculate_social_security, docs_design_mip_tax_core_plan_calculate_deductions, docs_design_mip_tax_core_plan_calculate_rmf_drop_advice, docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt [EXTRACTED 0.90]
 
-## Communities (220 total, 33 thin omitted)
+## Communities (222 total, 33 thin omitted)
 
 ### Community 0 - "tax-planner-mockup.html"
 Cohesion: 0.02
@@ -95,8 +95,8 @@ Cohesion: 0.22
 Nodes (18): all(), baseAt(), coCalc(), compute(), f(), floorOf(), generateAiPrompt(), k() (+10 more)
 
 ### Community 8 - "start.js"
-Cohesion: 0.14
-Nodes (24): compare(), needsReleaseCommit(), parts(), planPatchVersion(), __dirname, __filename, getPagesDeployInfo(), getSharedPackagesCommit() (+16 more)
+Cohesion: 0.32
+Nodes (13): __dirname, __filename, getPagesDeployInfo(), getSharedPackagesCommit(), main(), promptMessage(), readReleaseManifest(), REPO_ROOT (+5 more)
 
 ### Community 10 - "CO"
 Cohesion: 1.00
@@ -191,8 +191,8 @@ Cohesion: 0.07
 Nodes (28): 10. Dense Information Display, 11. Trust & Stability (Blues), 12. Growth & Success (Greens), 13. Caution & Urgency (Reds/Oranges), 14. Sans-Serif + Monospace Combination, 15. Clear Hierarchy, 16. Readability Over Personality, 17. Consistent Font Weights (+20 more)
 
 ### Community 47 - "Browser Automation with playwright-cli"
-Cohesion: 0.12
-Nodes (16): Attaching screenshots and videos to pull requests, Browser Automation with playwright-cli, Browser Sessions, Example: Debugging with DevTools, Example: Form submission, Example: Interactive session, Example: Multi-tab workflow, Installation (+8 more)
+Cohesion: 0.07
+Nodes (27): Attaching screenshots and videos to pull requests, Browser Automation with playwright-cli, Browser Sessions, Commands, Core, DevTools, Example: Debugging with DevTools, Example: Form submission (+19 more)
 
 ### Community 48 - "Postman → Playwright Migration (AI-Driven)"
 Cohesion: 0.07
@@ -263,8 +263,8 @@ Cohesion: 0.12
 Nodes (16): Anti-Rationalization Table, Consistency Contract, Frontend Development, ⚠️ Gotchas, Human-in-the-Loop Points, Inline Process, LLM-Friendly Code Comments, Mobile (+8 more)
 
 ### Community 65 - "Tracing"
-Cohesion: 0.12
-Nodes (16): 1. Start Tracing Before the Problem, 2. Clean Up Old Traces, Analyzing Performance, Basic Usage, Best Practices, Capturing Evidence, Debugging Failed Actions, Limitations (+8 more)
+Cohesion: 0.15
+Nodes (12): 1. Start Tracing Before the Problem, 2. Clean Up Old Traces, Analyzing Performance, Basic Usage, Best Practices, Capturing Evidence, Debugging Failed Actions, Limitations (+4 more)
 
 ### Community 66 - "HAR-Based Network Mocking"
 Cohesion: 0.12
@@ -303,8 +303,8 @@ Cohesion: 0.13
 Nodes (14): Android (Kotlin / Jetpack Compose), Architecture, Checklist — All Platforms, Environment Config (see `env-config-standards.md`), Error Handling (see `error-handling-standards.md`), Flutter, Frontend Code Review, iOS (Swift / SwiftUI) (+6 more)
 
 ### Community 75 - "Browser Session Management"
-Cohesion: 0.10
-Nodes (20): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, A/B Testing Sessions, Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser (+12 more)
+Cohesion: 0.12
+Nodes (16): A/B Testing Sessions, Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser, Browser Session Commands, Browser Session Configuration, Browser Session Isolation Properties (+8 more)
 
 ### Community 76 - "1. Global Standards & Tooling Facts"
 Cohesion: 0.14
@@ -411,7 +411,7 @@ Cohesion: 0.17
 Nodes (11): Caching Strategy, Core Mental Model, Data Fetching, Folder Structure (Production), Middleware, Next.js 15 — App Router & Server Components, React 19 Hooks in Next.js, Route Handlers (API Routes) (+3 more)
 
 ### Community 102 - "SKILL.md"
-Cohesion: 0.19
+Cohesion: 0.21
 Nodes (4): Examples, Inspecting Element Attributes, Debugging Playwright Tests, Running Playwright Tests
 
 ### Community 103 - "Test generation (plan → generate → heal)"
@@ -567,7 +567,7 @@ Cohesion: 0.22
 Nodes (8): Anti-Patterns, Load Right Reference, macOS SwiftUI Skill, Required Context, Self-Update (after every use), `swift test` gotchas (SPM app with binary frameworks), Trigger, When to Fall Back to AppKit
 
 ### Community 141 - "Advanced Mocking with run-code"
-Cohesion: 0.22
+Cohesion: 0.25
 Nodes (8): Advanced Mocking with run-code, CLI Route Commands, Conditional Response Based on Request, Delayed Response, Modify Real Response, Request Mocking, Simulate Network Failures, URL Patterns
 
 ### Community 142 - "Best Practices"
@@ -695,8 +695,8 @@ Cohesion: 0.33
 Nodes (5): @Observable (macOS 14+ / Swift 5.9) — prefer this, @Observable vs ObservableObject, ObservableObject (macOS 11–13 compat), SwiftUI State Management, Wrapper Quick-Pick
 
 ### Community 173 - "3. Heal"
-Cohesion: 0.18
-Nodes (11): Commands, Core, DevTools, Keyboard, Mouse, Navigation, Network, Save as (+3 more)
+Cohesion: 0.21
+Nodes (11): compare(), needsReleaseCommit(), parts(), planPatchVersion(), [BE-UT] patch release version planning, bumps the latest tag when it is newer than the manifest, bumps when manifest and latest tag match, commits when version or README changes are staged (+3 more)
 
 ### Community 174 - "Project Blueprint: Structure Standard"
 Cohesion: 0.33
@@ -758,6 +758,10 @@ Nodes (5): Attaching Screenshots and Videos to Pull Requests, From a local sessi
 Cohesion: 0.22
 Nodes (8): jobs, check, name, on, pull_request, push, permissions, contents
 
+### Community 189 - "Best Practices"
+Cohesion: 0.50
+Nodes (4): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, Best Practices
+
 ### Community 190 - "memory-write-scan.py"
 Cohesion: 0.83
 Nodes (3): is_memory_path(), main(), scan()
@@ -794,6 +798,10 @@ Nodes (3): Check it worked, Scheduled jobs (cron / launchd), Self-Update (after 
 Cohesion: 0.83
 Nodes (3): _check_file(), main(), _read_rows()
 
+### Community 221 - "Trace Output Files"
+Cohesion: 0.50
+Nodes (4): `resources/`, Trace Output Files, `trace-{timestamp}.network`, `trace-{timestamp}.trace`
+
 ## Knowledge Gaps
 - **1680 isolated node(s):** `name`, `pull_request`, `push`, `contents`, `check` (+1675 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -805,12 +813,12 @@ Nodes (3): _check_file(), main(), _read_rows()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `f()` connect `render` to `tax-planner-mockup.html`, `core.py`, `validate_data.py`, `.generate`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `_load_csv()` connect `core.py` to `render`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Why does `DesignSystemGenerator` connect `.generate` to `design_system.py`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `Where AODD keeps its files. Standard library only; every variable is optional.`, `All memory roots: AODD_MEMORY may be an os.pathsep-separated list; default one r`, `Short session key for audit filenames: disambiguates Antigravity transcript.json` to the rest of the system?**
+- **Why does `TaxPlannerPage` connect `TaxPlannerPage` to `EasyTaxApp.jsx`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **What connects `name`, `pull_request`, `push` to the rest of the system?**
   _1769 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `tax-planner-mockup.html` be split into smaller, more focused modules?**
   _Cohesion score 0.02127659574468085 - nodes in this community are weakly interconnected._

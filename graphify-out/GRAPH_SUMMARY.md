@@ -3,13 +3,13 @@ _Auto-generated from GRAPH_REPORT.md · do not edit manually_
 _Regen: `graphify update .`_
 
 ## Summary
-- 2704 nodes · 3084 edges · 220 communities (187 shown, 33 thin omitted)
+- 2704 nodes · 3079 edges · 222 communities (189 shown, 33 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 
 ## Graph Freshness
-- Built from commit: `e6af78d4`
+- Built from commit: `ea3637c9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -39,8 +39,8 @@ node's neighbors span, not by raw edge count.
 5. `fromCoreCompany()` - bridges 3 areas (6 edges)
 6. `toEasyInputs()` - bridges 3 areas (6 edges)
 7. `createNextTpCompany()` - bridges 3 areas (5 edges)
-8. `Browser Automation with playwright-cli` - bridges 2 areas (17 edges)
-9. `render()` - bridges 2 areas (12 edges)
+8. `render()` - bridges 2 areas (12 edges)
+9. `search()` - bridges 2 areas (10 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]
