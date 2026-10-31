@@ -100,6 +100,8 @@ npm run build
 npm run preview
 ```
 
+`npm run release:check` is the local pre-release gate: it runs `npm test` and `npm run build`. Pull request CI runs this same gate and checks out the sibling `My-Investment-Port` dependency required by the lockfile. The release helper calls this gate before preparing release metadata.
+
 `npm run release` (or option 7 in `npm run start`) is for a clean, synchronized `main` checkout. It runs tests and a production build, updates package, README, `release-manifest.json`, and `CHANGELOG.md`, commits and pushes the version tag, creates the matching GitHub Release, then deploys to GitHub Pages. If GitHub Release creation or Pages deployment fails after the tag is pushed, run `npm run release` again to resume that version; a failed tag push is also retried safely. If an error leaves a dirty working tree before the release commit, inspect and preserve intended edits, resolve the partial metadata changes manually, then retry; the script will not guess which files are safe to overwrite. For a pending older release after My Investment Port advances, create a clean worktree at the recorded shared commit and set `SHARED_PACKAGES_ROOT` to its `packages` directory before resuming. `npm run deploy:prod` (or option 3) deploys only a clean, synchronized `main` whose current version has both a matching tag and GitHub Release. Option 5 tests and builds before commit/push, then runs the same full release workflow.
 
 ### Release and deployment history
