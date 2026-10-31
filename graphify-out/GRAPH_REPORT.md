@@ -1,16 +1,16 @@
 # Graph Report - delivery-workflow-completion  (2026-10-31)
 
 ## Corpus Check
-- 252 files · ~179,777 words
+- 252 files · ~179,816 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2704 nodes · 3079 edges · 222 communities (189 shown, 33 thin omitted)
+- 2712 nodes · 3091 edges · 223 communities (190 shown, 33 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ea3637c9`
+- Built from commit: `0933acd1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,16 +31,16 @@ A high-degree node isn't always architecturally central - a widely-used
 utility/config file can rack up more edges than a real coupler while only
 ever touching one area. This ranks by how many DIFFERENT communities a
 node's neighbors span, not by raw edge count.
-1. `calculateTaxPlan()` - bridges 4 areas (14 edges)
+1. `calculateTaxPlan()` - bridges 5 areas (14 edges)
 2. `STRINGS` - bridges 4 areas (11 edges)
 3. `f()` - bridges 4 areas (8 edges)
-4. `toEasyPlan()` - bridges 3 areas (8 edges)
-5. `fromCoreCompany()` - bridges 3 areas (6 edges)
-6. `toEasyInputs()` - bridges 3 areas (6 edges)
-7. `createNextTpCompany()` - bridges 3 areas (5 edges)
-8. `render()` - bridges 2 areas (12 edges)
-9. `search()` - bridges 2 areas (10 edges)
-10. `Browser Session Management` - bridges 2 areas (10 edges)
+4. `toEasyPlan()` - bridges 4 areas (8 edges)
+5. `EasyTaxApp()` - bridges 3 areas (7 edges)
+6. `createEasySimulatorRecalculate()` - bridges 3 areas (6 edges)
+7. `Test generation (plan → generate → heal)` - bridges 3 areas (6 edges)
+8. `buildEasyAiPrompt()` - bridges 3 areas (5 edges)
+9. `render()` - bridges 2 areas (12 edges)
+10. `search()` - bridges 2 areas (10 edges)
 
 ## Surprising Connections (you probably didn't know these)
 - `Tax-Planner Guidelines (CLAUDE.md)` --semantically_similar_to--> `Tax-Planner Agent Instructions`  [INFERRED] [semantically similar]
@@ -61,7 +61,7 @@ node's neighbors span, not by raw edge count.
 - **Zero hardcoded literals contract (strings, colors, typography) enforced by guard** — architecture_architecture_guard, architecture_strings_dictionary, design_color_tokens, design_typography_tokens [EXTRACTED 0.90]
 - **@vit129/thai-tax-core public calculation API** — docs_design_mip_tax_core_plan_calculate_tax, docs_design_mip_tax_core_plan_calculate_social_security, docs_design_mip_tax_core_plan_calculate_deductions, docs_design_mip_tax_core_plan_calculate_rmf_drop_advice, docs_design_mip_tax_core_plan_build_ask_ai_rmf_prompt [EXTRACTED 0.90]
 
-## Communities (222 total, 33 thin omitted)
+## Communities (223 total, 33 thin omitted)
 
 ### Community 0 - "tax-planner-mockup.html"
 Cohesion: 0.02
@@ -82,9 +82,9 @@ Nodes (6): COLORS, STRINGS, TYPOGRAPHY, IncomeCategoryTabs(), OtherIncomeStep(),
 Cohesion: 0.11
 Nodes (24): Tax-Planner Agent Instructions, Automated Architecture Guard (tests/architectureGuard.test.js), Dependency Direction ui -> logic -> config, Centralized Strings Dictionary (src/config/strings.js), Tax-Planner Architecture, @vit129/tax-ui package, @vit129/thai-tax-core package, Tax-Planner Guidelines (CLAUDE.md) (+16 more)
 
-### Community 4 - "easyTaxAdapter.js"
-Cohesion: 0.18
-Nodes (25): estimateCompanyWithholding(), getCompanyAnnualSalary(), getCompanyBaseSalaryAtMonth(), getCompanyBreakdown(), getCompanyExtraIncome(), getCompanyFixedBonus(), getCompanyLastSalary(), getCompanyMonthlySalaries() (+17 more)
+### Community 4 - "companyLogic.test.js"
+Cohesion: 0.17
+Nodes (26): estimateCompanyWithholding(), getCompanyAnnualSalary(), getCompanyBaseSalaryAtMonth(), getCompanyBreakdown(), getCompanyExtraIncome(), getCompanyFixedBonus(), getCompanyLastSalary(), getCompanyMonthlySalaries() (+18 more)
 
 ### Community 5 - "scripts"
 Cohesion: 0.04
@@ -95,8 +95,8 @@ Cohesion: 0.22
 Nodes (18): all(), baseAt(), coCalc(), compute(), f(), floorOf(), generateAiPrompt(), k() (+10 more)
 
 ### Community 8 - "start.js"
-Cohesion: 0.32
-Nodes (13): __dirname, __filename, getPagesDeployInfo(), getSharedPackagesCommit(), main(), promptMessage(), readReleaseManifest(), REPO_ROOT (+5 more)
+Cohesion: 0.14
+Nodes (24): compare(), needsReleaseCommit(), parts(), planPatchVersion(), __dirname, __filename, getPagesDeployInfo(), getSharedPackagesCommit() (+16 more)
 
 ### Community 10 - "CO"
 Cohesion: 1.00
@@ -107,16 +107,16 @@ Cohesion: 0.67
 Nodes (3): @media (min-width: 900px), .grid, .results
 
 ### Community 17 - "otherIncome.test.js"
-Cohesion: 0.08
-Nodes (24): amount(), summarizeOtherIncome(), VALID_TYPES, [BE-UT] legacy income election migration, normalizes legacy interest and flags conflicting elections in both rows, preserves an unsupported prior exclusion for review without crashing, validates inconsistent legacy interest even without migration, [Alternative] excludes final-tax withholding from the annual settlement (+16 more)
+Cohesion: 0.11
+Nodes (17): [Alternative] excludes final-tax withholding from the annual settlement, [BE-UT] dividend credit and consistent treatment, [BE-UT] other income summary, [BE-UT] statutory expenses and legacy expense migration, [Edge] does not apply standard expenses to 40(3) annuity income, [Edge] rejects exclusion unless 40(4) is an eligible interest or Thai dividend source, [Edge] rejects expenses greater than gross income and expenses on 40(4), [Edge] rejects invalid dividend credit rates (+9 more)
 
 ### Community 21 - "TaxPlannerPage"
 Cohesion: 0.06
 Nodes (24): SCENARIOS, บริษัทเดียว · ฐาน 10% · ไม่ปรับเงินเดือน · Fixed โบนัส 1 ด. · PVD 3% · ไม่มีประกัน, บริษัทเดียว · ฐาน 15% · ปรับเงินเดือน 1 ครั้ง (ผ่านโปร ด.4) · Var โบนัส 1.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับเงินเดือน 2 ครั้ง (ด.4 + ด.10) · Fixed + Var 2 ด. · PVD 2% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับ 1 ครั้ง · Fixed 2 ด. · PVD 10% · ประกันเต็ม Max (100k), บริษัทเดียว · ฐาน 25% · ไม่ปรับเงินเดือน · Perf โบนัสปลายปี 2.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 25% · ปรับ 1 ครั้ง · Fixed 1 ด. + Perf 2 ด. · PVD 10% · ประกันเต็ม Max + บำนาญ, บริษัทเดียว · ฐาน 30% · ปรับ 2 ครั้ง · Hybrid โบนัส 3 ด. · PVD 15% · ประกันเต็ม Max ทุกตัว (+16 more)
 
 ### Community 22 - "easyTaxAdapter.test.js"
-Cohesion: 0.13
-Nodes (16): fromEasyDeductions(), creates next company and builds AI prompt and URLs accurately, each field changes the tax and reverting restores it exactly, easyTaxAdapter — Display, Round-Trip, Edit, and Legacy V2 Compatibility, easyTaxAdapter — pension insurance, NSF (gpf), retirement pool and tax waterfall, keeps the What-If simulator isolated from basePlan taxPayable and settlement, loads legacy V2 localStorage data blobs without error, maps Tax-Planner gpf to the shared nsf field and back (+8 more)
+Cohesion: 0.12
+Nodes (22): buildAiChatUrl(), createEasySimulatorRecalculate(), fromEasyDeductions(), toEasyDeductions(), toEasyInputs(), toEasyPlan(), EasyTaxApp(), creates next company and builds AI prompt and URLs accurately (+14 more)
 
 ### Community 23 - "🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix"
 Cohesion: 0.29
@@ -135,8 +135,8 @@ Cohesion: 0.08
 Nodes (48): claude_home(), home(), memory(), memory_dirs(), plans(), project(), Path, Where AODD keeps its files. Standard library only; every variable is optional. (+40 more)
 
 ### Community 32 - "incomeTaxMethods.test.js"
-Cohesion: 0.25
-Nodes (7): [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
+Cohesion: 0.22
+Nodes (8): compareIncomeTaxMethods(), [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
 
 ### Community 33 - "Q: Tax planner initial flow state default summary versus wizard and condition when no data"
 Cohesion: 0.40
@@ -227,8 +227,8 @@ Cohesion: 0.12
 Nodes (13): DesignSystemGenerator, _filter_anti_patterns_for_mode(), Drop "avoid dark mode" advice once dark mode is the resolved answer., Generates design system recommendations from aggregated searches., Load reasoning rules from CSV., Execute searches across multiple domains., Find matching reasoning rule for a category., Apply reasoning rules to search results. (+5 more)
 
 ### Community 56 - "taxLogic.js"
-Cohesion: 0.16
-Nodes (16): BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, TAX_BRACKETS, compareIncomeTaxMethods(), calculateProgressiveTax(), calculateTaxPlan() (+8 more)
+Cohesion: 0.11
+Nodes (24): BRACKET_RATES_PCT, DEDUCTION_RULES, EXTRA_DEDUCTION_OPTIONS, SAMPLE_PVD_FUNDS, SAMPLE_RMF_FUNDS, SCBRMS&P500, BGOLDRMF, KKP PGE RMF-H (+16 more)
 
 ### Community 57 - "Web Frameworks"
 Cohesion: 0.10
@@ -263,8 +263,8 @@ Cohesion: 0.12
 Nodes (16): Anti-Rationalization Table, Consistency Contract, Frontend Development, ⚠️ Gotchas, Human-in-the-Loop Points, Inline Process, LLM-Friendly Code Comments, Mobile (+8 more)
 
 ### Community 65 - "Tracing"
-Cohesion: 0.15
-Nodes (12): 1. Start Tracing Before the Problem, 2. Clean Up Old Traces, Analyzing Performance, Basic Usage, Best Practices, Capturing Evidence, Debugging Failed Actions, Limitations (+4 more)
+Cohesion: 0.12
+Nodes (16): 1. Start Tracing Before the Problem, 2. Clean Up Old Traces, Analyzing Performance, Basic Usage, Best Practices, Capturing Evidence, Debugging Failed Actions, Limitations (+8 more)
 
 ### Community 66 - "HAR-Based Network Mocking"
 Cohesion: 0.12
@@ -283,8 +283,8 @@ Cohesion: 0.12
 Nodes (15): AI-SDLC Progress Spec — Task Breakdown & Progress Tracking, Artifact locations, Contents, File behavior & master index, Incremental update rule — update in real time, never batch at the end, Lessons learnt, Mock strategy (QA, before writing mock/interceptor tasks), Progress file — required sections (+7 more)
 
 ### Community 70 - "App.jsx"
-Cohesion: 0.22
-Nodes (12): applyEasyDeductionUpdate(), createNextTpCompany(), fromCoreCompany(), hasTaxSummaryData(), migrateOtherIncome(), getTaxYearMetadata(), App(), cloneCompanies() (+4 more)
+Cohesion: 0.24
+Nodes (11): applyEasyDeductionUpdate(), createNextTpCompany(), fromCoreCompany(), hasTaxSummaryData(), getTaxYearMetadata(), App(), cloneCompanies(), createEmptyCompany() (+3 more)
 
 ### Community 71 - "Appium Testing (Android) — Platform Rules & Capabilities"
 Cohesion: 0.13
@@ -303,8 +303,8 @@ Cohesion: 0.13
 Nodes (14): Android (Kotlin / Jetpack Compose), Architecture, Checklist — All Platforms, Environment Config (see `env-config-standards.md`), Error Handling (see `error-handling-standards.md`), Flutter, Frontend Code Review, iOS (Swift / SwiftUI) (+6 more)
 
 ### Community 75 - "Browser Session Management"
-Cohesion: 0.12
-Nodes (16): A/B Testing Sessions, Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser, Browser Session Commands, Browser Session Configuration, Browser Session Isolation Properties (+8 more)
+Cohesion: 0.13
+Nodes (15): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, A/B Testing Sessions, Best Practices, Browser Session Commands, Browser Session Configuration, Browser Session Isolation Properties (+7 more)
 
 ### Community 76 - "1. Global Standards & Tooling Facts"
 Cohesion: 0.14
@@ -414,9 +414,9 @@ Nodes (11): Caching Strategy, Core Mental Model, Data Fetching, Folder Structure
 Cohesion: 0.21
 Nodes (4): Examples, Inspecting Element Attributes, Debugging Playwright Tests, Running Playwright Tests
 
-### Community 103 - "Test generation (plan → generate → heal)"
-Cohesion: 0.09
-Nodes (23): 0. How generation works, 1.1 Prerequisite: workspace, 1.2 Prerequisite: seed test, 1.3 Explore the app, 1.4 Write the spec file, 1. Planning, 2.1 Inputs, 2.2 Generate one scenario (+15 more)
+### Community 103 - "3. Heal"
+Cohesion: 0.17
+Nodes (12): 0. How generation works, 2.1 Inputs, 2.2 Generate one scenario, 2.3 Generate multiple scenarios, 2.4 Run generated tests, 2. Generate, Add assertions manually, Building a test file (+4 more)
 
 ### Community 104 - "Playwright Recorder Analyzer"
 Cohesion: 0.17
@@ -522,9 +522,9 @@ Nodes (9): Figma & UI Analysis, How it works, Output, Step 1: Check for Visual C
 Cohesion: 0.20
 Nodes (9): Anti-Pattern Check, By Industry File, Cross-Industry Pattern, Industry Rules (161 Total), Quick Lookup, Rule Structure, Sectors, Single Industry (+1 more)
 
-### Community 130 - "otherIncomeIntegration.test.js"
-Cohesion: 0.15
-Nodes (17): AI_CHAT_URL_PREFIX, buildAiChatUrl(), buildEasyAiPrompt(), createEasySimulatorRecalculate(), toEasyDeductions(), toEasyInputs(), toEasyPlan(), generateAiRmfPrompt() (+9 more)
+### Community 130 - "easyTaxAdapter.js"
+Cohesion: 0.20
+Nodes (8): [Alternative] counts final-tax income for RMF but not annual taxable income, [BE-IT] other income in tax plan and simulator, [BE-IT] separate retirement income bases, [Edge] applies higher method 2 at the threshold after exemption, [Edge] does not use non-employment income to increase PVD cap, [Success] applies actual expenses before donation and sums withholding, [Success] credits eligible dividends after computing tax, [Success] keeps income and method 2 in the simulator
 
 ### Community 131 - "AODD: the operating contract"
 Cohesion: 0.22
@@ -567,7 +567,7 @@ Cohesion: 0.22
 Nodes (8): Anti-Patterns, Load Right Reference, macOS SwiftUI Skill, Required Context, Self-Update (after every use), `swift test` gotchas (SPM app with binary frameworks), Trigger, When to Fall Back to AppKit
 
 ### Community 141 - "Advanced Mocking with run-code"
-Cohesion: 0.25
+Cohesion: 0.22
 Nodes (8): Advanced Mocking with run-code, CLI Route Commands, Conditional Response Based on Request, Delayed Response, Modify Real Response, Request Mocking, Simulate Network Failures, URL Patterns
 
 ### Community 142 - "Best Practices"
@@ -671,8 +671,8 @@ Cohesion: 0.29
 Nodes (6): Craft Flow, Step 1: Shape the Design, Step 2: Load References, Step 3: Build, Step 4: Visual Iteration, Step 5: Present
 
 ### Community 167 - "SAMPLE_RMF_FUNDS"
-Cohesion: 0.29
-Nodes (7): SAMPLE_RMF_FUNDS, SCBRMS&P500, BGOLDRMF, KKP PGE RMF-H, MEGAWORLD30RMF, B-INNOTECHRMF, UGISRMF
+Cohesion: 0.21
+Nodes (8): migrateOtherIncome(), amount(), summarizeOtherIncome(), VALID_TYPES, [BE-UT] legacy income election migration, normalizes legacy interest and flags conflicting elections in both rows, preserves an unsupported prior exclusion for review without crashing, validates inconsistent legacy interest even without migration
 
 ### Community 168 - "AI-SDLC — Dev/QA Workflow Spine"
 Cohesion: 0.33
@@ -694,9 +694,9 @@ Nodes (5): Best Practices, Design System, Integration, Responsiveness, Tailwind 
 Cohesion: 0.33
 Nodes (5): @Observable (macOS 14+ / Swift 5.9) — prefer this, @Observable vs ObservableObject, ObservableObject (macOS 11–13 compat), SwiftUI State Management, Wrapper Quick-Pick
 
-### Community 173 - "3. Heal"
-Cohesion: 0.21
-Nodes (11): compare(), needsReleaseCommit(), parts(), planPatchVersion(), [BE-UT] patch release version planning, bumps the latest tag when it is newer than the manifest, bumps when manifest and latest tag match, commits when version or README changes are staged (+3 more)
+### Community 173 - "Commands"
+Cohesion: 0.25
+Nodes (7): Before deleting a branch, Before pushing more commits to a PR branch, Check it worked, Creating branches and worktrees, Git safety, Rewriting history to change an identity, Self-Update (after every use)
 
 ### Community 174 - "Project Blueprint: Structure Standard"
 Cohesion: 0.33
@@ -754,13 +754,13 @@ Nodes (4): Drag and Drop, Generation 1: NSItemProvider (macOS 11+), Generation 2
 Cohesion: 0.40
 Nodes (5): Attaching Screenshots and Videos to Pull Requests, From a local session, From CI, Limits, When to attach
 
-### Community 188 - "Attaching to a Running Browser"
+### Community 188 - "check.yml"
 Cohesion: 0.22
 Nodes (8): jobs, check, name, on, pull_request, push, permissions, contents
 
-### Community 189 - "Best Practices"
-Cohesion: 0.50
-Nodes (4): 1. Name Browser Sessions Semantically, 2. Always Clean Up, 3. Delete Stale Browser Data, Best Practices
+### Community 189 - "3. Heal"
+Cohesion: 0.33
+Nodes (6): 3.1 Find failing tests, 3.2 Debug one failure, 3.3 Apply the fix, 3.4 Reconcile with the spec, 3.5 Iteration and giving up, 3. Heal
 
 ### Community 190 - "memory-write-scan.py"
 Cohesion: 0.83
@@ -798,12 +798,16 @@ Nodes (3): Check it worked, Scheduled jobs (cron / launchd), Self-Update (after 
 Cohesion: 0.83
 Nodes (3): _check_file(), main(), _read_rows()
 
-### Community 221 - "Trace Output Files"
-Cohesion: 0.50
-Nodes (4): `resources/`, Trace Output Files, `trace-{timestamp}.network`, `trace-{timestamp}.trace`
+### Community 221 - "Attaching to a Running Browser"
+Cohesion: 0.40
+Nodes (5): Attach by channel name, Attach via browser extension, Attach via CDP endpoint, Attaching to a Running Browser, Detach
+
+### Community 222 - "1. Planning"
+Cohesion: 0.40
+Nodes (5): 1.1 Prerequisite: workspace, 1.2 Prerequisite: seed test, 1.3 Explore the app, 1.4 Write the spec file, 1. Planning
 
 ## Knowledge Gaps
-- **1680 isolated node(s):** `name`, `pull_request`, `push`, `contents`, `check` (+1675 more)
+- **1686 isolated node(s):** `name`, `pull_request`, `push`, `contents`, `check` (+1681 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 - **4 possibly unreachable function(s):** `__dirname`, `__dirname`, `__dirname`, `__filename`
@@ -813,13 +817,13 @@ Nodes (4): `resources/`, Trace Output Files, `trace-{timestamp}.network`, `trace
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `f()` connect `render` to `tax-planner-mockup.html`, `core.py`, `validate_data.py`, `.generate`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `_load_csv()` connect `core.py` to `render`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **Why does `DesignSystemGenerator` connect `.generate` to `design_system.py`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `TaxPlannerPage` connect `TaxPlannerPage` to `EasyTaxApp.jsx`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `name`, `pull_request`, `push` to the rest of the system?**
-  _1769 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `Where AODD keeps its files. Standard library only; every variable is optional.`, `All memory roots: AODD_MEMORY may be an os.pathsep-separated list; default one r`, `Short session key for audit filenames: disambiguates Antigravity transcript.json` to the rest of the system?**
+  _1775 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `tax-planner-mockup.html` be split into smaller, more focused modules?**
   _Cohesion score 0.02127659574468085 - nodes in this community are weakly interconnected._
 - **Should `index.css` be split into smaller, more focused modules?**
