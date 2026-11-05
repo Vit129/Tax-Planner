@@ -1,0 +1,20 @@
+README.md
+  h_d82339d8725694 1
+package-lock.json
+  h_d82339d8725694 3,9
+package.json
+  h_d82339d8725694 4
+release-manifest.json
+  h_d82339d8725694 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "4e77e7c1cc7aa0d34d5a961ffc4455d5bdf83406",
+  "prompts": {},
+  "humans": {
+    "h_d82339d8725694": {
+      "author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
