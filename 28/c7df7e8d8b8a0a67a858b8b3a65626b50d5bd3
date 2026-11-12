@@ -1,0 +1,33 @@
+graphify-out/graph.json
+  s_674546c028d4ca::t_b4ba443387d7de 9426,11190,11606-11608,12427-12428,13494-13495,13625-13626,14866-14867,14911-14913,15357,15359,17450-17451,19726-19728,19793,19795-19797,19805,19812,19825,19832,20200,20202-20203,21124-21128,21502,21504-21505,21980-21981,27311,62422
+graphify-out/GRAPH_REPORT.md
+  s_2c52b290420bdb::t_6367b074f8b09f 77,109,117,129,133,141,673,697
+  s_674546c028d4ca::t_b4ba443387d7de 1,13
+graphify-out/GRAPH_SUMMARY.md
+  s_2c52b290420bdb::t_6367b074f8b09f 1
+  s_674546c028d4ca::t_b4ba443387d7de 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "28c7df7e8d8b8a0a67a858b8b3a65626b50d5bd3",
+  "prompts": {},
+  "sessions": {
+    "s_2c52b290420bdb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a450-6063-7733-b40b-65cbe93f873f",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    },
+    "s_674546c028d4ca": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1cd6f-5901-72a1-97c7-0472d85fc1ac",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
