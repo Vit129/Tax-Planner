@@ -1,4 +1,4 @@
-# Graph Report - delivery-workflow-completion  (2026-10-31)
+# Graph Report - Tax-Planner  (2026-11-12)
 
 ## Corpus Check
 - 252 files · ~179,816 words
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0933acd1`
+- Built from commit: `4e77e7c1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -74,7 +74,7 @@ Nodes (88): :root,
 input:focus-visible,
 select:focus-visible, .grid, .card (+80 more)
 
-### Community 2 - "EasyTaxApp.jsx"
+### Community 2 - "App.jsx"
 Cohesion: 0.42
 Nodes (6): COLORS, STRINGS, TYPOGRAPHY, IncomeCategoryTabs(), OtherIncomeStep(), OtherIncomeSummary()
 
@@ -106,7 +106,7 @@ Nodes (3): CO(), loadForm(), switchCo()
 Cohesion: 0.67
 Nodes (3): @media (min-width: 900px), .grid, .results
 
-### Community 17 - "otherIncome.test.js"
+### Community 17 - "@media (min-width: 900px)"
 Cohesion: 0.11
 Nodes (17): [Alternative] excludes final-tax withholding from the annual settlement, [BE-UT] dividend credit and consistent treatment, [BE-UT] other income summary, [BE-UT] statutory expenses and legacy expense migration, [Edge] does not apply standard expenses to 40(3) annuity income, [Edge] rejects exclusion unless 40(4) is an eligible interest or Thai dividend source, [Edge] rejects expenses greater than gross income and expenses on 40(4), [Edge] rejects invalid dividend credit rates (+9 more)
 
@@ -114,7 +114,7 @@ Nodes (17): [Alternative] excludes final-tax withholding from the annual settlem
 Cohesion: 0.06
 Nodes (24): SCENARIOS, บริษัทเดียว · ฐาน 10% · ไม่ปรับเงินเดือน · Fixed โบนัส 1 ด. · PVD 3% · ไม่มีประกัน, บริษัทเดียว · ฐาน 15% · ปรับเงินเดือน 1 ครั้ง (ผ่านโปร ด.4) · Var โบนัส 1.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับเงินเดือน 2 ครั้ง (ด.4 + ด.10) · Fixed + Var 2 ด. · PVD 2% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 20% · ปรับ 1 ครั้ง · Fixed 2 ด. · PVD 10% · ประกันเต็ม Max (100k), บริษัทเดียว · ฐาน 25% · ไม่ปรับเงินเดือน · Perf โบนัสปลายปี 2.5 ด. · PVD 5% · ประกันไม่เต็ม, บริษัทเดียว · ฐาน 25% · ปรับ 1 ครั้ง · Fixed 1 ด. + Perf 2 ด. · PVD 10% · ประกันเต็ม Max + บำนาญ, บริษัทเดียว · ฐาน 30% · ปรับ 2 ครั้ง · Hybrid โบนัส 3 ด. · PVD 15% · ประกันเต็ม Max ทุกตัว (+16 more)
 
-### Community 22 - "easyTaxAdapter.test.js"
+### Community 22 - "SCENARIOS"
 Cohesion: 0.12
 Nodes (22): buildAiChatUrl(), createEasySimulatorRecalculate(), fromEasyDeductions(), toEasyDeductions(), toEasyInputs(), toEasyPlan(), EasyTaxApp(), creates next company and builds AI prompt and URLs accurately (+14 more)
 
@@ -126,11 +126,11 @@ Nodes (6): 🧪 TaxLogicScenario — Comprehensive Tax & RMF Verification Matrix
 Cohesion: 0.33
 Nodes (5): compilerOptions, baseUrl, paths, @vit129/tax-ui, @vit129/thai-tax-core
 
-### Community 30 - "Changelog"
+### Community 30 - "EasyTaxApp.jsx"
 Cohesion: 0.10
 Nodes (19): [1.1.0] - 2026-10-24, [1.2.0] - 2026-10-29, [1.3.0] - 2026-10-29, [1.4.0] - 2026-10-29, [1.4.1] - 2026-10-30, [1.4.2] - 2026-10-30, [1.4.3] - 2026-10-30, Added (+11 more)
 
-### Community 31 - "_aodd_paths.py"
+### Community 31 - "otherIncome.test.js"
 Cohesion: 0.08
 Nodes (48): claude_home(), home(), memory(), memory_dirs(), plans(), project(), Path, Where AODD keeps its files. Standard library only; every variable is optional. (+40 more)
 
@@ -138,7 +138,7 @@ Nodes (48): claude_home(), home(), memory(), memory_dirs(), plans(), project(), 
 Cohesion: 0.22
 Nodes (8): compareIncomeTaxMethods(), [Alternative] selects progressive tax when it is higher, [BE-UT] annual tax method comparison, [Edge] excludes method 2 below the income threshold, [Edge] exempts method 2 up to and including 5000 baht, [Edge] includes method 2 exactly at the 120,000 threshold, [Edge] rejects invalid amounts, [Success] selects method 2 when it is higher and not exempt
 
-### Community 33 - "Q: Tax planner initial flow state default summary versus wizard and condition when no data"
+### Community 33 - "SAMPLE_RMF_FUNDS"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Tax planner initial flow state default summary versus wizard and condition when no data, Source Nodes
 
@@ -670,7 +670,7 @@ Nodes (6): 1. Core Web Vitals Targets, 2. Playwright Tracing & Profiling Pattern
 Cohesion: 0.29
 Nodes (6): Craft Flow, Step 1: Shape the Design, Step 2: Load References, Step 3: Build, Step 4: Visual Iteration, Step 5: Present
 
-### Community 167 - "SAMPLE_RMF_FUNDS"
+### Community 167 - "Commands"
 Cohesion: 0.21
 Nodes (8): migrateOtherIncome(), amount(), summarizeOtherIncome(), VALID_TYPES, [BE-UT] legacy income election migration, normalizes legacy interest and flags conflicting elections in both rows, preserves an unsupported prior exclusion for review without crashing, validates inconsistent legacy interest even without migration
 
@@ -694,7 +694,7 @@ Nodes (5): Best Practices, Design System, Integration, Responsiveness, Tailwind 
 Cohesion: 0.33
 Nodes (5): @Observable (macOS 14+ / Swift 5.9) — prefer this, @Observable vs ObservableObject, ObservableObject (macOS 11–13 compat), SwiftUI State Management, Wrapper Quick-Pick
 
-### Community 173 - "Commands"
+### Community 173 - "SAMPLE_RMF_FUNDS"
 Cohesion: 0.25
 Nodes (7): Before deleting a branch, Before pushing more commits to a PR branch, Check it worked, Creating branches and worktrees, Git safety, Rewriting history to change an identity, Self-Update (after every use)
 

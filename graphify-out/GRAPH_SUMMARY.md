@@ -1,4 +1,4 @@
-# Graph Summary — delivery-workflow-completion
+# Graph Summary — Tax-Planner
 _Auto-generated from GRAPH_REPORT.md · do not edit manually_
 _Regen: `graphify update .`_
 
@@ -9,7 +9,7 @@ _Regen: `graphify update .`_
 
 
 ## Graph Freshness
-- Built from commit: `0933acd1`
+- Built from commit: `4e77e7c1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

@@ -9423,9 +9423,7 @@
       "source_file": ".claude/rules/coding.md",
       "source_location": "L1",
       "frontmatter": {
-        "paths": [
-          "**/*.{swift,py,js,jsx,mjs,cjs,ts,tsx,go,rs,sh,c,h,m,java,kt,kts,cpp,cc,cxx,hpp,hh,cs,gd}"
-        ]
+        "paths": ""
       },
       "_origin": "ast",
       "id": "claude_rules_coding",
@@ -11189,7 +11187,7 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "agent-memory",
-        "description": "This skill should be used when the user asks to \"bootstrap agent memory\", \"setup memory\", \"\u0e2a\u0e23\u0e49\u0e32\u0e07 agent memory\", \"reset memory\", \"memory template\", \"initialize memory files\", \"create memory structure\", or needs guidance on the agent memory file structure, session flow, knowledge capture, or subagent delegation patterns. Non-coding tasks (research, analysis, writing) use this memory system alongside coding tasks.\n",
+        "description": ">",
         "version": "4.0.1"
       },
       "_origin": "ast",
@@ -11605,7 +11603,9 @@
       "frontmatter": {
         "name": "agent-ops",
         "version": "0.2.1",
-        "description": "AODD \"Agent Ops\" learning loop. Reads the audit reports, git history and skill usage and proposes team changes (add/merge/retire a skill or agent, fix a rule that keeps causing rework). Proposals only: the CEO approves every change. Also the on-demand usage check before building, keeping, comparing or pruning a skill/workflow/rule. Trigger: \"agent ops\", \"/agent-ops\", \"review the agent team\", \"is this worth it\", \"which skills are unused\", \"compare with X\", \"\u0e1b\u0e23\u0e31\u0e1a\u0e17\u0e35\u0e21\", \"\u0e04\u0e38\u0e49\u0e21\u0e21\u0e31\u0e49\u0e22\", \"\u0e43\u0e0a\u0e49\u0e08\u0e23\u0e34\u0e07\u0e21\u0e31\u0e49\u0e22\", monthly."
+        "description": ">",
+        "rework). Proposals only": "the CEO approves every change. Also the on-demand usage check before",
+        "Trigger": "agent ops\", \"/agent-ops\", \"review the agent team\", \"is this worth it\", \"which skills are unused\","
       },
       "_origin": "ast",
       "id": "claude_skills_agent_ops_skill",
@@ -12424,7 +12424,8 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "backend-dev",
-        "description": "Thai triggers: \"\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a API\", \"\u0e17\u0e33 backend\", \"\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a database\", \"\u0e17\u0e33 auth/login\", \"\u0e17\u0e33 Docker\". This skill should be used when the user asks to \"design an API\", \"set up authentication\", \"design the database schema\", \"build a backend service\", \"create a REST endpoint\", \"dockerize the app\", or needs guidance on API design, database schema design, authentication, or Docker \u2014 language-agnostic backend architecture, not language-specific implementation syntax.\n",
+        "description": ">",
+        "Thai triggers": "\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a API\", \"\u0e17\u0e33 backend\", \"\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a database\", \"\u0e17\u0e33 auth/login\", \"\u0e17\u0e33 Docker\".",
         "version": "1.0.0"
       },
       "_origin": "ast",
@@ -13490,7 +13491,8 @@
       "frontmatter": {
         "name": "chief-of-staff",
         "version": "0.1.1",
-        "description": "AODD orchestrator (\"Human as a judge\"). Takes ONE brief from the user (CEO), dispatches it to the right skills/subagents (team leads), checks results against the Definition of Done, and returns a single report for the CEO to decide on. Trigger: \"chief of staff\", \"/chief-of-staff\", \"\u0e2a\u0e31\u0e48\u0e07\u0e07\u0e32\u0e19\u0e17\u0e35\u0e21\", \"\u0e21\u0e2d\u0e1a\u0e2b\u0e21\u0e32\u0e22\u0e07\u0e32\u0e19\", \"orchestrate this\", \"\u0e17\u0e33\u0e43\u0e2b\u0e49\u0e08\u0e1a\u0e41\u0e25\u0e49\u0e27\u0e04\u0e48\u0e2d\u0e22\u0e21\u0e32\u0e23\u0e32\u0e22\u0e07\u0e32\u0e19\", multi-team requests (design + dev + QA, research + write-up)."
+        "description": ">",
+        "Trigger": "chief of staff\", \"/chief-of-staff\", \"\u0e2a\u0e31\u0e48\u0e07\u0e07\u0e32\u0e19\u0e17\u0e35\u0e21\", \"\u0e21\u0e2d\u0e1a\u0e2b\u0e21\u0e32\u0e22\u0e07\u0e32\u0e19\", \"orchestrate this\","
       },
       "_origin": "ast",
       "id": "claude_skills_chief_of_staff_skill",
@@ -13620,7 +13622,8 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "frontend-dev",
-        "description": "Thai triggers: \"\u0e17\u0e33\u0e2b\u0e19\u0e49\u0e32\u0e40\u0e27\u0e47\u0e1a\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 component\", \"\u0e17\u0e33 UI \u0e15\u0e32\u0e21 design\", \"\u0e17\u0e33\u0e41\u0e2d\u0e1b React/Flutter\". This skill should be used when the user asks to \"build a React app\", \"create a Flutter widget\", \"set up Tailwind\", \"configure Vite\", \"build Android Kotlin UI\", \"build iOS Swift UI\", \"write a component\", \"implement this design in code\", \"implement design\", \"set up Next.js\", \"use Server Components\", \"use React 19 hooks\", \"use useActionState\", \"use useOptimistic\", or needs frontend development guidance for web or mobile applications. Use this for IMPLEMENTATION (how to code it), not design decisions (what to build).\n",
+        "description": ">",
+        "Thai triggers": "\u0e17\u0e33\u0e2b\u0e19\u0e49\u0e32\u0e40\u0e27\u0e47\u0e1a\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 component\", \"\u0e17\u0e33 UI \u0e15\u0e32\u0e21 design\", \"\u0e17\u0e33\u0e41\u0e2d\u0e1b React/Flutter\".",
         "version": "1.0.1"
       },
       "_origin": "ast",
@@ -14860,7 +14863,8 @@
       "frontmatter": {
         "name": "housekeeping",
         "version": "0.1.0",
-        "description": "AODD housekeeper. Cleans build caches, merged worktrees, old chat history, session leftovers, and reviews memory consolidation \u2014 dry-run first, deletes only after approval. Trigger: \"housekeeping\", \"/housekeeping\", \"\u0e17\u0e33\u0e04\u0e27\u0e32\u0e21\u0e2a\u0e30\u0e2d\u0e32\u0e14\", \"\u0e40\u0e04\u0e25\u0e35\u0e22\u0e23\u0e4c\u0e1e\u0e37\u0e49\u0e19\u0e17\u0e35\u0e48\", \"disk \u0e40\u0e15\u0e47\u0e21\", \"clean up the workspace\"."
+        "description": ">",
+        "Trigger": "housekeeping\", \"/housekeeping\", \"\u0e17\u0e33\u0e04\u0e27\u0e32\u0e21\u0e2a\u0e30\u0e2d\u0e32\u0e14\", \"\u0e40\u0e04\u0e25\u0e35\u0e22\u0e23\u0e4c\u0e1e\u0e37\u0e49\u0e19\u0e17\u0e35\u0e48\", \"disk \u0e40\u0e15\u0e47\u0e21\", \"clean up the workspace\"."
       },
       "_origin": "ast",
       "id": "claude_skills_housekeeping_skill",
@@ -14904,7 +14908,9 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "macos-swiftui",
-        "description": "Thai triggers: \"\u0e17\u0e33\u0e41\u0e2d\u0e1b Mac\", \"SwiftUI \u0e1a\u0e19 macOS\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 test Swift\". Use when working with SwiftUI on macOS: NSHostingView, NSViewRepresentable, List onDrag, SwiftUI drag-drop, OutlineGroup, NavigationSplitView, @Observable, Transferable, XCTest unit/integration testing for macOS Swift packages and apps, or any macOS UI component integration with AppKit.\n",
+        "description": ">",
+        "Thai triggers": "\u0e17\u0e33\u0e41\u0e2d\u0e1b Mac\", \"SwiftUI \u0e1a\u0e19 macOS\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 test Swift\".",
+        "Use when working with SwiftUI on macOS": "NSHostingView, NSViewRepresentable, List onDrag,",
         "version": "1.2.2"
       },
       "_origin": "ast",
@@ -15348,9 +15354,9 @@
       "source_file": ".claude/skills/performance-testing/SKILL.md",
       "source_location": "L1",
       "frontmatter": {
-        "disable-model-invocation": true,
+        "disable-model-invocation": "true",
         "name": "performance-testing",
-        "description": "This skill should be used when the user asks to \"load test\", \"\u0e17\u0e33 load test\", \"stress test\", \"\u0e17\u0e33 stress test\", \"performance test\", \"\u0e17\u0e14\u0e2a\u0e2d\u0e1a performance\", \"k6\", \"write k6 script\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 k6 script\", \"test API under load\", \"\u0e17\u0e14\u0e2a\u0e2d\u0e1a API \u0e20\u0e32\u0e22\u0e43\u0e15\u0e49 load\", \"check response time\", \"\u0e40\u0e0a\u0e47\u0e04 response time\", \"find bottleneck\", \"\u0e2b\u0e32 bottleneck\", \"simulate concurrent users\", \"\u0e08\u0e33\u0e25\u0e2d\u0e07 concurrent users\", \"spike test\", \"soak test\", or needs to validate system performance before release.\n",
+        "description": ">",
         "version": "2.0.0"
       },
       "_origin": "ast",
@@ -17441,7 +17447,8 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "playwright-testing",
-        "description": "skill should used when user asks \"write Playwright tests\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 Playwright tests\", \"review test code\", \"review test\", \"run tests\", \"\u0e23\u0e31\u0e19 tests\", \"fix failing tests\", \"\u0e41\u0e01\u0e49 test \u0e17\u0e35\u0e48 fail\", \"heal test failures\", \"heal failures\", \"visual regression test\", \"screenshot comparison\", \"accessibility test\", \"axe-core\", \"WCAG\", \"component test\", \"test React component in browser\", \"\u0e17\u0e14\u0e2a\u0e2d\u0e1a React component\", \"check Playwright coding standards\", \"Playwright rules\", \"what are the Playwright rules\", \"convert Postman to Playwright\", \"postman to playwright\", \"\u0e41\u0e1b\u0e25\u0e07 Postman \u0e40\u0e1b\u0e47\u0e19 Playwright\", or needs full Playwright automation cycle: write code, review quality, execute tests, auto-heal failures.\n",
+        "description": ">",
+        "automation cycle": "write code, review quality, execute tests, auto-heal failures.",
         "version": "1.2.1"
       },
       "_origin": "ast",
@@ -19716,7 +19723,9 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "project-blueprint",
-        "description": "Thai triggers: \"\u0e27\u0e32\u0e07\u0e42\u0e04\u0e23\u0e07\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\", \"\u0e08\u0e31\u0e14\u0e23\u0e30\u0e40\u0e1a\u0e35\u0e22\u0e1a\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\", \"project structure\", \"blueprint\", \"dashboard architecture\". Use this skill when scaffolding, reviewing, or refactoring a project's structure. Role-based and stack-agnostic: UI, feature flow, pure logic, integration, config/tokens, types, data, tests; expressed by size (filename suffix, folders, or modules). Repos with their own enforced layout keep it.\n",
+        "description": ">",
+        "Thai triggers": "\u0e27\u0e32\u0e07\u0e42\u0e04\u0e23\u0e07\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\", \"\u0e08\u0e31\u0e14\u0e23\u0e30\u0e40\u0e1a\u0e35\u0e22\u0e1a\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\", \"project structure\", \"blueprint\", \"dashboard architecture\".",
+        "Role-based and stack-agnostic": "UI, feature flow, pure logic, integration, config/tokens, types, data, tests;",
         "version": "1.2.0"
       },
       "_origin": "ast",
@@ -19781,16 +19790,11 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "reverse-engineer-anything",
-        "tags": [
-          "security",
-          "research",
-          "coding"
-        ],
+        "tags": "[security, research, coding]",
         "description": "Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis.",
-        "metadata": {
-          "version": "37",
-          "tool_count": 170
-        }
+        "metadata": "",
+        "version": "37",
+        "tool_count": "170"
       },
       "_origin": "ast",
       "id": "claude_skills_reverse_engineer_anything_skill",
@@ -19798,14 +19802,14 @@
       "norm_label": "skill.md"
     },
     {
-      "label": "security",
+      "label": "[security",
       "file_type": "concept",
       "source_file": ".claude/skills/reverse-engineer-anything/SKILL.md",
       "source_location": "L1",
       "_origin": "ast",
       "id": "tag_security",
       "community": 36,
-      "norm_label": "security"
+      "norm_label": "[security"
     },
     {
       "label": "research",
@@ -19818,14 +19822,14 @@
       "norm_label": "research"
     },
     {
-      "label": "coding",
+      "label": "coding]",
       "file_type": "concept",
       "source_file": ".claude/skills/reverse-engineer-anything/SKILL.md",
       "source_location": "L1",
       "_origin": "ast",
       "id": "tag_coding",
       "community": 36,
-      "norm_label": "coding"
+      "norm_label": "coding]"
     },
     {
       "label": "REA",
@@ -20193,9 +20197,10 @@
       "source_file": ".claude/skills/robotframework-testing/SKILL.md",
       "source_location": "L1",
       "frontmatter": {
-        "disable-model-invocation": true,
+        "disable-model-invocation": "true",
         "name": "robotframework-testing",
-        "description": "This skill should be used when the user asks to \"write Robot Framework tests\", \"\u0e40\u0e02\u0e35\u0e22\u0e19 Robot Framework tests\", \"review mobile test code\", \"review mobile test\", \"run mobile tests\", \"\u0e23\u0e31\u0e19 mobile tests\", \"fix failing mobile tests\", \"\u0e41\u0e01\u0e49 mobile test \u0e17\u0e35\u0e48 fail\", \"heal mobile test failures\", \"use Browser Library\", \"use Playwright with Robot Framework\", \"RF 7 features\", \"secret variables\", \"typed keywords\", \"Flutter test\", \"test Flutter app\", \"Flutter Appium\", \"appium session capabilities\", \"uiautomator2\", \"xcuitest\", \"check Robot Framework standards\", \"review RF code\", \"what are the RF rules\", or needs the full Robot Framework + Appium automation cycle: write code, review quality, execute tests, and auto-heal failures.\n",
+        "description": ">",
+        "or needs the full Robot Framework + Appium automation cycle": "write code, review quality, execute tests, and auto-heal failures.",
         "version": "1.2.0"
       },
       "_origin": "ast",
@@ -21116,7 +21121,11 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "security",
-        "description": "Thai triggers: \"\u0e40\u0e0a\u0e47\u0e04\u0e04\u0e27\u0e32\u0e21\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\", \"\u0e0a\u0e48\u0e2d\u0e07\u0e42\u0e2b\u0e27\u0e48\", \"\u0e17\u0e33 auth \u0e43\u0e2b\u0e49\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\", \"\u0e2a\u0e41\u0e01\u0e19 secret\". Unified security rules for Dev + QA \u2014 all platforms (API, Web UI, Mobile). Dev: secure coding (OWASP prevention, input validation, auth patterns). QA: security test scenario design + automation patterns (Playwright, RF). Triggers: \"security\", \"OWASP\", \"auth test\", \"permission matrix\", \"injection\", \"secure coding\", \"security hardening\", \"security scenarios\", security concern flagged during architecture/QA-design, \"scan Docker image\", \"Trivy\", \"CodeQL\", \"secret detection\", \"Gitleaks\", \"SAST\", \"SCA\", \"security gate in pipeline\", \"shift-left security\".\n",
+        "description": ">",
+        "Thai triggers": "\u0e40\u0e0a\u0e47\u0e04\u0e04\u0e27\u0e32\u0e21\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\", \"\u0e0a\u0e48\u0e2d\u0e07\u0e42\u0e2b\u0e27\u0e48\", \"\u0e17\u0e33 auth \u0e43\u0e2b\u0e49\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\", \"\u0e2a\u0e41\u0e01\u0e19 secret\".",
+        "Dev": "secure coding (OWASP prevention, input validation, auth patterns).",
+        "QA": "security test scenario design + automation patterns (Playwright, RF).",
+        "Triggers": "security\", \"OWASP\", \"auth test\", \"permission matrix\", \"injection\",",
         "version": "2.2.1"
       },
       "_origin": "ast",
@@ -21490,9 +21499,10 @@
       "source_file": ".claude/skills/test-scenario/SKILL.md",
       "source_location": "L1",
       "frontmatter": {
-        "disable-model-invocation": true,
+        "disable-model-invocation": "true",
         "name": "test-scenario",
-        "description": "skill used when user asks \"design test scenarios\", \"\u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a test scenarios\", \"create test cases\", \"\u0e2a\u0e23\u0e49\u0e32\u0e07 test cases\", \"generate test data\", \"\u0e2a\u0e23\u0e49\u0e32\u0e07 test data\", \"export to CSV\", \"export CSV\", \"add test scenario\", \"\u0e40\u0e1e\u0e34\u0e48\u0e21 test scenario\", \"quick scenario\", \"\u0e2a\u0e23\u0e49\u0e32\u0e07 scenario \u0e40\u0e23\u0e47\u0e27\u0e46\", needs full test scenario design cycle: analyze \u2192 design \u2192 data \u2192 export.\n",
+        "description": ">",
+        "\"quick scenario\", \"\u0e2a\u0e23\u0e49\u0e32\u0e07 scenario \u0e40\u0e23\u0e47\u0e27\u0e46\", needs full test scenario design cycle": "",
         "version": "2.1.0"
       },
       "_origin": "ast",
@@ -21967,7 +21977,8 @@
       "source_location": "L1",
       "frontmatter": {
         "name": "uxui-designer",
-        "description": "Use when: design UI, \u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a UI, UX/UI, create design system, make it look better, polish UI, audit design, redesign a page, study a design reference/screenshot/URL, improve colors, fix typography, add animations, avoid generic design, recommend colors for industry, industry rules, compliance design rules, healthcare design, finance design, ecommerce rules, build landing page, define design tokens. Covers design decisions (what to build) AND implementation quality (how it looks/feels). Industry-validated patterns (8 sectors in references/industry-rules/) + pbakaus/impeccable anti-slop principles.\n",
+        "description": ">",
+        "Use when": "design UI, \u0e2d\u0e2d\u0e01\u0e41\u0e1a\u0e1a UI, UX/UI, create design system, make it look better, polish UI,",
         "credit": "See \"Credits\" section below for the full source list.",
         "version": "2.4.0"
       },
@@ -27297,10 +27308,7 @@
         "question": "Tax planner initial flow state default summary versus wizard and condition when no data",
         "contributor": "graphify",
         "outcome": "useful",
-        "source_nodes": [
-          "EasyTaxApp()",
-          "toEasyInputs()"
-        ]
+        "source_nodes": "[\"EasyTaxApp()\", \"toEasyInputs()\"]"
       },
       "_origin": "ast",
       "id": "graphify_out_memory_query_20261030_142237_tax_planner_initial_flow_state_default_summary_ver",
@@ -62411,5 +62419,5 @@
       "source_file": "docs/design/mip-tax-core-plan.md"
     }
   ],
-  "built_at_commit": "0933acd1aaa530ef10192f5fb29a11d3b8222c43"
+  "built_at_commit": "4e77e7c1cc7aa0d34d5a961ffc4455d5bdf83406"
 }
