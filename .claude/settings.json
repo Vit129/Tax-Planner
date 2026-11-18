@@ -38,15 +38,6 @@
         ]
       },
       {
-        "matcher": "Bash|Grep|Read|Glob",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/graphify-guard.py\"; [ -f \"$f\" ] || exit 0; CLAUDE_HOME=\"$CLAUDE_PROJECT_DIR/.claude\" exec python3 \"$f\" pre"
-          }
-        ]
-      },
-      {
         "matcher": "Write|Edit",
         "hooks": [
           {
@@ -67,15 +58,6 @@
         ]
       },
       {
-        "matcher": "Bash|mcp__graphify__.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/graphify-guard.py\"; [ -f \"$f\" ] || exit 0; CLAUDE_HOME=\"$CLAUDE_PROJECT_DIR/.claude\" exec python3 \"$f\" post"
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -86,15 +68,6 @@
       }
     ],
     "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/graphify-guard.py\"; [ -f \"$f\" ] || exit 0; CLAUDE_HOME=\"$CLAUDE_PROJECT_DIR/.claude\" exec python3 \"$f\" stop"
-          }
-        ]
-      },
       {
         "matcher": "*",
         "hooks": [

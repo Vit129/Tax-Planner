@@ -34,13 +34,8 @@ coverage
 test-results/
 playwright-report/
 
-# Graphify
-graphify-out/cache/
-graphify-out/.graphify_*
-graphify-out/manifest.json
-graphify-out/cost.json
-graphify-out/graph.html
-graphify-out/20*/
+# Code-index output (local only, never committed)
+graphify-out/
 
 
 # Local git worktrees (one per task, created by Kouen)
