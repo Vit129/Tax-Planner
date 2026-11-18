@@ -1,0 +1,21 @@
+.gitignore
+  s_57b54754110592::t_3658dffb3202f3 37-38
+AGENTS.md
+  s_57b54754110592::t_1e0ce1f517015c 10-16,95,114,181,259
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "304db1cf89a7a228216462e854d5e80c5c0adc01",
+  "prompts": {},
+  "sessions": {
+    "s_57b54754110592": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7860b657-e5ae-49bd-92e1-c3eb70cfb06d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
