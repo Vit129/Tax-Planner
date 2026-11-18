@@ -34,10 +34,9 @@ coverage
 test-results/
 playwright-report/
 
-# Code-index output (local only, never committed)
-graphify-out/
 
 
 # Local git worktrees (one per task, created by Kouen)
 .kouen-worktrees/
 __pycache__/
+.claude/worktrees/
