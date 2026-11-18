@@ -7,6 +7,13 @@
 - NEVER put DOM or UI dependencies inside `src/logic/`.
 - When adding or modifying calculation logic, ALWAYS run `npm test` to verify.
 
+## Code search
+
+- Use `project_search` first. One call returns text matches and code-graph hits together.
+- `rg` plus `Read` is the primary method. Read the file before you edit it.
+- If `project_search` reports a stale index, treat its graph hits as hints and confirm them with `rg` and `Read`.
+- Code-index output is local. Never commit it.
+
 ## Domain Rules (2569 / 2026)
 - Social Security (ม.33) ceiling is ฿17,500/mo (5% = ฿875/mo, ฿10,500/yr cap under Phase 1 law); never revert to legacy ฿750/฿9,000.
 
@@ -85,7 +92,7 @@ Routing table: search with Haiku, check with Sonnet, escalate to the advisor.
 | Work | 1. Do it | 2. Check it | 3. Too hard |
 |---|---|---|---|
 | Search, lookup, research (web, docs, papers, past sessions), file/log/transcript sweeps and summaries | **Haiku** subagent(s), in parallel when independent; returns facts + sources/paths, no dumps | **Sonnet**: reads the cited files/sources itself before anything is built on it | `advisor` agent (Fable/Opus) |
-| Code lookup (graphify `query_graph`, `get_neighbors`, `blast_radius`, `search_text`, or grep) | **Haiku** subagent returns file paths + edges | **Sonnet** reads in full every file it will edit or judge; never edits from a Haiku summary | `advisor` |
+| Code lookup (`project_search`, or `rg`) | **Haiku** subagent returns file paths + edges | **Sonnet** reads in full every file it will edit or judge; never edits from a Haiku summary | `advisor` |
 | Run build / test / dev server / deploy already approved, verify a page or endpoint | **Haiku**, reports pass/fail + output excerpt | **Sonnet** re-checks the excerpt against the brief | n/a |
 | Write or change code, debug, plan, design, review a diff | **Sonnet** (the main session when it runs Sonnet, else a Sonnet subagent) | main session reviews every diff | `advisor` when two attempts failed, the choice is hard to reverse, or the trade-off is unclear |
 
@@ -104,7 +111,7 @@ Haiku (the cheap model) does the git and ops mechanics end to end:
 
 - `git fetch` / status / log / diff freely; always `git fetch` before reporting ahead/behind or "pushed".
 - Choose what to commit: read status + diff, stage only the files that belong to the task, by path (never `git add -A`); a file whose owner is unclear (another session's edit) → ask the big model.
-- Resolve merge conflicts. If the conflict needs understanding the code's intent, send the big model a short summary naming the files and hunks, and let it decide. Graphify (query / neighbors / blast_radius), when installed, guides the lookup.
+- Resolve merge conflicts. If the conflict needs understanding the code's intent, send the big model a short summary naming the files and hunks, and let it decide. `project_search`, when available, guides the lookup.
 - Rewrite history only on its own unmerged branch (rebase, squash, amend; push with `--force-with-lease` to that branch only), never on `main`/`master` or a merged branch.
 - Commit, push the branch, open the PR, post-merge cleanup (delete a branch only after the PR state is MERGED), run sync/install/backup scripts, status checks, summaries.
 - After the CEO approves in words ("merge", "deploy"): merge the PR, run the deploy, write to production data. Never before that approval.
@@ -171,7 +178,7 @@ the unit level.
 | **Requirement**: a new or changed capability, a rule users see, a new integration | Full | Phase 2 Dev subagent, Phase 4 | Phase 2 QA subagent (NFRs), Phase 3 scenarios RED, Phase 5 traceability + sign-off | Gates 1-3 | `PRODUCT.md`, `ARCHITECTURE.md`, `CONTEXT.md` (+ `DESIGN.md` with UI) |
 | Unclear which | Interview | Phase 1 resolves the kind, then the path above | | — | — |
 
-**Look before you pick.** Size is not known from the request; it comes from the code. Before choosing, check: the blast radius (graphify `blast_radius`/`affected`, or grep the token, component or function), how many screens or callers it reaches, and whether this was already "fixed" before (git log, past sessions). Then weigh it:
+**Look before you pick.** Size is not known from the request; it comes from the code. Before choosing, check: the blast radius (`project_search`, or grep the token, component or function), how many screens or callers it reaches, and whether this was already "fixed" before (git log, past sessions). Then weigh it:
 - one place, first attempt → the path as it is;
 - wide reach (a color token used on 30 screens, a shared helper with many callers) → list every affected place in a short plan; QA checks each one (a regression list, not a spot check), even on the Logic or UX/UI path;
 - already failed once, or many small symptoms on one screen (clipping, wrapping, spacing) → stop patching symptom by symptom: Phase 1 lists all the symptoms first (QA turns each into a check that fails now), find the shared cause, then fix and re-run every check together (UI: `rules/gui-fixes.md`, 2 rounds then options).
@@ -249,7 +256,7 @@ No mechanical hook enforces these — treat "the user hasn't objected" as differ
   contract QA automation depends on existing, not something to rediscover per task. Full
   dev→QA handoff conventions (testid map, test-env requirements, schema consistency,
   DB strategy) → `skills/ai-sdlc/references/dev-qa-handoff.md`.
-- Graph-before-edit (if graphify is installed) and surgical changes (no drive-by refactors) apply in every phase.
+- Search-before-edit (`project_search`, when available) and surgical changes (no drive-by refactors) apply in every phase.
 - **Skill visibility + Self-Update, every phase:** name every skill invoked in the response text — never call one silently. Every
   skill learns the same way: when a phase hit a correction, a gotcha, or a
   wrong/missing step in the invoked skill, and the fix was verified, patch that skill's
