@@ -1,0 +1,19 @@
+.github/workflows/check.yml
+  s_5d16c3b5fbfeaa::t_8b42f69eaa3a20 18,21,23-24,32-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "fc206865f9cb9570d01a2280dbb3c0253c021e87",
+  "prompts": {},
+  "sessions": {
+    "s_5d16c3b5fbfeaa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1f6bd-c53e-7cf1-b178-6731f47033a2",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
