@@ -15,12 +15,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: Tax-Planner
+          persist-credentials: false
       - name: Require read access to shared packages
         env:
-          MIP_READ_TOKEN: ${{ secrets.MIP_READ_TOKEN }}
+          MIP_CI_DEPLOY_KEY: ${{ secrets.MIP_CI_DEPLOY_KEY }}
         run: |
-          if [ -z "$MIP_READ_TOKEN" ]; then
-            echo "MIP_READ_TOKEN is required to check out Vit129/My-Investment-Port (Contents: read)." >&2
+          if [ -z "$MIP_CI_DEPLOY_KEY" ]; then
+            echo "MIP_CI_DEPLOY_KEY is required to check out Vit129/My-Investment-Port." >&2
             exit 1
           fi
       - uses: actions/checkout@v4
@@ -28,7 +29,8 @@ jobs:
           repository: Vit129/My-Investment-Port
           ref: main
           path: My-Investment-Port
-          token: ${{ secrets.MIP_READ_TOKEN }}
+          ssh-key: ${{ secrets.MIP_CI_DEPLOY_KEY }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
