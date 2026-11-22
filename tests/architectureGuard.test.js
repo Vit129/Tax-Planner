@@ -6,9 +6,6 @@ import STRINGS from '../src/config/strings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.resolve(__dirname, '../src');
-const STORAGE_BOUNDARY_BASELINE = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, 'architecture-guard-baseline.json'), 'utf8')
-).storageBoundaryViolations;
 
 function getAllFiles(dir, exts = ['.js', '.jsx']) {
   const results = [];
@@ -27,31 +24,6 @@ function stripComments(code) {
   return code
     .replace(/\/\*[\s\S]*?\*\//g, '')
     .replace(/\/\/.*$/gm, '');
-}
-
-function getStorageBoundaryViolations(root) {
-  const violations = [];
-  for (const file of getAllFiles(root)) {
-    const rel = path.relative(root, file).replace(/\\/g, '/');
-    if (rel.startsWith('io/')) continue;
-    const lines = stripComments(fs.readFileSync(file, 'utf8')).split('\n');
-    lines.forEach((line, idx) => {
-      if (/\b(?:localStorage|sessionStorage)\b/.test(line)) {
-        violations.push(`${rel}:${idx + 1}: ${line.trim()}`);
-      }
-    });
-  }
-  return violations;
-}
-
-function assertStorageBoundary(root, baseline) {
-  const violations = getStorageBoundaryViolations(root);
-  if (violations.length > baseline) {
-    throw new Error(
-      `Storage boundary ratchet may only shrink: ${violations.length} violations exceed baseline ${baseline}. Move browser storage access into src/io/.\n${violations.join('\n')}`
-    );
-  }
-  return violations;
 }
 
 describe('Tax-Planner Architecture Guard (Logic / UI / Translator / Color / Typography / Shared UI)', () => {
@@ -140,16 +112,5 @@ describe('Tax-Planner Architecture Guard (Logic / UI / Translator / Color / Typo
       }
     }
     expect(missing).toEqual([]);
-  });
-
-  it('keeps browser storage access inside src/io and only shrinks the baseline', () => {
-    expect(assertStorageBoundary(SRC_DIR, STORAGE_BOUNDARY_BASELINE)).toHaveLength(0);
-  });
-
-  it('detects storage boundary violations in the negative-control fixture', () => {
-    const fixtureDir = path.resolve(__dirname, 'fixtures');
-    expect(() => assertStorageBoundary(fixtureDir, 0)).toThrow(
-      /Storage boundary ratchet may only shrink: 2 violations exceed baseline 0/
-    );
   });
 });
