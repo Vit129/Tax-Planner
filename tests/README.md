@@ -12,7 +12,6 @@ tests/
 │   └── taxLogicScenario.api.spec.js # Headless Core Engine Matrix Tests (14 scenarios in ms)
 ├── tests-web/
 │   └── taxLogicScenario.ui.spec.js  # Chrome Browser E2E Tests via Page Object Model
-└── architectureGuard.test.js      # Continuous Static Architecture Guard
 ```
 
 ---
@@ -96,6 +95,6 @@ npx playwright test tests/tests-web
 # 3. รันครบทั้งหมดทั้ง API & Web Scenarios
 npm run test:scenarios
 
-# 4. รัน Vitest Unit Tests & Architecture Guard
+# 4. รัน Vitest Unit Tests
 npm test
 ```

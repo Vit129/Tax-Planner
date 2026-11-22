@@ -91,4 +91,4 @@
 1. **Calculation Accuracy:** 100% parity with Thai Revenue Department (ภ.ง.ด. 90/91) progressive tax tables and sub-caps.
 2. **Performance:** Sub-100ms calculation re-render on complex multi-company input changes.
 3. **Build Size:** Compressed production bundle under 100kB gzip.
-4. **Architecture Purity:** 0 hardcoded strings, 0 hardcoded colors, 0 raw typography literals, and automated architecture guard tests passing on every commit.
+4. **Architecture:** Keep user-facing text in `src/config/strings.js`, color literals in `src/config/colors.js`, and literal font sizes and families in `src/config/typography.js`; review changes against the layer rules in `ARCHITECTURE.md`.
