@@ -1,8 +1,6 @@
 /* Default theme: Warm Bright Cream */
 :root,
 :root[data-theme="light"] {
-  --body: -apple-system, BlinkMacSystemFont, "Noto Sans Thai", "Sarabun", "Segoe UI", system-ui, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, monospace;
   color-scheme: light;
 }
 
@@ -168,7 +166,7 @@ label.f {
 
 .money input {
   border: 0;
-  background: transparent;
+  background: var(--transparent);
   font: 500 var(--text-100) var(--mono);
   color: var(--fg);
   text-align: right;
@@ -526,7 +524,7 @@ details li {
   border-radius: 99px;
   padding: 2px 10px;
   border: 1px solid var(--line);
-  background: transparent;
+  background: var(--transparent);
   color: var(--mut);
   cursor: pointer;
   font-weight: 500;
@@ -574,7 +572,7 @@ details li {
 
 .sim-money input {
   border: 0;
-  background: transparent;
+  background: var(--transparent);
   font: 800 var(--text-160) var(--mono);
   color: var(--blue);
   width: 100%;

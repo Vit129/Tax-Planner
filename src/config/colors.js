@@ -26,6 +26,7 @@ export const CSS_THEME_COLORS = {
     '--blue': '#1A568C',
     '--blue-soft': '#E9F1F7',
     '--sim-border': 'rgba(26, 86, 140, 0.3)',
+    '--transparent': 'transparent',
   },
   dark: {
     '--bg': '#1A1714',
@@ -43,5 +44,6 @@ export const CSS_THEME_COLORS = {
     '--blue': '#86B6E6',
     '--blue-soft': '#1E2E40',
     '--sim-border': 'rgba(26, 86, 140, 0.3)',
+    '--transparent': 'transparent',
   },
 };

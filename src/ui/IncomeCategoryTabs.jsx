@@ -41,6 +41,7 @@ export default function IncomeCategoryTabs({ entries, onChange, active, tab, onS
             key={id}
             type="button"
             role="tab"
+            data-testid={`income-category-tab-${id}`}
             aria-selected={tab === id}
             className="btn"
             onClick={() => onSelectTab(id)}

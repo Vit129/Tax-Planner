@@ -3,6 +3,11 @@ import { TAX_UI_TYPOGRAPHY } from '@vit129/tax-ui';
 export const TYPOGRAPHY = TAX_UI_TYPOGRAPHY;
 export default TYPOGRAPHY;
 
+export const CSS_FONT_FAMILIES = {
+  '--body': '-apple-system, BlinkMacSystemFont, "Noto Sans Thai", "Sarabun", "Segoe UI", system-ui, sans-serif',
+  '--mono': 'ui-monospace, "SF Mono", Menlo, monospace',
+};
+
 export const CSS_FONT_SIZES = {
   '--text-base': '16px',
   '--text-100': '1rem',
@@ -19,6 +24,10 @@ export const CSS_FONT_SIZES = {
   '--text-210': '2.1rem',
   '--text-160': '1.6rem',
 };
+
+Object.entries(CSS_FONT_FAMILIES).forEach(([name, value]) => {
+  globalThis.document?.documentElement.style.setProperty(name, value);
+});
 
 Object.entries(CSS_FONT_SIZES).forEach(([name, value]) => {
   globalThis.document?.documentElement.style.setProperty(name, value);

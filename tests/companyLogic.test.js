@@ -15,7 +15,7 @@ import {
 import { calculateProgressiveTax } from '../src/logic/taxLogic.js';
 
 describe('companyLogic', () => {
-  it('calculates 12 months with fixed base salary correctly', () => {
+  it('[TC-COMPANY-LOGIC-001] calculates 12 months with fixed base salary correctly', () => {
     const co = {
       startMonth: 1,
       endMonth: 12,
@@ -27,7 +27,7 @@ describe('companyLogic', () => {
     expect(getCompanyAnnualSalary(co)).toBe(65000 * 12);
   });
 
-  it('handles mid-year start (e.g. April to Dec = 9 months)', () => {
+  it('[TC-COMPANY-LOGIC-002] handles mid-year start (e.g. April to Dec = 9 months)', () => {
     const co = {
       startMonth: 4,
       endMonth: 12,
@@ -42,7 +42,7 @@ describe('companyLogic', () => {
     expect(getCompanyAnnualSalary(co)).toBe(75000 * 9);
   });
 
-  it('handles mid-year salary adjustment with carry-forward', () => {
+  it('[TC-COMPANY-LOGIC-003] handles mid-year salary adjustment with carry-forward', () => {
     const co = {
       startMonth: 1,
       endMonth: 12,
