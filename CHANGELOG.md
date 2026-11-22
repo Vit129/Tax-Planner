@@ -4,6 +4,23 @@ Notable changes to Tax-Planner are documented here. This file follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.5] - 2026-11-22
+
+### Changed
+- Separate application composition from layers ([`8cb6d40`](https://github.com/Vit129/Tax-Planner/commit/8cb6d4013dee1be95bc896af7dd6350b197be7c4))
+- Centralize theme color values ([`421d653`](https://github.com/Vit129/Tax-Planner/commit/421d6532e43a9a7cb2667f415d4bc978991e88bb))
+- Centralize remaining Thai text ([`18af6f4`](https://github.com/Vit129/Tax-Planner/commit/18af6f46bba4c1fd9adf45137c76aae3c51cd5d7))
+- Centralize CSS font sizes ([`298a237`](https://github.com/Vit129/Tax-Planner/commit/298a237a852b779ab2a65da05ffd774232be207a))
+
+### Documentation
+- Align project docs with current layers ([`b59ed3d`](https://github.com/Vit129/Tax-Planner/commit/b59ed3dd182bab06ef847d7a5f29663541b35a09))
+
+### Fixed
+- Read shared packages with a scoped deploy key ([`fc20686`](https://github.com/Vit129/Tax-Planner/commit/fc206865f9cb9570d01a2280dbb3c0253c021e87))
+- Centralize favicon glyph sizing ([`3c77081`](https://github.com/Vit129/Tax-Planner/commit/3c770818694b85ac63fdd9f8d024a8b0e4c8f510))
+- Source browser title from strings ([`9c8435b`](https://github.com/Vit129/Tax-Planner/commit/9c8435bf6d0e8f75ceab0160103cf416b4584333))
+- Source shared UI labels from strings ([`8c9a7b1`](https://github.com/Vit129/Tax-Planner/commit/8c9a7b1c2073139a14969895efe84ffeeb379490))
+
 ## [1.4.3] - 2026-10-30
 
 ### Fixed
@@ -68,3 +85,4 @@ Notable changes to Tax-Planner are documented here. This file follows
 ### Documentation
 - Add UI mockup and stack/logic/UI decision page ([`e51d93b`](https://github.com/Vit129/Tax-Planner/commit/e51d93b74e803d028e039f23da19da5a4ef8c4fc))
 - Update tax mockup to match latest Tax page design ([`e8df47c`](https://github.com/Vit129/Tax-Planner/commit/e8df47cd24147863600c7b0ddb7cad2dcb0337f9))
+
