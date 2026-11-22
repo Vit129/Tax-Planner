@@ -1,0 +1,27 @@
+src/config/strings.js
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 6-7
+src/easyTaxAdapter.js
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 229
+src/ui/OtherIncomeSummary.jsx
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 9
+src/logic/companyLogic.js
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 154
+src/config/taxRules.js
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "18af6f46bba4c1fd9adf45137c76aae3c51cd5d7",
+  "prompts": {},
+  "sessions": {
+    "s_2be6efa8cdfe73": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2019c-5017-7320-9969-7835265999b4",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
