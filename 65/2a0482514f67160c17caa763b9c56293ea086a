@@ -1,0 +1,21 @@
+package.json
+  s_eeb7dfde962f55::t_d9de6fc1b7d643 4
+release-manifest.json
+  s_eeb7dfde962f55::t_4cede31318913a 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "652a0482514f67160c17caa763b9c56293ea086a",
+  "prompts": {},
+  "sessions": {
+    "s_eeb7dfde962f55": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_eeb7dfde962f55",
+        "model": "unknown"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
