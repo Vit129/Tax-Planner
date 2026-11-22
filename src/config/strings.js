@@ -3,6 +3,7 @@
  * All UI components consume strings from this file — zero hardcoded strings in UI.
  */
 export const STRINGS = {
+  BROWSER_TITLE: 'Tax-Planner 2026',
   CURRENCY_BAHT: '฿',
 
   // Header & Banners

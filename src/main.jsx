@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { CSS_THEME_COLORS } from './config/colors';
+import STRINGS from './config/strings';
+
+document.title = STRINGS.BROWSER_TITLE;
 
 const themeStyles = document.createElement('style');
 themeStyles.textContent = Object.entries(CSS_THEME_COLORS)
