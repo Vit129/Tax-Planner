@@ -1,0 +1,19 @@
+index.html
+  s_54f808a18cda6d::t_c4fd05d2d5443a 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "3c770818694b85ac63fdd9f8d024a8b0e4c8f510",
+  "prompts": {},
+  "sessions": {
+    "s_54f808a18cda6d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a201cf-52d0-78c0-8879-9afb55604508",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
