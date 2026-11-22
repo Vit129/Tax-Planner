@@ -40,6 +40,7 @@ export default defineConfig({
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
+      '.kouen-worktrees/**',
       'tests/tests-api/**',
       'tests/tests-web/**',
       'tests/taxLogicScenario/**',
