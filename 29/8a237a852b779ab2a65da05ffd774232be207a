@@ -1,0 +1,21 @@
+src/index.css
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 22,38,44,54,141,149,172,223,228,232,258,266,282,325,335,358,380,411,460,471,504,509,525,569,578,586,617,621
+src/config/typography.js
+  s_2be6efa8cdfe73::t_0cb2b6cbaec6ca 5-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "298a237a852b779ab2a65da05ffd774232be207a",
+  "prompts": {},
+  "sessions": {
+    "s_2be6efa8cdfe73": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2019c-5017-7320-9969-7835265999b4",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
