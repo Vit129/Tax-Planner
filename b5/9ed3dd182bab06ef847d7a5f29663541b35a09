@@ -1,0 +1,30 @@
+README.md
+  s_c6e3032e30e281::t_6af634aa002c92 1,3,5,10,12,14-15,19,21-26,28
+PRODUCT.md
+  s_c6e3032e30e281::t_7cbdbed2b81e00 94
+scripts/start.js
+  s_c6e3032e30e281::t_7cbdbed2b81e00 280
+ARCHITECTURE.md
+  s_c6e3032e30e281::t_5402cd29d43310 1,3,5,7-14,16,18,20-23,25,27,29,31,33
+  s_c6e3032e30e281::t_736e53d06c7862 35
+AGENTS.md
+  s_c6e3032e30e281::t_7cbdbed2b81e00 21
+tests/README.md
+  s_c6e3032e30e281::t_7cbdbed2b81e00 98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "b59ed3dd182bab06ef847d7a5f29663541b35a09",
+  "prompts": {},
+  "sessions": {
+    "s_c6e3032e30e281": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a201a7-5089-75c2-abff-7e5198e72409",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
