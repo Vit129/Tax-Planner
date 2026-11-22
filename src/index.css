@@ -1,8 +1,6 @@
 /* Default theme: Warm Bright Cream */
 :root,
 :root[data-theme="light"] {
-  --body: -apple-system, BlinkMacSystemFont, "Noto Sans Thai", "Sarabun", "Segoe UI", system-ui, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, monospace;
   color-scheme: light;
 }
 
