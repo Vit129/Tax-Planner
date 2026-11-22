@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
   TaxEasyApp,
-  TAX_UI_TH_STRINGS,
   buildSimulatorModel,
   isSampleBannerVisible,
 } from '@vit129/tax-ui';
@@ -16,8 +15,7 @@ import {
   toEasyPlan,
   createEasySimulatorRecalculate,
   buildEasyAiPrompt,
-  buildAiChatUrl,
-} from '../logic/easyTaxAdapter';
+} from '../easyTaxAdapter';
 
 export default function EasyTaxApp({
   companies,
@@ -43,6 +41,7 @@ export default function EasyTaxApp({
   theme,
   onToggleTheme,
   taxYear,
+  onOpenAi,
 }) {
   const isDark = theme === 'dark';
   const [incomeTab, setIncomeTab] = useState('salary');
@@ -68,7 +67,7 @@ export default function EasyTaxApp({
 
   const labels = useMemo(
     () => ({
-      ...TAX_UI_TH_STRINGS,
+      ...STRINGS.EASY_TAX_UI_LABELS,
       AI_HOUSES: STRINGS.DEFAULT_AI_HOUSES,
       VAL_TAX_FORM_90: STRINGS.VAL_TAX_FORM_90,
     }),
@@ -77,11 +76,6 @@ export default function EasyTaxApp({
 
   const handleBuildAiPrompt = (params) =>
     buildEasyAiPrompt(params, { basePlan: easyPlan, taxYear });
-
-  const handleOpenAi = (provider, prompt) => {
-    const url = buildAiChatUrl(provider, prompt);
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
 
   const hasSavedOwnData = Boolean(flowState?.hasSavedOwnData);
   const sampleBannerShown = isSampleBannerVisible({ isSampleData, hasSavedOwnData });
@@ -162,7 +156,7 @@ export default function EasyTaxApp({
         taxYear={taxYear}
         labels={labels}
         buildAiPrompt={handleBuildAiPrompt}
-        onOpenAi={handleOpenAi}
+        onOpenAi={onOpenAi}
       />
 
       <div

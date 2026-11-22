@@ -277,7 +277,7 @@ async function main() {
         value: 'dev'
       },
       {
-        display: '2) Test Suite & Architecture Guard',
+        display: '2) Test Suite',
         value: 'test'
       },
       {

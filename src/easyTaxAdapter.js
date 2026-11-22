@@ -12,8 +12,8 @@ import {
   getCompanyMonthlySalaries,
   getCompanyLastSalary,
   getCompanyTotalIncome,
-} from './companyLogic.js';
-import { calculateTaxPlan, generateAiRmfPrompt } from './taxLogic.js';
+} from './logic/companyLogic.js';
+import { calculateTaxPlan, generateAiRmfPrompt } from './logic/taxLogic.js';
 import { buildRetirementPoolView, buildTaxWaterfall } from '@vit129/tax-ui';
 
 // The shared package owns the monthly-income helpers; re-exported so the app and its tests import one place.
@@ -226,7 +226,7 @@ export function toEasyDeductions(tpDeductions = {}) {
     rmf: evalNumber(d.rmf),
     thaiEsg: evalNumber(d.thaiEsg),
     pensionInsurance: evalNumber(d.pensionInsurance),
-    // Tax-Planner calls the National Savings Fund (กอช.) `gpf`; the shared model and tax-core call it `nsf`.
+    // Tax-Planner calls the National Savings Fund `gpf`; the shared model and tax-core call it `nsf`.
     nsf: evalNumber(d.gpf ?? d.nsf),
   };
 }

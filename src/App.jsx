@@ -1,16 +1,18 @@
-import { migrateOtherIncome } from '../logic/migrateOtherIncome';
+import { migrateOtherIncome } from './logic/migrateOtherIncome';
+import { getStorageItem, setStorageItem } from './io/storage.js';
 import React, { useState, useEffect, useMemo } from 'react';
 import { INITIAL_FLOW_STATE } from '@vit129/tax-ui';
-import EasyTaxApp from './EasyTaxApp';
-import STRINGS from '../config/strings';
-import { getTaxYearMetadata } from '../logic/taxLogic';
-import { evalNumber } from '../logic/evalExpression';
+import EasyTaxApp from './ui/EasyTaxApp';
+import STRINGS from './config/strings';
+import { getTaxYearMetadata } from './logic/taxLogic';
+import { evalNumber } from './logic/evalExpression';
 import {
   fromCoreCompany,
   createNextTpCompany,
   applyEasyDeductionUpdate,
   hasTaxSummaryData,
-} from '../logic/easyTaxAdapter';
+  buildAiChatUrl,
+} from './easyTaxAdapter';
 
 const STORAGE_KEY = 'TAX_PLANNER_DATA_V2';
 const THEME_STORAGE_KEY = 'TAX_PLANNER_THEME';
@@ -97,7 +99,7 @@ export default function App() {
 
   const [isSampleMode, setIsSampleMode] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = getStorageItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         return Boolean(parsed.isSampleMode);
@@ -110,7 +112,7 @@ export default function App() {
 
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+      return getStorageItem(THEME_STORAGE_KEY) || 'light';
     } catch {
       return 'light';
     }
@@ -118,7 +120,7 @@ export default function App() {
 
   const [companies, setCompanies] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = getStorageItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed.companies) && parsed.companies.length > 0) {
@@ -133,7 +135,7 @@ export default function App() {
 
   const [deductions, setDeductions] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = getStorageItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed.deductions) {
@@ -148,7 +150,7 @@ export default function App() {
 
   const [foreignIncome, setForeignIncome] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = getStorageItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         return evalNumber(parsed.foreignIncome);
@@ -161,7 +163,7 @@ export default function App() {
 
   const [otherIncome, setOtherIncome] = useState(() => {
     try {
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      const data = JSON.parse(getStorageItem(STORAGE_KEY) || '{}');
       return migrateOtherIncome(data.otherIncome);
     } catch { return []; }
   });
@@ -178,7 +180,7 @@ export default function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(
+      setStorageItem(
         STORAGE_KEY,
         JSON.stringify({
           companies,
@@ -196,7 +198,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      setStorageItem(THEME_STORAGE_KEY, theme);
     } catch {
       // ignore
     }
@@ -308,6 +310,7 @@ export default function App() {
       theme={theme}
       onToggleTheme={handleToggleTheme}
       taxYear={taxYear}
+      onOpenAi={(provider, prompt) => window.open(buildAiChatUrl(provider, prompt), '_blank', 'noopener,noreferrer')}
     />
   );
 }

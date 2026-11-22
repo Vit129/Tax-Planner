@@ -151,7 +151,7 @@ export function getCompanySocialSecurity(company) {
 }
 
 /**
- * Estimates employer withholding tax (ภ.ง.ด. 1) for the period worked at this company.
+ * Estimates employer withholding tax (PND 1) for the period worked at this company.
  */
 export function estimateCompanyWithholding(company, calculateTaxFn) {
   const start = Math.max(1, Math.min(12, Math.round(evalNumber(company?.startMonth)) || 1));

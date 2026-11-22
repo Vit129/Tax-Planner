@@ -6,7 +6,7 @@ import COLORS from '../config/colors';
 export default function OtherIncomeSummary({ plan }) {
   const other = plan?.otherIncomeSummary;
   if (!other || (other.includedIncome === 0 && other.excludedIncome === 0)) return null;
-  const format = n => `฿${Math.round(n || 0).toLocaleString('en-US')}`;
+  const format = n => `${STRINGS.CURRENCY_BAHT}${Math.round(n || 0).toLocaleString('en-US')}`;
   return <section style={{ background: COLORS.SURFACE, border: `1px solid ${COLORS.LINE}`, borderRadius: '10px', padding: '14px', display: 'grid', gap: '8px', fontSize: TYPOGRAPHY.SIZE_SMALL }}>
     <strong>{STRINGS.OTHER_TITLE}</strong>
     {other.incompleteCategories?.length > 0 && <div role="alert" style={{ color: COLORS.BAD }}>{STRINGS.OTHER_SUMMARY_INCOMPLETE}</div>}
