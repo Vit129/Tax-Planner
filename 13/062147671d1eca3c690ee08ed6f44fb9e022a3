@@ -1,0 +1,31 @@
+vite.config.js
+  s_2cc7c66a6d094f::t_261ed06fc48a71 43
+tests/architectureGuard.test.js
+  s_2cc7c66a6d094f::t_08933cc7ba9db7 9-11,32-46,144-145,147-150,154
+  s_2cc7c66a6d094f::t_1d0265a6733f7f 47-56,146,151-153
+src/ui/App.jsx
+  s_2cc7c66a6d094f::t_261ed06fc48a71 2,101,114,122,137,152,165,182,200
+src/io/storage.js
+  s_2cc7c66a6d094f::t_08933cc7ba9db7 1-23
+tests/architecture-guard-baseline.json
+  s_2cc7c66a6d094f::t_1d0265a6733f7f 2
+  s_2cc7c66a6d094f::t_08933cc7ba9db7 1,3
+tests/fixtures/storage-boundary-violation.js
+  s_2cc7c66a6d094f::t_08933cc7ba9db7 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "13062147671d1eca3c690ee08ed6f44fb9e022a3",
+  "prompts": {},
+  "sessions": {
+    "s_2cc7c66a6d094f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2012d-4b23-7c60-8300-a73c8f617859",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
