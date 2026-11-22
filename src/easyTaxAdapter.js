@@ -226,7 +226,7 @@ export function toEasyDeductions(tpDeductions = {}) {
     rmf: evalNumber(d.rmf),
     thaiEsg: evalNumber(d.thaiEsg),
     pensionInsurance: evalNumber(d.pensionInsurance),
-    // Tax-Planner calls the National Savings Fund (กอช.) `gpf`; the shared model and tax-core call it `nsf`.
+    // Tax-Planner calls the National Savings Fund `gpf`; the shared model and tax-core call it `nsf`.
     nsf: evalNumber(d.gpf ?? d.nsf),
   };
 }

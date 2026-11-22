@@ -30,7 +30,7 @@ export const DEDUCTION_RULES = {
   DISABLED_CARE: 60000,
   ANTENATAL_CAP: 60000,
 
-  // Social Security (ม.33 ปรับเพดานใหม่ปี 2569: 17,500 บาท -> 875 บาท/เดือน = 10,500 บาท/ปี)
+  // Social Security (section 33, 2026 ceiling: 17,500 baht/month -> 875 baht/month = 10,500 baht/year)
   SS_MONTHLY_MAX: 875,
   SS_ANNUAL_CAP: 10500,
 

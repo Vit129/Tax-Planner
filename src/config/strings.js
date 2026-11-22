@@ -3,6 +3,8 @@
  * All UI components consume strings from this file — zero hardcoded strings in UI.
  */
 export const STRINGS = {
+  CURRENCY_BAHT: '฿',
+
   // Header & Banners
   APP_TITLE_PREFIX: 'วางแผนภาษีปี',
   APP_SUBTITLE: 'คำนวณภาษีเงินได้บุคคลธรรมดา (ภ.ง.ด.90/91) และกองทุนเกษียณ RMF / PVD / Thai ESG · คำนวณในเครื่องเท่านั้น ไม่ส่งข้อมูลไปที่ไหน',
