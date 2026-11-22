@@ -1,0 +1,19 @@
+tests/companyLogic.test.js
+  s_26a9da2889cfbf::t_d58e5ab9ad99f3 18,30,45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "f3d6e5984f65b0fa69238d911207eb833fe82276",
+  "prompts": {},
+  "sessions": {
+    "s_26a9da2889cfbf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a20252-e498-7f10-8093-a13c8da649a9",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
