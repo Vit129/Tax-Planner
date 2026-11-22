@@ -1,0 +1,20 @@
+src/config/typography.js
+  s_26a9da2889cfbf::t_4919fe5f87bc90 6-10,28-30
+  s_26a9da2889cfbf::t_e10cb6e9fbd9ee 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "f50b0a63303a90db59d010e81275823cd53e2d75",
+  "prompts": {},
+  "sessions": {
+    "s_26a9da2889cfbf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a20252-e498-7f10-8093-a13c8da649a9",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
