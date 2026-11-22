@@ -1,0 +1,23 @@
+CHANGELOG.md
+  s_7a51e701a823d5::t_b5d4fc1705e477 7-23,87-88
+package.json
+  s_7a51e701a823d5::t_31876c5def2238 4
+release-manifest.json
+  s_7a51e701a823d5::t_74b99831d7bf80 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "0309d6c288a034d9eef306919515a1aab860def8",
+  "prompts": {},
+  "sessions": {
+    "s_7a51e701a823d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_7a51e701a823d5",
+        "model": "unknown"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
