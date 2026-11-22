@@ -1,0 +1,33 @@
+tests/otherIncomeIntegration.test.js
+  s_f60b09924eaddf::t_0b0586ee7d39b3 3
+tests/easyTaxAdapter.test.js
+  s_f60b09924eaddf::t_0b0586ee7d39b3 29
+src/ui/EasyTaxApp.jsx
+  s_f60b09924eaddf::t_0b0868b6d78bac 45,160
+  s_f60b09924eaddf::t_0b0586ee7d39b3 19
+src/App.jsx
+  s_f60b09924eaddf::t_0b0868b6d78bac 1-14,16-316
+  s_f60b09924eaddf::t_0b0586ee7d39b3 15
+src/easyTaxAdapter.js
+  s_f60b09924eaddf::t_0b0586ee7d39b3 1-519
+tests/tests-api/taxLogicScenario.api.spec.js
+  s_f60b09924eaddf::t_0b0586ee7d39b3 17
+src/main.jsx
+  s_f60b09924eaddf::t_0b0868b6d78bac 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "8cb6d4013dee1be95bc896af7dd6350b197be7c4",
+  "prompts": {},
+  "sessions": {
+    "s_f60b09924eaddf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2015f-e052-7432-9fcc-30c78cf0c4ad",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
