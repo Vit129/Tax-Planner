@@ -1,0 +1,21 @@
+src/ui/OtherIncomeStep.jsx
+  s_26a9da2889cfbf::t_1d762d1c6b22a9 16-23,25,29,33,35
+src/ui/IncomeCategoryTabs.jsx
+  s_26a9da2889cfbf::t_1d762d1c6b22a9 44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "98f92c0e49dd026ba9f952457440497446b4afd7",
+  "prompts": {},
+  "sessions": {
+    "s_26a9da2889cfbf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a20252-e498-7f10-8093-a13c8da649a9",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
