@@ -1,17 +1,18 @@
-import { migrateOtherIncome } from '../logic/migrateOtherIncome';
-import { getStorageItem, setStorageItem } from '../io/storage.js';
+import { migrateOtherIncome } from './logic/migrateOtherIncome';
+import { getStorageItem, setStorageItem } from './io/storage.js';
 import React, { useState, useEffect, useMemo } from 'react';
 import { INITIAL_FLOW_STATE } from '@vit129/tax-ui';
-import EasyTaxApp from './EasyTaxApp';
-import STRINGS from '../config/strings';
-import { getTaxYearMetadata } from '../logic/taxLogic';
-import { evalNumber } from '../logic/evalExpression';
+import EasyTaxApp from './ui/EasyTaxApp';
+import STRINGS from './config/strings';
+import { getTaxYearMetadata } from './logic/taxLogic';
+import { evalNumber } from './logic/evalExpression';
 import {
   fromCoreCompany,
   createNextTpCompany,
   applyEasyDeductionUpdate,
   hasTaxSummaryData,
-} from '../logic/easyTaxAdapter';
+  buildAiChatUrl,
+} from './easyTaxAdapter';
 
 const STORAGE_KEY = 'TAX_PLANNER_DATA_V2';
 const THEME_STORAGE_KEY = 'TAX_PLANNER_THEME';
@@ -309,6 +310,7 @@ export default function App() {
       theme={theme}
       onToggleTheme={handleToggleTheme}
       taxYear={taxYear}
+      onOpenAi={(provider, prompt) => window.open(buildAiChatUrl(provider, prompt), '_blank', 'noopener,noreferrer')}
     />
   );
 }

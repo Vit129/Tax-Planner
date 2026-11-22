@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { calculateTaxPlan } from '../src/logic/taxLogic.js';
-import { toEasyPlan, createEasySimulatorRecalculate } from '../src/logic/easyTaxAdapter.js';
+import { toEasyPlan, createEasySimulatorRecalculate } from '../src/easyTaxAdapter.js';
 
 const income = (type, gross, details = {}) => ({ type, gross, withholding: 0, expenses: 0, treatment: 'included', ...details });
 

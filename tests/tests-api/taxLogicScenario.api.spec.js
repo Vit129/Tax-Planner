@@ -14,7 +14,7 @@ import {
   setStartSalary,
   setFirstRaise,
   setYearlyOtherIncome,
-} from '../../src/logic/easyTaxAdapter.js';
+} from '../../src/easyTaxAdapter.js';
 import { SCENARIOS, SHAPE_FIXTURE, LEGACY_V2_SAMPLE_FIXTURE } from '../fixtures/taxLogic/scenarios.data.js';
 
 test.describe('@Critical [TS-TAX-API] Tax Mathematical Engine & RMF Logic Scenarios', () => {

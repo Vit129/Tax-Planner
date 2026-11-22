@@ -26,7 +26,7 @@ import {
   setStartSalary,
   setFirstRaise,
   setYearlyOtherIncome,
-} from '../src/logic/easyTaxAdapter.js';
+} from '../src/easyTaxAdapter.js';
 import { calculateTaxPlan } from '../src/logic/taxLogic.js';
 import { STRINGS } from '../src/config/strings.js';
 import {

@@ -12,8 +12,8 @@ import {
   getCompanyMonthlySalaries,
   getCompanyLastSalary,
   getCompanyTotalIncome,
-} from './companyLogic.js';
-import { calculateTaxPlan, generateAiRmfPrompt } from './taxLogic.js';
+} from './logic/companyLogic.js';
+import { calculateTaxPlan, generateAiRmfPrompt } from './logic/taxLogic.js';
 import { buildRetirementPoolView, buildTaxWaterfall } from '@vit129/tax-ui';
 
 // The shared package owns the monthly-income helpers; re-exported so the app and its tests import one place.
