@@ -1,0 +1,21 @@
+src/config/strings.js
+  s_54f808a18cda6d::t_3821d2a7cc6656 323-324
+src/ui/EasyTaxApp.jsx
+  s_54f808a18cda6d::t_fca079f19ce7a4 70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.7",
+  "base_commit_sha": "8c9a7b1c2073139a14969895efe84ffeeb379490",
+  "prompts": {},
+  "sessions": {
+    "s_54f808a18cda6d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a201cf-52d0-78c0-8879-9afb55604508",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Vit129 <vitosk129@gmail.com>"
+    }
+  }
+}
